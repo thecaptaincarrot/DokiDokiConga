@@ -1,0 +1,306 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://HUD/Word.tscn" type="PackedScene" id=1]
+[ext_resource path="res://HUD/Credits.gd" type="Script" id=2]
+
+[node name="Credits" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0, 0, 0, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -40.0
+margin_top = 20.0
+margin_right = 3.05176e-05
+margin_bottom = 1112.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Word Box" type="Control" parent="VBoxContainer"]
+margin_right = 40.0
+margin_bottom = 40.0
+rect_min_size = Vector2( 0, 40 )
+
+[node name="Word" parent="VBoxContainer/Word Box" instance=ExtResource( 1 )]
+scale = Vector2( 2, 2 )
+word = "cONGANAUTS"
+
+[node name="Word Box2" type="Control" parent="VBoxContainer"]
+margin_top = 44.0
+margin_right = 40.0
+margin_bottom = 84.0
+rect_min_size = Vector2( 0, 40 )
+
+[node name="Word" parent="VBoxContainer/Word Box2" instance=ExtResource( 1 )]
+word = "A SALTY SQUAD GAME"
+
+[node name="Word Box3" type="Control" parent="VBoxContainer"]
+margin_top = 88.0
+margin_right = 40.0
+margin_bottom = 120.0
+rect_min_size = Vector2( 0, 32 )
+
+[node name="Word" parent="VBoxContainer/Word Box3" instance=ExtResource( 1 )]
+word = ""
+
+[node name="Word Box4" type="Control" parent="VBoxContainer"]
+margin_top = 124.0
+margin_right = 40.0
+margin_bottom = 156.0
+rect_min_size = Vector2( 0, 32 )
+
+[node name="Word" parent="VBoxContainer/Word Box4" instance=ExtResource( 1 )]
+word = "dESIGN AND CODE"
+
+[node name="Word Box5" type="Control" parent="VBoxContainer"]
+margin_top = 160.0
+margin_right = 40.0
+margin_bottom = 192.0
+rect_min_size = Vector2( 0, 32 )
+
+[node name="Word" parent="VBoxContainer/Word Box5" instance=ExtResource( 1 )]
+word = "cAPTAIN cARROT"
+
+[node name="Word Box6" type="Control" parent="VBoxContainer"]
+margin_top = 196.0
+margin_right = 40.0
+margin_bottom = 228.0
+rect_min_size = Vector2( 0, 32 )
+
+[node name="Word" parent="VBoxContainer/Word Box6" instance=ExtResource( 1 )]
+word = ""
+
+[node name="Word Box7" type="Control" parent="VBoxContainer"]
+margin_top = 232.0
+margin_right = 40.0
+margin_bottom = 264.0
+rect_min_size = Vector2( 0, 32 )
+
+[node name="Word" parent="VBoxContainer/Word Box7" instance=ExtResource( 1 )]
+word = "cHARACTER sPRITEs"
+
+[node name="Word Box8" type="Control" parent="VBoxContainer"]
+margin_top = 268.0
+margin_right = 40.0
+margin_bottom = 300.0
+rect_min_size = Vector2( 0, 32 )
+
+[node name="Word" parent="VBoxContainer/Word Box8" instance=ExtResource( 1 )]
+word = "finalbossblues.COM"
+
+[node name="Word Box9" type="Control" parent="VBoxContainer"]
+margin_top = 304.0
+margin_right = 40.0
+margin_bottom = 336.0
+rect_min_size = Vector2( 0, 32 )
+
+[node name="Word" parent="VBoxContainer/Word Box9" instance=ExtResource( 1 )]
+word = ""
+
+[node name="Word Box10" type="Control" parent="VBoxContainer"]
+margin_top = 340.0
+margin_right = 40.0
+margin_bottom = 372.0
+rect_min_size = Vector2( 0, 32 )
+
+[node name="Word" parent="VBoxContainer/Word Box10" instance=ExtResource( 1 )]
+word = "ADDITIONAL SPRITES"
+
+[node name="Word Box11" type="Control" parent="VBoxContainer"]
+margin_top = 376.0
+margin_right = 40.0
+margin_bottom = 408.0
+rect_min_size = Vector2( 0, 32 )
+
+[node name="Word" parent="VBoxContainer/Word Box11" instance=ExtResource( 1 )]
+word = " www.patreon.com/elthen)"
+
+[node name="Word Box12" type="Control" parent="VBoxContainer"]
+margin_top = 412.0
+margin_right = 40.0
+margin_bottom = 444.0
+rect_min_size = Vector2( 0, 32 )
+
+[node name="Word" parent="VBoxContainer/Word Box12" instance=ExtResource( 1 )]
+word = "opengameart.org/users/bonsaiheldin"
+
+[node name="Word Box21" type="Control" parent="VBoxContainer"]
+margin_top = 448.0
+margin_right = 40.0
+margin_bottom = 480.0
+rect_min_size = Vector2( 0, 32 )
+
+[node name="Word" parent="VBoxContainer/Word Box21" instance=ExtResource( 1 )]
+position = Vector2( 31.4981, 27.0883 )
+word = "sethbyrd.com"
+
+[node name="Word Box13" type="Control" parent="VBoxContainer"]
+margin_top = 484.0
+margin_right = 40.0
+margin_bottom = 516.0
+rect_min_size = Vector2( 0, 32 )
+
+[node name="Word" parent="VBoxContainer/Word Box13" instance=ExtResource( 1 )]
+word = ""
+
+[node name="Word Box14" type="Control" parent="VBoxContainer"]
+margin_top = 520.0
+margin_right = 40.0
+margin_bottom = 552.0
+rect_min_size = Vector2( 0, 32 )
+
+[node name="Word" parent="VBoxContainer/Word Box14" instance=ExtResource( 1 )]
+position = Vector2( 36, 28 )
+word = "tILESETs"
+
+[node name="Word Box15" type="Control" parent="VBoxContainer"]
+margin_top = 556.0
+margin_right = 40.0
+margin_bottom = 588.0
+rect_min_size = Vector2( 0, 32 )
+
+[node name="Word" parent="VBoxContainer/Word Box15" instance=ExtResource( 1 )]
+word = "VexedEnigma"
+
+[node name="Word Box17" type="Control" parent="VBoxContainer"]
+margin_top = 592.0
+margin_right = 40.0
+margin_bottom = 624.0
+rect_min_size = Vector2( 0, 32 )
+
+[node name="Word" parent="VBoxContainer/Word Box17" instance=ExtResource( 1 )]
+word = "Guttykreum"
+
+[node name="Word Box16" type="Control" parent="VBoxContainer"]
+margin_top = 628.0
+margin_right = 40.0
+margin_bottom = 660.0
+rect_min_size = Vector2( 0, 32 )
+
+[node name="Word" parent="VBoxContainer/Word Box16" instance=ExtResource( 1 )]
+word = ""
+
+[node name="Word Box18" type="Control" parent="VBoxContainer"]
+margin_top = 664.0
+margin_right = 40.0
+margin_bottom = 696.0
+rect_min_size = Vector2( 0, 32 )
+
+[node name="Word" parent="VBoxContainer/Word Box18" instance=ExtResource( 1 )]
+position = Vector2( 31.4981, 27.0883 )
+word = "MUSIC"
+
+[node name="Word Box19" type="Control" parent="VBoxContainer"]
+margin_top = 700.0
+margin_right = 40.0
+margin_bottom = 732.0
+rect_min_size = Vector2( 0, 32 )
+
+[node name="Word" parent="VBoxContainer/Word Box19" instance=ExtResource( 1 )]
+word = "CARNIVAL VIBES BY DAVE MILES"
+
+[node name="Word Box20" type="Control" parent="VBoxContainer"]
+margin_top = 736.0
+margin_right = 40.0
+margin_bottom = 768.0
+rect_min_size = Vector2( 0, 32 )
+
+[node name="Word" parent="VBoxContainer/Word Box20" instance=ExtResource( 1 )]
+word = "via www.zapsplat.com"
+
+[node name="Word Box22" type="Control" parent="VBoxContainer"]
+margin_top = 772.0
+margin_right = 40.0
+margin_bottom = 804.0
+rect_min_size = Vector2( 0, 32 )
+
+[node name="Word" parent="VBoxContainer/Word Box22" instance=ExtResource( 1 )]
+word = ""
+
+[node name="Word Box23" type="Control" parent="VBoxContainer"]
+margin_top = 808.0
+margin_right = 40.0
+margin_bottom = 840.0
+rect_min_size = Vector2( 0, 32 )
+
+[node name="Word" parent="VBoxContainer/Word Box23" instance=ExtResource( 1 )]
+word = "Menu font"
+
+[node name="Word Box24" type="Control" parent="VBoxContainer"]
+margin_top = 844.0
+margin_right = 40.0
+margin_bottom = 876.0
+rect_min_size = Vector2( 0, 32 )
+
+[node name="Word" parent="VBoxContainer/Word Box24" instance=ExtResource( 1 )]
+word = "Bunny Mambo by Media Gregory"
+
+[node name="Word Box25" type="Control" parent="VBoxContainer"]
+margin_top = 880.0
+margin_right = 40.0
+margin_bottom = 912.0
+rect_min_size = Vector2( 0, 32 )
+
+[node name="Word" parent="VBoxContainer/Word Box25" instance=ExtResource( 1 )]
+word = ""
+
+[node name="Word Box26" type="Control" parent="VBoxContainer"]
+margin_top = 916.0
+margin_right = 40.0
+margin_bottom = 948.0
+rect_min_size = Vector2( 0, 32 )
+
+[node name="Word" parent="VBoxContainer/Word Box26" instance=ExtResource( 1 )]
+word = "Special Thanks"
+
+[node name="Word Box27" type="Control" parent="VBoxContainer"]
+margin_top = 952.0
+margin_right = 40.0
+margin_bottom = 984.0
+rect_min_size = Vector2( 0, 32 )
+
+[node name="Word" parent="VBoxContainer/Word Box27" instance=ExtResource( 1 )]
+word = "Cag, Sol Invictus42, Vidofniir"
+
+[node name="Word Box28" type="Control" parent="VBoxContainer"]
+margin_top = 988.0
+margin_right = 40.0
+margin_bottom = 1020.0
+rect_min_size = Vector2( 0, 32 )
+
+[node name="Word" parent="VBoxContainer/Word Box28" instance=ExtResource( 1 )]
+word = "Abelda, Fasd432, Badoomm, Esther"
+
+[node name="Word Box29" type="Control" parent="VBoxContainer"]
+margin_top = 1024.0
+margin_right = 40.0
+margin_bottom = 1056.0
+rect_min_size = Vector2( 0, 32 )
+
+[node name="Word" parent="VBoxContainer/Word Box29" instance=ExtResource( 1 )]
+word = "Shnatsel, 6ar6oyle, Larold, Gyro"
+
+[node name="Word Box30" type="Control" parent="VBoxContainer"]
+margin_top = 1060.0
+margin_right = 40.0
+margin_bottom = 1092.0
+rect_min_size = Vector2( 0, 32 )
+
+[node name="Word" parent="VBoxContainer/Word Box30" instance=ExtResource( 1 )]
+word = "Flavious59, Ha1fdead"
