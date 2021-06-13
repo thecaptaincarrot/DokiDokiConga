@@ -267,14 +267,14 @@ code = "SIDE"
 
 [node name="LevelEntry" parent="." index="5"]
 position = Vector2( 160, 320 )
-frame = 2
+frame = 6
 
 [node name="LineLengthHelper" parent="LevelEntry" index="0"]
 text = "9"
 
 [node name="LevelExit" parent="." index="6"]
 position = Vector2( 640, 320 )
-frame = 3
+frame = 7
 
 [node name="NumExitHelper" parent="LevelExit" index="0"]
 text = "9"

@@ -301,7 +301,7 @@ __meta__ = {
 
 [node name="LevelEntry" parent="." instance=ExtResource( 1 )]
 position = Vector2( 224, 288 )
-frame = 7
+frame = 5
 
 [node name="LineLengthHelper" type="Label" parent="LevelEntry"]
 anchor_left = 0.5
@@ -319,7 +319,7 @@ __meta__ = {
 
 [node name="LevelExit" parent="." instance=ExtResource( 8 )]
 position = Vector2( 512, 288 )
-frame = 0
+frame = 6
 
 [node name="NumExitHelper" type="Label" parent="LevelExit"]
 anchor_left = 0.5
@@ -353,4 +353,5 @@ word = "a partier died!"
 position = Vector2( 1.52588e-05, 32 )
 scale = Vector2( 0.75, 0.75 )
 word = "Press r to reset"
+
 [connection signal="timeout" from="Metronome" to="Metronome" method="_on_Metronome_timeout"]

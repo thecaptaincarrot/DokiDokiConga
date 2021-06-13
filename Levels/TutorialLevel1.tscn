@@ -203,11 +203,11 @@ position = Vector2( 384, 224 )
 
 [node name="LevelEntry" parent="." index="5"]
 position = Vector2( 256, 352 )
-frame = 4
+frame = 5
 
 [node name="LevelExit" parent="." index="6"]
 position = Vector2( 384, 96 )
-frame = 5
+frame = 6
 
 [node name="Label" type="Label" parent="." index="10"]
 margin_left = 86.4648
@@ -235,13 +235,14 @@ __meta__ = {
 }
 
 [node name="Label3" type="Label" parent="." index="12"]
-margin_left = 448.683
-margin_top = 211.893
-margin_right = 736.683
-margin_bottom = 259.893
+margin_left = 450.573
+margin_top = 187.955
+margin_right = 738.573
+margin_bottom = 235.955
 text = "Click on a partier to form
- a second conga line 
-(a conga line must have at least 2 people)"
+ a second conga line. 
+A conga line must have at least 3 people
+(Anything less is just awkward)"
 align = 1
 __meta__ = {
 "_edit_use_anchors_": false

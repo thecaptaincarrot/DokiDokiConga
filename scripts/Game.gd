@@ -1,12 +1,12 @@
 extends Node2D
 
-var level = 0
+var level = 6
 
 var can_reset = true
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	add_level("res://Levels/TutorialLevel0.tscn")
+	add_level("res://Levels/Level6.tscn")
 	$HUDLayer/FadeOut.set_fade_in(false)
 	yield($HUDLayer/FadeOut,"finished")
 	$LevelContainer.get_child(0).start()
@@ -75,6 +75,11 @@ func reset_level():
 			add_level("res://Levels/Level3.tscn")
 		4:
 			add_level("res://Levels/Level4.tscn")
+		5:
+			add_level("res://Levels/Level5.tscn")
+		6:
+			add_level("res://Levels/Level6.tscn")
+
 
 	$HUDLayer/FadeOut.set_fade_in(false)
 	yield($HUDLayer/FadeOut,"finished")

@@ -328,7 +328,7 @@ position = Vector2( 384, 160 )
 [node name="BottleExit" parent="BackgroundObjects" index="10" instance=ExtResource( 9 )]
 visible = false
 position = Vector2( 640, 160 )
-frame = 8
+frame = 1
 
 [node name="Blocker" parent="Obstacles" index="0"]
 position = Vector2( 128, 128 )
@@ -519,11 +519,13 @@ position = Vector2( 96, 352 )
 [node name="LevelEntry" parent="." index="5"]
 visible = false
 position = Vector2( 160, 256 )
+z_index = -2
 frame = 3
 
 [node name="LevelExit" parent="." index="6"]
 visible = false
 position = Vector2( 640, 160 )
+z_index = -2
 frame = 1
 
 [node name="Label" type="Label" parent="." index="10"]
@@ -561,6 +563,5 @@ __meta__ = {
 [node name="AnimatedSprite" type="AnimatedSprite" parent="." index="13"]
 position = Vector2( 640, 160 )
 frames = SubResource( 8 )
-frame = 2
 playing = true
 centered = false

@@ -66,7 +66,8 @@ func _unhandled_input(event):
 			emit_signal("MovementAttempted")
 	else:
 		if event.is_action_pressed("ui_click") and mouse_in and !leader and follower != null and followed.leader != true:
-			become_leader()
+			if follower.follower != null:
+				become_leader()
 
 
 func move_to(destination):
