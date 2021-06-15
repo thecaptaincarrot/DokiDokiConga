@@ -1,12 +1,12 @@
 extends Node2D
 
-var level = 6
+var level = 0
 
 var can_reset = true
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	add_level("res://Levels/Level6.tscn")
+	add_level("res://Levels/PartyLevel0.tscn")
 	$HUDLayer/FadeOut.set_fade_in(false)
 	yield($HUDLayer/FadeOut,"finished")
 	$LevelContainer.get_child(0).start()
@@ -33,21 +33,12 @@ func level_over():
 	$LevelContainer.get_child(0).delete_level()
 	#3. fade in on level
 	level += 1
+	if level == 8:
+		get_tree().change_scene("res://HUD/Credits.tscn")
+		return
 	
-	match level:
-		0:
-			add_level("res://Levels/TutorialLevel0.tscn")
-		1:
-			add_level("res://Levels/TutorialLevel1.tscn")
-		2:
-			add_level("res://Levels/TutorialLevel2.tscn")
-		3:
-			add_level("res://Levels/Level3.tscn")
-		4:
-			add_level("res://Levels/Level4.tscn")
-		5:
-			get_tree().change_scene("res://HUD/Credits.tscn")
-
+	add_level(get_level_path(level))
+	
 	$HUDLayer/FadeOut.set_fade_in(false)
 	yield($HUDLayer/FadeOut,"finished")
 	#4. play portals opening animations / other beginning of level stuff
@@ -64,22 +55,7 @@ func reset_level():
 	yield($HUDLayer/FadeOut,"finished")
 	#2. unload old level
 	$LevelContainer.get_child(0).delete_level()
-	match level:
-		0:
-			add_level("res://Levels/TutorialLevel0.tscn")
-		1:
-			add_level("res://Levels/TutorialLevel1.tscn")
-		2:
-			add_level("res://Levels/TutorialLevel2.tscn")
-		3:
-			add_level("res://Levels/Level3.tscn")
-		4:
-			add_level("res://Levels/Level4.tscn")
-		5:
-			add_level("res://Levels/Level5.tscn")
-		6:
-			add_level("res://Levels/Level6.tscn")
-
+	add_level(get_level_path(level))
 
 	$HUDLayer/FadeOut.set_fade_in(false)
 	yield($HUDLayer/FadeOut,"finished")
@@ -100,3 +76,26 @@ func add_level(level_path):
 
 func partier_died():
 	$HUDLayer/FadeOut.RED()
+
+
+
+func get_level_path(target_level):
+	match level:
+		0:
+			return "res://Levels/PartyLevel0.tscn"
+		1:
+			return "res://Levels/PartyLevel1.tscn"
+		2:
+			return "res://Levels/FutureLevel0.tscn"
+		3:
+			return "res://Levels/FutureLevel1.tscn"
+		4:
+			return "res://Levels/FutureLevel2.tscn"
+		5:
+			return "res://Levels/HospitalLevel0.tscn"
+		6:
+			return "res://Levels/HospitalLevel1.tscn"
+		7:
+			return "res://Levels/HospitalLevel2.tscn"
+		8:
+			get_tree().change_scene("res://HUD/Credits.tscn")

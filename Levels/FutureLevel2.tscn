@@ -1,0 +1,461 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://Blocker.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Levels/LevelBase.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Activatables/PressureSwitch.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Activatables/FutureSideDoor.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Tilesets/Future/FutureTilesetForeground.tres" type="TileSet" id=5]
+[ext_resource path="res://Tilesets/Future/FutureTileset.tres" type="TileSet" id=6]
+
+[node name="Level6" instance=ExtResource( 2 )]
+
+[node name="Background" parent="." index="0"]
+tile_set = ExtResource( 6 )
+tile_data = PoolIntArray( 65537, 13, 0, 65538, 3, 0, 65539, 3, 0, 65540, 3, 0, 65541, 3, 0, 65542, 3, 0, 65543, 3, 0, 65544, 3, 0, 65545, 3, 0, 65546, 3, 0, 65547, 3, 0, 65548, 3, 0, 65549, 3, 0, 65550, 3, 0, 65551, 3, 0, 65552, 3, 0, 65553, 3, 0, 65554, 3, 0, 65555, 14, 0, 131073, 8, 0, 131074, 2, 0, 131075, 2, 0, 131076, 2, 0, 131077, 2, 0, 131078, 2, 0, 131079, 2, 0, 131080, 2, 0, 131081, 2, 0, 131082, 2, 0, 131083, 2, 0, 131084, 2, 0, 131085, 2, 0, 131086, 2, 0, 131087, 2, 0, 131088, 2, 0, 131089, 2, 0, 131090, 2, 0, 131091, 1, 0, 131092, 3, 0, 131093, 3, 0, 131094, 14, 0, 196609, 8, 0, 196610, 15, 0, 196611, 15, 0, 196612, 15, 0, 196613, 15, 0, 196614, 15, 0, 196615, 15, 0, 196616, 15, 0, 196617, 15, 0, 196618, 15, 0, 196619, 19, 0, 196620, 15, 0, 196621, 15, 0, 196622, 15, 0, 196623, 15, 0, 196624, 15, 0, 196625, 15, 0, 196626, 15, 0, 196627, 0, 0, 196628, 2, 0, 196629, 2, 0, 196630, 6, 0, 262145, 8, 0, 262146, 16, 0, 262147, 16, 0, 262148, 16, 0, 262149, 16, 0, 262150, 16, 0, 262151, 16, 0, 262152, 16, 0, 262153, 16, 0, 262154, 16, 0, 262155, 20, 0, 262156, 16, 0, 262157, 16, 0, 262158, 16, 0, 262159, 16, 0, 262160, 16, 0, 262161, 16, 0, 262162, 16, 0, 262163, 15, 0, 262164, 15, 0, 262165, 15, 0, 262166, 6, 0, 327681, 8, 0, 327682, 16, 0, 327683, 16, 0, 327684, 16, 0, 327685, 16, 0, 327686, 16, 0, 327687, 16, 0, 327688, 16, 0, 327689, 21, 0, 327690, 22, 0, 327691, 20, 0, 327692, 16, 0, 327693, 16, 0, 327694, 16, 0, 327695, 16, 0, 327696, 16, 0, 327697, 16, 0, 327698, 16, 0, 327699, 16, 0, 327700, 16, 0, 327701, 16, 0, 327702, 6, 0, 393217, 8, 0, 393218, 16, 0, 393219, 16, 0, 393220, 16, 0, 393221, 16, 0, 393222, 16, 0, 393223, 16, 0, 393224, 16, 0, 393225, 0, 0, 393226, 4, 0, 393227, 20, 0, 393228, 16, 0, 393229, 16, 0, 393230, 16, 0, 393231, 16, 0, 393232, 16, 0, 393233, 16, 0, 393234, 16, 0, 393235, 16, 0, 393236, 16, 0, 393237, 16, 0, 393238, 6, 0, 458753, 8, 0, 458754, 16, 0, 458755, 16, 0, 458756, 16, 0, 458757, 16, 0, 458758, 16, 0, 458759, 16, 0, 458760, 16, 0, 458761, 16, 0, 458762, 16, 0, 458763, 20, 0, 458764, 16, 0, 458765, 16, 0, 458766, 16, 0, 458767, 16, 0, 458768, 16, 0, 458769, 16, 0, 458770, 16, 0, 458771, 16, 0, 458772, 16, 0, 458773, 16, 0, 458774, 6, 0, 524289, 8, 0, 524290, 16, 0, 524291, 16, 0, 524292, 16, 0, 524293, 16, 0, 524294, 16, 0, 524295, 16, 0, 524296, 16, 0, 524297, 16, 0, 524298, 16, 0, 524299, 20, 0, 524300, 16, 0, 524301, 16, 0, 524302, 16, 0, 524303, 16, 0, 524304, 16, 0, 524305, 16, 0, 524306, 16, 0, 524307, 16, 0, 524308, 16, 0, 524309, 16, 0, 524310, 6, 0, 589825, 8, 0, 589826, 16, 0, 589827, 16, 0, 589828, 16, 0, 589829, 16, 0, 589830, 16, 0, 589831, 16, 0, 589832, 16, 0, 589833, 16, 0, 589834, 16, 0, 589835, 20, 0, 589836, 16, 0, 589837, 16, 0, 589838, 16, 0, 589839, 16, 0, 589840, 16, 0, 589841, 16, 0, 589842, 16, 0, 589843, 16, 0, 589844, 16, 0, 589845, 16, 0, 589846, 6, 0, 655361, 8, 0, 655362, 16, 0, 655363, 16, 0, 655364, 16, 0, 655365, 16, 0, 655366, 16, 0, 655367, 16, 0, 655368, 16, 0, 655369, 16, 0, 655370, 16, 0, 655371, 20, 0, 655372, 16, 0, 655373, 16, 0, 655374, 16, 0, 655375, 16, 0, 655376, 16, 0, 655377, 16, 0, 655378, 16, 0, 655379, 16, 0, 655380, 16, 0, 655381, 16, 0, 655382, 6, 0, 720897, 8, 0, 720898, 16, 0, 720899, 16, 0, 720900, 16, 0, 720901, 16, 0, 720902, 16, 0, 720903, 16, 0, 720904, 16, 0, 720905, 16, 0, 720906, 16, 0, 720907, 20, 0, 720908, 16, 0, 720909, 16, 0, 720910, 16, 0, 720911, 16, 0, 720912, 16, 0, 720913, 16, 0, 720914, 16, 0, 720915, 16, 0, 720916, 16, 0, 720917, 16, 0, 720918, 6, 0, 786433, 8, 0, 786434, 16, 0, 786435, 16, 0, 786436, 16, 0, 786437, 16, 0, 786438, 16, 0, 786439, 16, 0, 786440, 16, 0, 786441, 16, 0, 786442, 16, 0, 786443, 20, 0, 786444, 16, 0, 786445, 16, 0, 786446, 16, 0, 786447, 16, 0, 786448, 16, 0, 786449, 16, 0, 786450, 16, 0, 786451, 16, 0, 786452, 16, 0, 786453, 16, 0, 786454, 6, 0, 851969, 8, 0, 851970, 16, 0, 851971, 16, 0, 851972, 16, 0, 851973, 16, 0, 851974, 16, 0, 851975, 16, 0, 851976, 16, 0, 851977, 16, 0, 851978, 16, 0, 851979, 20, 0, 851980, 16, 0, 851981, 16, 0, 851982, 16, 0, 851983, 16, 0, 851984, 16, 0, 851985, 16, 0, 851986, 16, 0, 851987, 16, 0, 851988, 16, 0, 851989, 16, 0, 851990, 6, 0, 917505, 9, 0, 917506, 7, 0, 917507, 7, 0, 917508, 7, 0, 917509, 7, 0, 917510, 7, 0, 917511, 7, 0, 917512, 7, 0, 917513, 7, 0, 917514, 7, 0, 917515, 7, 0, 917516, 7, 0, 917517, 7, 0, 917518, 7, 0, 917519, 7, 0, 917520, 7, 0, 917521, 7, 0, 917522, 7, 0, 917523, 7, 0, 917524, 7, 0, 917525, 7, 0, 917526, 10, 0 )
+
+[node name="Foreground" parent="." index="1"]
+tile_set = ExtResource( 5 )
+tile_data = PoolIntArray( 131075, 10, 0, 131081, 11, 0, 131087, 10, 0, 131089, 17, 0, 196618, 30, 0, 196621, 13, 0, 196629, 11, 0, 262156, 13, 0, 262160, 28, 0, 262162, 33, 0, 327685, 18, 0, 327687, 15, 0, 327691, 13, 0, 327693, 25, 0, 327699, 13, 0, 393218, 29, 0, 393219, 32, 0, 393221, 19, 0, 393231, 28, 0, 393234, 13, 0, 458757, 20, 0, 458765, 15, 0, 458766, 33, 0, 458769, 13, 0, 524291, 21, 0, 524292, 29, 0, 524293, 30, 0, 524296, 13, 0, 524304, 13, 0, 524307, 15, 0, 589827, 22, 0, 589831, 13, 0, 589835, 29, 0, 589839, 13, 0, 589845, 25, 0, 655366, 13, 0, 655369, 26, 0, 655370, 27, 0, 655374, 13, 0, 720901, 13, 0, 720906, 16, 0, 720909, 13, 0, 720913, 26, 0, 720914, 27, 0, 720915, 23, 0, 720917, 32, 0, 786436, 13, 0, 786438, 32, 0, 786441, 28, 0, 786444, 13, 0, 786447, 31, 0, 786451, 24, 0, 851971, 13, 0, 851979, 13, 0 )
+
+[node name="Blocker" parent="Obstacles" index="0"]
+position = Vector2( 384, -64 )
+
+[node name="Blocker2" parent="Obstacles" index="1"]
+position = Vector2( -64, 224 )
+
+[node name="Blocker3" parent="Obstacles" index="2" instance=ExtResource( 1 )]
+position = Vector2( 160, 32 )
+
+[node name="Blocker5" parent="Obstacles" index="3" instance=ExtResource( 1 )]
+position = Vector2( 160, 64 )
+
+[node name="Blocker6" parent="Obstacles" index="4" instance=ExtResource( 1 )]
+position = Vector2( 192, 32 )
+
+[node name="Blocker8" parent="Obstacles" index="5" instance=ExtResource( 1 )]
+position = Vector2( 192, 64 )
+
+[node name="Blocker21" parent="Obstacles" index="6" instance=ExtResource( 1 )]
+position = Vector2( 96, 32 )
+
+[node name="Blocker22" parent="Obstacles" index="7" instance=ExtResource( 1 )]
+position = Vector2( 96, 64 )
+
+[node name="Blocker23" parent="Obstacles" index="8" instance=ExtResource( 1 )]
+position = Vector2( 128, 32 )
+
+[node name="Blocker24" parent="Obstacles" index="9" instance=ExtResource( 1 )]
+position = Vector2( 128, 64 )
+
+[node name="Blocker29" parent="Obstacles" index="10" instance=ExtResource( 1 )]
+position = Vector2( 256, 32 )
+
+[node name="Blocker30" parent="Obstacles" index="11" instance=ExtResource( 1 )]
+position = Vector2( 256, 64 )
+
+[node name="Blocker31" parent="Obstacles" index="12" instance=ExtResource( 1 )]
+position = Vector2( 288, 32 )
+
+[node name="Blocker32" parent="Obstacles" index="13" instance=ExtResource( 1 )]
+position = Vector2( 288, 64 )
+
+[node name="Blocker37" parent="Obstacles" index="14" instance=ExtResource( 1 )]
+position = Vector2( 224, 32 )
+
+[node name="Blocker38" parent="Obstacles" index="15" instance=ExtResource( 1 )]
+position = Vector2( 224, 64 )
+
+[node name="Blocker41" parent="Obstacles" index="16" instance=ExtResource( 1 )]
+position = Vector2( 352, 32 )
+
+[node name="Blocker42" parent="Obstacles" index="17" instance=ExtResource( 1 )]
+position = Vector2( 352, 64 )
+
+[node name="Blocker43" parent="Obstacles" index="18" instance=ExtResource( 1 )]
+position = Vector2( 384, 32 )
+
+[node name="Blocker44" parent="Obstacles" index="19" instance=ExtResource( 1 )]
+position = Vector2( 384, 64 )
+
+[node name="Blocker49" parent="Obstacles" index="20" instance=ExtResource( 1 )]
+position = Vector2( 320, 32 )
+
+[node name="Blocker50" parent="Obstacles" index="21" instance=ExtResource( 1 )]
+position = Vector2( 320, 64 )
+
+[node name="Blocker53" parent="Obstacles" index="22" instance=ExtResource( 1 )]
+position = Vector2( 448, 32 )
+
+[node name="Blocker54" parent="Obstacles" index="23" instance=ExtResource( 1 )]
+position = Vector2( 448, 64 )
+
+[node name="Blocker55" parent="Obstacles" index="24" instance=ExtResource( 1 )]
+position = Vector2( 480, 32 )
+
+[node name="Blocker56" parent="Obstacles" index="25" instance=ExtResource( 1 )]
+position = Vector2( 480, 64 )
+
+[node name="Blocker61" parent="Obstacles" index="26" instance=ExtResource( 1 )]
+position = Vector2( 416, 32 )
+
+[node name="Blocker62" parent="Obstacles" index="27" instance=ExtResource( 1 )]
+position = Vector2( 416, 64 )
+
+[node name="Blocker65" parent="Obstacles" index="28" instance=ExtResource( 1 )]
+position = Vector2( 512, 32 )
+
+[node name="Blocker66" parent="Obstacles" index="29" instance=ExtResource( 1 )]
+position = Vector2( 512, 64 )
+
+[node name="Blocker69" parent="Obstacles" index="30" instance=ExtResource( 1 )]
+position = Vector2( 576, 32 )
+
+[node name="Blocker70" parent="Obstacles" index="31" instance=ExtResource( 1 )]
+position = Vector2( 576, 64 )
+
+[node name="Blocker71" parent="Obstacles" index="32" instance=ExtResource( 1 )]
+position = Vector2( 608, 32 )
+
+[node name="Blocker72" parent="Obstacles" index="33" instance=ExtResource( 1 )]
+position = Vector2( 608, 64 )
+
+[node name="Blocker77" parent="Obstacles" index="34" instance=ExtResource( 1 )]
+position = Vector2( 544, 32 )
+
+[node name="Blocker78" parent="Obstacles" index="35" instance=ExtResource( 1 )]
+position = Vector2( 544, 64 )
+
+[node name="Blocker203" parent="Obstacles" index="36" instance=ExtResource( 1 )]
+position = Vector2( 608, 160 )
+
+[node name="Blocker204" parent="Obstacles" index="37" instance=ExtResource( 1 )]
+position = Vector2( 480, 288 )
+
+[node name="Blocker205" parent="Obstacles" index="38" instance=ExtResource( 1 )]
+position = Vector2( 576, 192 )
+
+[node name="Blocker206" parent="Obstacles" index="39" instance=ExtResource( 1 )]
+position = Vector2( 672, 96 )
+
+[node name="Blocker207" parent="Obstacles" index="40" instance=ExtResource( 1 )]
+position = Vector2( 640, 96 )
+
+[node name="Blocker208" parent="Obstacles" index="41" instance=ExtResource( 1 )]
+position = Vector2( 448, 320 )
+
+[node name="Blocker209" parent="Obstacles" index="42" instance=ExtResource( 1 )]
+position = Vector2( 512, 256 )
+
+[node name="Blocker210" parent="Obstacles" index="43" instance=ExtResource( 1 )]
+position = Vector2( 544, 224 )
+
+[node name="Blocker237" parent="Obstacles" index="44" instance=ExtResource( 1 )]
+position = Vector2( 64, 448 )
+
+[node name="Blocker239" parent="Obstacles" index="45" instance=ExtResource( 1 )]
+position = Vector2( 96, 256 )
+
+[node name="Blocker246" parent="Obstacles" index="46" instance=ExtResource( 1 )]
+position = Vector2( 128, 256 )
+
+[node name="Blocker240" parent="Obstacles" index="47" instance=ExtResource( 1 )]
+position = Vector2( 128, 384 )
+
+[node name="Blocker241" parent="Obstacles" index="48" instance=ExtResource( 1 )]
+position = Vector2( 160, 352 )
+
+[node name="Blocker243" parent="Obstacles" index="49" instance=ExtResource( 1 )]
+position = Vector2( 96, 416 )
+
+[node name="Blocker211" parent="Obstacles" index="50" instance=ExtResource( 1 )]
+position = Vector2( 352, 160 )
+
+[node name="Blocker215" parent="Obstacles" index="51" instance=ExtResource( 1 )]
+position = Vector2( 416, 96 )
+
+[node name="Blocker216" parent="Obstacles" index="52" instance=ExtResource( 1 )]
+position = Vector2( 320, 192 )
+
+[node name="Blocker218" parent="Obstacles" index="53" instance=ExtResource( 1 )]
+position = Vector2( 320, 160 )
+
+[node name="Blocker224" parent="Obstacles" index="54" instance=ExtResource( 1 )]
+position = Vector2( 288, 192 )
+
+[node name="Blocker225" parent="Obstacles" index="55" instance=ExtResource( 1 )]
+position = Vector2( 288, 160 )
+
+[node name="Blocker223" parent="Obstacles" index="56" instance=ExtResource( 1 )]
+position = Vector2( 384, 128 )
+
+[node name="Blocker229" parent="Obstacles" index="57" instance=ExtResource( 1 )]
+position = Vector2( 64, 192 )
+
+[node name="Blocker230" parent="Obstacles" index="58" instance=ExtResource( 1 )]
+position = Vector2( 160, 224 )
+
+[node name="Blocker247" parent="Obstacles" index="59" instance=ExtResource( 1 )]
+position = Vector2( 160, 192 )
+
+[node name="Blocker250" parent="Obstacles" index="60" instance=ExtResource( 1 )]
+position = Vector2( 320, 320 )
+
+[node name="Blocker253" parent="Obstacles" index="61" instance=ExtResource( 1 )]
+position = Vector2( 416, 224 )
+
+[node name="Blocker254" parent="Obstacles" index="62" instance=ExtResource( 1 )]
+position = Vector2( 352, 288 )
+
+[node name="Blocker258" parent="Obstacles" index="63" instance=ExtResource( 1 )]
+position = Vector2( 224, 160 )
+
+[node name="Blocker255" parent="Obstacles" index="64" instance=ExtResource( 1 )]
+position = Vector2( 416, 160 )
+
+[node name="Blocker256" parent="Obstacles" index="65" instance=ExtResource( 1 )]
+position = Vector2( 512, 128 )
+
+[node name="Blocker274" parent="Obstacles" index="66" instance=ExtResource( 1 )]
+position = Vector2( 608, 96 )
+
+[node name="Blocker257" parent="Obstacles" index="67" instance=ExtResource( 1 )]
+position = Vector2( 480, 192 )
+
+[node name="Blocker248" parent="Obstacles" index="68" instance=ExtResource( 1 )]
+position = Vector2( 160, 160 )
+
+[node name="Blocker249" parent="Obstacles" index="69" instance=ExtResource( 1 )]
+position = Vector2( 288, 320 )
+
+[node name="Blocker251" parent="Obstacles" index="70" instance=ExtResource( 1 )]
+position = Vector2( 288, 384 )
+
+[node name="Blocker252" parent="Obstacles" index="71" instance=ExtResource( 1 )]
+position = Vector2( 320, 352 )
+
+[node name="Blocker233" parent="Obstacles" index="72" instance=ExtResource( 1 )]
+position = Vector2( 224, 288 )
+
+[node name="Blocker235" parent="Obstacles" index="73" instance=ExtResource( 1 )]
+position = Vector2( 256, 256 )
+
+[node name="Blocker236" parent="Obstacles" index="74" instance=ExtResource( 1 )]
+position = Vector2( 192, 320 )
+
+[node name="Blocker217" parent="Obstacles" index="75" instance=ExtResource( 1 )]
+position = Vector2( 96, 288 )
+
+[node name="Blocker219" parent="Obstacles" index="76" instance=ExtResource( 1 )]
+position = Vector2( 384, 384 )
+
+[node name="Blocker220" parent="Obstacles" index="77" instance=ExtResource( 1 )]
+position = Vector2( 416, 352 )
+
+[node name="Blocker221" parent="Obstacles" index="78" instance=ExtResource( 1 )]
+position = Vector2( 320, 448 )
+
+[node name="Blocker222" parent="Obstacles" index="79" instance=ExtResource( 1 )]
+position = Vector2( 352, 416 )
+
+[node name="Blocker81" parent="Obstacles" index="80" instance=ExtResource( 1 )]
+position = Vector2( 672, 32 )
+
+[node name="Blocker82" parent="Obstacles" index="81" instance=ExtResource( 1 )]
+position = Vector2( 672, 64 )
+
+[node name="Blocker83" parent="Obstacles" index="82" instance=ExtResource( 1 )]
+position = Vector2( 704, 32 )
+
+[node name="Blocker84" parent="Obstacles" index="83" instance=ExtResource( 1 )]
+position = Vector2( 704, 64 )
+
+[node name="Blocker89" parent="Obstacles" index="84" instance=ExtResource( 1 )]
+position = Vector2( 640, 32 )
+
+[node name="Blocker90" parent="Obstacles" index="85" instance=ExtResource( 1 )]
+position = Vector2( 640, 64 )
+
+[node name="Blocker105" parent="Obstacles" index="86" instance=ExtResource( 1 )]
+position = Vector2( 704, 96 )
+
+[node name="Blocker106" parent="Obstacles" index="87" instance=ExtResource( 1 )]
+position = Vector2( 704, 128 )
+
+[node name="Blocker109" parent="Obstacles" index="88" instance=ExtResource( 1 )]
+position = Vector2( 704, 160 )
+
+[node name="Blocker110" parent="Obstacles" index="89" instance=ExtResource( 1 )]
+position = Vector2( 704, 192 )
+
+[node name="Blocker113" parent="Obstacles" index="90" instance=ExtResource( 1 )]
+position = Vector2( 704, 224 )
+
+[node name="Blocker114" parent="Obstacles" index="91" instance=ExtResource( 1 )]
+position = Vector2( 704, 256 )
+
+[node name="Blocker116" parent="Obstacles" index="92" instance=ExtResource( 1 )]
+position = Vector2( 672, 288 )
+
+[node name="Blocker117" parent="Obstacles" index="93" instance=ExtResource( 1 )]
+position = Vector2( 704, 288 )
+
+[node name="Blocker118" parent="Obstacles" index="94" instance=ExtResource( 1 )]
+position = Vector2( 704, 320 )
+
+[node name="Blocker119" parent="Obstacles" index="95" instance=ExtResource( 1 )]
+position = Vector2( 608, 256 )
+
+[node name="Blocker120" parent="Obstacles" index="96" instance=ExtResource( 1 )]
+position = Vector2( 608, 352 )
+
+[node name="Blocker121" parent="Obstacles" index="97" instance=ExtResource( 1 )]
+position = Vector2( 704, 352 )
+
+[node name="Blocker122" parent="Obstacles" index="98" instance=ExtResource( 1 )]
+position = Vector2( 704, 384 )
+
+[node name="Blocker123" parent="Obstacles" index="99" instance=ExtResource( 1 )]
+position = Vector2( 608, 384 )
+
+[node name="Blocker124" parent="Obstacles" index="100" instance=ExtResource( 1 )]
+position = Vector2( 544, 352 )
+
+[node name="Blocker125" parent="Obstacles" index="101" instance=ExtResource( 1 )]
+position = Vector2( 704, 416 )
+
+[node name="Blocker126" parent="Obstacles" index="102" instance=ExtResource( 1 )]
+position = Vector2( 704, 448 )
+
+[node name="Blocker136" parent="Obstacles" index="103" instance=ExtResource( 1 )]
+position = Vector2( 576, 352 )
+
+[node name="Blocker137" parent="Obstacles" index="104" instance=ExtResource( 1 )]
+position = Vector2( 672, 448 )
+
+[node name="Blocker138" parent="Obstacles" index="105" instance=ExtResource( 1 )]
+position = Vector2( 640, 448 )
+
+[node name="Blocker141" parent="Obstacles" index="106" instance=ExtResource( 1 )]
+position = Vector2( 608, 448 )
+
+[node name="Blocker142" parent="Obstacles" index="107" instance=ExtResource( 1 )]
+position = Vector2( 576, 448 )
+
+[node name="Blocker145" parent="Obstacles" index="108" instance=ExtResource( 1 )]
+position = Vector2( 544, 448 )
+
+[node name="Blocker146" parent="Obstacles" index="109" instance=ExtResource( 1 )]
+position = Vector2( 512, 448 )
+
+[node name="Blocker149" parent="Obstacles" index="110" instance=ExtResource( 1 )]
+position = Vector2( 480, 448 )
+
+[node name="Blocker150" parent="Obstacles" index="111" instance=ExtResource( 1 )]
+position = Vector2( 448, 448 )
+
+[node name="Blocker153" parent="Obstacles" index="112" instance=ExtResource( 1 )]
+position = Vector2( 416, 448 )
+
+[node name="Blocker154" parent="Obstacles" index="113" instance=ExtResource( 1 )]
+position = Vector2( 384, 448 )
+
+[node name="Blocker157" parent="Obstacles" index="114" instance=ExtResource( 1 )]
+position = Vector2( 352, 448 )
+
+[node name="Blocker161" parent="Obstacles" index="115" instance=ExtResource( 1 )]
+position = Vector2( 288, 448 )
+
+[node name="Blocker163" parent="Obstacles" index="116" instance=ExtResource( 1 )]
+position = Vector2( 256, 448 )
+
+[node name="Blocker164" parent="Obstacles" index="117" instance=ExtResource( 1 )]
+position = Vector2( 224, 448 )
+
+[node name="Blocker167" parent="Obstacles" index="118" instance=ExtResource( 1 )]
+position = Vector2( 192, 448 )
+
+[node name="Blocker168" parent="Obstacles" index="119" instance=ExtResource( 1 )]
+position = Vector2( 160, 448 )
+
+[node name="Blocker171" parent="Obstacles" index="120" instance=ExtResource( 1 )]
+position = Vector2( 128, 448 )
+
+[node name="Blocker172" parent="Obstacles" index="121" instance=ExtResource( 1 )]
+position = Vector2( 96, 448 )
+
+[node name="Blocker178" parent="Obstacles" index="122" instance=ExtResource( 1 )]
+position = Vector2( 32, 448 )
+
+[node name="Blocker181" parent="Obstacles" index="123" instance=ExtResource( 1 )]
+position = Vector2( 32, 416 )
+
+[node name="Blocker182" parent="Obstacles" index="124" instance=ExtResource( 1 )]
+position = Vector2( 32, 384 )
+
+[node name="Blocker185" parent="Obstacles" index="125" instance=ExtResource( 1 )]
+position = Vector2( 32, 352 )
+
+[node name="Blocker186" parent="Obstacles" index="126" instance=ExtResource( 1 )]
+position = Vector2( 32, 320 )
+
+[node name="Blocker189" parent="Obstacles" index="127" instance=ExtResource( 1 )]
+position = Vector2( 32, 288 )
+
+[node name="Blocker190" parent="Obstacles" index="128" instance=ExtResource( 1 )]
+position = Vector2( 32, 256 )
+
+[node name="Blocker193" parent="Obstacles" index="129" instance=ExtResource( 1 )]
+position = Vector2( 32, 224 )
+
+[node name="Blocker195" parent="Obstacles" index="130" instance=ExtResource( 1 )]
+position = Vector2( 32, 192 )
+
+[node name="Blocker196" parent="Obstacles" index="131" instance=ExtResource( 1 )]
+position = Vector2( 32, 160 )
+
+[node name="Blocker199" parent="Obstacles" index="132" instance=ExtResource( 1 )]
+position = Vector2( 32, 128 )
+
+[node name="Blocker200" parent="Obstacles" index="133" instance=ExtResource( 1 )]
+position = Vector2( 32, 96 )
+
+[node name="Blocker13" parent="Obstacles" index="134" instance=ExtResource( 1 )]
+position = Vector2( 32, 32 )
+
+[node name="Blocker14" parent="Obstacles" index="135" instance=ExtResource( 1 )]
+position = Vector2( 32, 64 )
+
+[node name="Blocker15" parent="Obstacles" index="136" instance=ExtResource( 1 )]
+position = Vector2( 64, 32 )
+
+[node name="Blocker16" parent="Obstacles" index="137" instance=ExtResource( 1 )]
+position = Vector2( 64, 64 )
+
+[node name="PressureSwitch2" parent="Interactive/Switches" index="0" instance=ExtResource( 3 )]
+position = Vector2( 256, 352 )
+code = "BBB"
+
+[node name="PressureSwitch4" parent="Interactive/Switches" index="1" instance=ExtResource( 3 )]
+position = Vector2( 576, 256 )
+code = "BBB"
+
+[node name="PressureSwitch3" parent="Interactive/Switches" index="2" instance=ExtResource( 3 )]
+position = Vector2( 64, 352 )
+
+[node name="PressureSwitch5" parent="Interactive/Switches" index="3" instance=ExtResource( 3 )]
+position = Vector2( 544, 384 )
+
+[node name="FutureSideDoor" parent="Interactive/Activators" index="0" instance=ExtResource( 4 )]
+position = Vector2( 288, 192 )
+
+[node name="FutureSideDoor2" parent="Interactive/Activators" index="1" instance=ExtResource( 4 )]
+position = Vector2( 640, 96 )
+code = "BBB"
+
+[node name="LevelEntry" parent="." index="5"]
+position = Vector2( 128, 128 )
+frame = 7
+
+[node name="LevelExit" parent="." index="6"]
+position = Vector2( 608, 288 )
+frame = 0

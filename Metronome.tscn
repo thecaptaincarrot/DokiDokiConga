@@ -4,6 +4,6 @@
 
 [node name="Metronome" type="Timer"]
 process_mode = 0
-wait_time = 0.25
+wait_time = 0.231
 autostart = true
 script = ExtResource( 1 )
