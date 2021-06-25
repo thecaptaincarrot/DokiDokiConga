@@ -18,7 +18,7 @@ _global_script_class_icons={
 config/name="Conganauts"
 run/main_scene="res://Splash.tscn"
 boot_splash/bg_color=Color( 0, 0, 0, 1 )
-config/icon="res://Deprecated/icon.png"
+config/icon="res://head.png"
 
 [autoload]
 
