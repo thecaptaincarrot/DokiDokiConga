@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Deprecated/Metronome.gd" type="Script" id=1]
+
+[node name="Metronome" type="Timer"]
+process_mode = 0
+wait_time = 0.231
+autostart = true
+script = ExtResource( 1 )

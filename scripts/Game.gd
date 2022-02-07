@@ -82,7 +82,7 @@ func partier_died():
 func get_level_path(target_level):
 	match level:
 		0:
-			return "res://Levels/PartyLevel0.tscn"
+			return "res://Levels/LevelBase.tscn"
 		1:
 			return "res://Levels/PartyLevel1.tscn"
 		2:
