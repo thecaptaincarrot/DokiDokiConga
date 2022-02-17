@@ -1,11 +1,43 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Deprecated/LevelEntry.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Tilesets/NewTilesets/Test.png" type="Texture" id=2]
 [ext_resource path="res://Deprecated/LevelExit.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Deprecated/Metronome.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Levels/OriginalDemo/LineLengthHelper.gd" type="Script" id=6]
 [ext_resource path="res://Levels/OriginalDemo/NumExitHelper.gd" type="Script" id=7]
 [ext_resource path="res://Levels/NewLevelBase.gd" type="Script" id=8]
+
+[sub_resource type="TileSet" id=1]
+0/name = "Test.png 0"
+0/texture = ExtResource( 2 )
+0/tex_offset = Vector2( 0, -120 )
+0/modulate = Color( 1, 1, 1, 1 )
+0/region = Rect2( 0, 0, 768, 736 )
+0/tile_mode = 1
+0/autotile/bitmask_mode = 1
+0/autotile/bitmask_flags = [ Vector2( 0, 0 ), 144, Vector2( 0, 1 ), 146, Vector2( 0, 2 ), 18, Vector2( 0, 3 ), 16, Vector2( 1, 0 ), 176, Vector2( 1, 1 ), 178, Vector2( 1, 2 ), 50, Vector2( 1, 3 ), 48, Vector2( 2, 0 ), 184, Vector2( 2, 1 ), 186, Vector2( 2, 2 ), 58, Vector2( 2, 3 ), 56, Vector2( 3, 0 ), 152, Vector2( 3, 1 ), 154, Vector2( 3, 2 ), 26, Vector2( 3, 3 ), 24, Vector2( 4, 0 ), 187, Vector2( 4, 1 ), 434, Vector2( 4, 2 ), 182, Vector2( 4, 3 ), 250, Vector2( 5, 0 ), 440, Vector2( 5, 1 ), 510, Vector2( 5, 2 ), 447, Vector2( 5, 3 ), 62, Vector2( 6, 0 ), 248, Vector2( 6, 1 ), 507, Vector2( 6, 2 ), 255, Vector2( 6, 3 ), 59, Vector2( 7, 0 ), 190, Vector2( 7, 1 ), 218, Vector2( 7, 2 ), 155, Vector2( 7, 3 ), 442, Vector2( 8, 0 ), 432, Vector2( 8, 1 ), 438, Vector2( 8, 2 ), 446, Vector2( 8, 3 ), 54, Vector2( 9, 0 ), 506, Vector2( 9, 1 ), 254, Vector2( 9, 2 ), 511, Vector2( 9, 3 ), 63, Vector2( 10, 0 ), 504, Vector2( 10, 2 ), 443, Vector2( 10, 3 ), 191, Vector2( 11, 0 ), 216, Vector2( 11, 1 ), 251, Vector2( 11, 2 ), 219, Vector2( 11, 3 ), 27 ]
+0/autotile/icon_coordinate = Vector2( 0, 0 )
+0/autotile/tile_size = Vector2( 64, 184 )
+0/autotile/spacing = 0
+0/autotile/occluder_map = [  ]
+0/autotile/navpoly_map = [  ]
+0/autotile/priority_map = [  ]
+0/autotile/z_index_map = [  ]
+0/occluder_offset = Vector2( 0, 0 )
+0/navigation_offset = Vector2( 0, 0 )
+0/shape_offset = Vector2( 0, 0 )
+0/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+0/shape_one_way = false
+0/shape_one_way_margin = 1.0
+0/shapes = [ {
+"autotile_coord": Vector2( 0, 0 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": null,
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
+} ]
+0/z_index = 0
 
 [node name="Level" type="Node2D"]
 pause_mode = 1
@@ -13,7 +45,7 @@ script = ExtResource( 8 )
 
 [node name="LevelEntry" parent="." instance=ExtResource( 1 )]
 position = Vector2( 224, 288 )
-frame = 4
+frame = 5
 
 [node name="LineLengthHelper" type="Label" parent="LevelEntry"]
 anchor_left = 0.5
@@ -31,7 +63,7 @@ __meta__ = {
 
 [node name="LevelExit" parent="." instance=ExtResource( 3 )]
 position = Vector2( 512, 288 )
-frame = 5
+frame = 6
 
 [node name="NumExitHelper" type="Label" parent="LevelExit"]
 anchor_left = 0.5
@@ -54,6 +86,9 @@ __meta__ = {
 [node name="Metronome" parent="." instance=ExtResource( 4 )]
 
 [node name="TileMap" type="TileMap" parent="."]
+scale = Vector2( 0.5, 0.5 )
+tile_set = SubResource( 1 )
 format = 1
+tile_data = PoolIntArray( 393221, 0, 1, 393222, 0, 196610, 393223, 0, 196610, 393224, 0, 196610, 393225, 0, 196610, 393226, 0, 196610, 393227, 0, 196610, 393228, 0, 196610, 393229, 0, 196610, 393230, 0, 196610, 393231, 0, 196610, 393232, 0, 196610, 393233, 0, 196610, 393234, 0, 3, 458757, 0, 65536, 458770, 0, 65536, 524293, 0, 65536, 524306, 0, 65536, 589829, 0, 65536, 589842, 0, 65536, 655365, 0, 65536, 655378, 0, 65536, 720901, 0, 65536, 720914, 0, 65536, 786437, 0, 131073, 786438, 0, 196610, 786439, 0, 196610, 786440, 0, 196610, 786441, 0, 196610, 786442, 0, 196610, 786443, 0, 196610, 786444, 0, 196610, 786445, 0, 196610, 786446, 0, 196610, 786447, 0, 196610, 786448, 0, 196610, 786449, 0, 196610, 786450, 0, 131075 )
 
 [connection signal="timeout" from="Metronome" to="Metronome" method="_on_Metronome_timeout"]

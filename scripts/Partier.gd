@@ -29,12 +29,7 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	if grid_position != position:
-		position += (grid_position - position) * delta * 20
-	
-	if exiting:
-		if abs(grid_position.x - position.x) < 1.0 and abs(grid_position.y - position.y) < 1.0:
-			emit_signal("PartierExitted")
-			queue_free()
+		position += (grid_position - position) * delta * 20 #turn into interpolation
 	
 	if leader:
 		$Sprite.show()
@@ -45,22 +40,22 @@ func _process(delta):
 func _unhandled_input(event):
 	if leader:
 		if event.is_action_pressed("ui_left"):
-			move_to(grid_position + Vector2(-1 * Global.grid_size,0))
+			move_to(grid_position + Vector2(-1 ,0) * Global.grid_size)
 			can_move = false
 			set_walker_animation("Left")
 			emit_signal("MovementAttempted")
 		elif event.is_action_pressed("ui_right"):
-			move_to(grid_position + Vector2(1 * Global.grid_size,0))
+			move_to(grid_position + Vector2(1,0) * Global.grid_size)
 			can_move = false
 			set_walker_animation("Right")
 			emit_signal("MovementAttempted")
 		elif event.is_action_pressed("ui_up"):
-			move_to(grid_position + Vector2(0,-1 * Global.grid_size))
+			move_to(grid_position + Vector2(0,-1) * Global.grid_size)
 			can_move = false
 			set_walker_animation("Up")
 			emit_signal("MovementAttempted")
 		elif event.is_action_pressed("ui_down"):
-			move_to(grid_position + Vector2(0,1 * Global.grid_size))
+			move_to(grid_position + Vector2(0,1) * Global.grid_size)
 			can_move = false
 			set_walker_animation("Down")
 			emit_signal("MovementAttempted")
@@ -71,7 +66,7 @@ func _unhandled_input(event):
 
 
 func move_to(destination):
-	#takes in a orthogonal unit vector, checks if it can move in that direction (i.e. space is unoccupied
+	#takes in a orthogonal unit vector, checks if it can move in that direction (i.e. space is unoccupied)
 	#then moves in that direction
 	#Check direction for animations (fuck)
 	#placeholder for position check
@@ -105,7 +100,8 @@ func exit():
 	exiting = true
 
 
-func set_walker_animation(animation):
+func set_walker_animation(animation): #TODO the sprite should load a random resource rather than having
+	#15000 animated sprites going at once
 	for N in $Walkers.get_children():
 		N.animation = animation
 
