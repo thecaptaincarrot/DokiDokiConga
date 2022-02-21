@@ -2,6 +2,8 @@ extends Node2D
 
 const PARTIER = preload("res://Partier.tscn")
 
+const movement_events = ["ui_left","ui_right","ui_up","ui_down"]
+
 var last_partier #the last member of the line that was spawned
 export var line_size = 10
 export var need_exit = 10
@@ -29,7 +31,7 @@ func start():
 	t.start()
 	yield(t,"timeout")
 	t.queue_free()
-	add_leader()
+	add_leader() #turn this into an animation instead??
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -39,14 +41,17 @@ func _process(delta):
 	pass
 
 
+func _unhandled_input(event):
+	pass
+
 
 func add_leader():
 	#Add a leader to the congo line at the level entry
 	var new_leader = PARTIER.instance()
 	new_leader.position = $LevelEntry.position
-	new_leader.connect("MovementAttempted", self, "add_follower")
+	new_leader.connect("IMoved", self, "add_follower") #No this sucks
 	new_leader.connect("PartierExitted",self,"partier_exit")
-	new_leader.leader = true
+	new_leader.is_leader = true
 	new_leader.parent_level = self
 	$Metronome.connect("UpdateFrame",new_leader,"tick_tock")
 	$People.add_child(new_leader)
@@ -54,11 +59,9 @@ func add_leader():
 	last_partier = new_leader
 
 
-func add_follower():
+func add_follower(_destination):
+	#This gets called way too often, every time movement is attempted
 	#Add a follower following the leader at the level entry
-	for N in $People.get_children():
-		if N.grid_position == $LevelEntry.position:
-			return
 	
 	if line_size > 0:
 		var new_follower = PARTIER.instance()
@@ -76,16 +79,32 @@ func add_follower():
 		#disconnect signal?
 
 
-func check_clear(destination,from):
+func check_clear(direction, person_moving):
+	var grid_position = person_moving.grid_position
+	var destination = person_moving.grid_position + direction * Global.grid_size #if the person is reversed, check here
+	#This checks the destination of the congaline and does appropriate actions
+	#Must return true if the target is open for movement
+	#Must return false if the congaline cannot move to the destination
+		#Even if there's an activator or something else for the congaline to hit
+	#Check tileset
+		#compare the destination (which is in 32x32 blocks) to the tilemap
+		#If filled with a tile, return false
+	if $Walls.get_cellv(destination / Global.grid_size) != -1:
+		return false
+	#Check other partiers
+	for person in $People.get_children():
+		if person.grid_position == destination: #There is a person in my way, check one
+			#check 2: if the person is not a caboose, return false
+			#It will not move out of the way in time
+			
+			if !person.is_caboose():
+				return false
+			else:#Person is caboose, so now we need to know if the leader can move
+				var leader = person.get_leader()
+				if leader != person_moving:
+					if !check_clear(direction, leader):
+						return false
 	return true
-	#return true if there is no blockage in the destination
-	#else return false
-	for N in $People.get_children():
-		if N.grid_position == destination:
-			return false
-	
-	return true
-
 
 func check_exit(destination):
 	if destination == $LevelExit.position:
