@@ -42,8 +42,62 @@ func _process(delta):
 
 
 func _unhandled_input(event):
-	pass
+	if event.is_action_pressed("ui_left"):
+		move(Vector2(-1 ,0))
+	elif event.is_action_pressed("ui_right"):
+		move(Vector2(1,0))
+	elif event.is_action_pressed("ui_up"):
+		move(Vector2(0,-1))
+	elif event.is_action_pressed("ui_down"):
+		move(Vector2(0,1))
 
+
+func move(direction): #move all leaders in the given directions
+	#1. find all leaders among all partiers
+	var leaders = []
+	for partier in $People.get_children():
+		if partier.is_leader:
+			leaders.append(partier)
+	#2. Simulate movements for all leaders, checking only environmental factors
+	#Use Check Clear to see if the leader moves
+	var simulated_positions = []
+	var leader_info = []
+	for leader in leaders:
+		var fixed_direction = direction
+		if leader.reverse:
+			fixed_direction *= -1
+		var can_move = false
+		var leader_move = leader.grid_position + fixed_direction * Global.grid_size
+		var conga_positions = leader.get_line_positions() #line positions of line that is not moving
+		if check_clear(fixed_direction, leader) and !leader.check_line_fill(leader_move): #Leader can move in the direction, continue simulation
+#			leader_move = leader.grid_position + fixed_direction * Global.grid_size
+			conga_positions.append(leader_move)
+			conga_positions.erase(leader.get_caboose().grid_position)
+			can_move = true
+		else: #Way is blocked, cannot move so the orignal array is fine
+			pass
+		simulated_positions += conga_positions
+		leader_info.append({"leader" : leader, "positions" : conga_positions, "leader_move" : leader_move, "moving" : can_move })
+	#I now have all leaders and where they're going to be. Now I need to see if they can move
+	for leader_dict in leader_info:
+		#Don't care if the leader isn't moving from the obstacle check
+		if leader_dict["moving"]:
+			#check if their prospective position is already taken up
+			#must be taken up at least twice since their own position is in the array too
+			var self_check = false
+			var can_move = true
+			for simulated_position in simulated_positions:
+				if simulated_position == leader_dict["leader_move"]:
+					if self_check:
+						#I found myself and one other person and I cannot move
+						#TODO check if two leaders are trying to enter the same space
+						can_move = false
+						break
+					else:
+						self_check = true
+						#Found myself in the array, anyone else?
+			if can_move:
+				leader_dict["leader"].move_to(leader_dict["leader_move"]) #Is this the last check? I think so
 
 func add_leader():
 	#Add a leader to the congo line at the level entry
@@ -67,7 +121,7 @@ func add_follower(_destination):
 		var new_follower = PARTIER.instance()
 		new_follower.position = $LevelEntry.position
 		new_follower.connect("PartierExitted",self,"partier_exit")
-		new_follower.followed = last_partier
+		new_follower.front_person = last_partier
 		new_follower.parent_level = self
 		$Metronome.connect("UpdateFrame",new_follower,"tick_tock")
 		$People.add_child(new_follower)
@@ -80,8 +134,10 @@ func add_follower(_destination):
 
 
 func check_clear(direction, person_moving):
+	#only checks obstacles, not people
+	#TODO activators
 	var grid_position = person_moving.grid_position
-	var destination = person_moving.grid_position + direction * Global.grid_size #if the person is reversed, check here
+	var destination = person_moving.grid_position + direction * Global.grid_size
 	#This checks the destination of the congaline and does appropriate actions
 	#Must return true if the target is open for movement
 	#Must return false if the congaline cannot move to the destination
@@ -91,19 +147,6 @@ func check_clear(direction, person_moving):
 		#If filled with a tile, return false
 	if $Walls.get_cellv(destination / Global.grid_size) != -1:
 		return false
-	#Check other partiers
-	for person in $People.get_children():
-		if person.grid_position == destination: #There is a person in my way, check one
-			#check 2: if the person is not a caboose, return false
-			#It will not move out of the way in time
-			
-			if !person.is_caboose():
-				return false
-			else:#Person is caboose, so now we need to know if the leader can move
-				var leader = person.get_leader()
-				if leader != person_moving:
-					if !check_clear(direction, leader):
-						return false
 	return true
 
 func check_exit(destination):

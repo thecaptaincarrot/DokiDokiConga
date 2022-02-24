@@ -69,7 +69,7 @@ func add_follower():
 		var new_follower = PARTIER.instance()
 		new_follower.position = $LevelEntry.position
 		new_follower.connect("PartierExitted",self,"partier_exit")
-		new_follower.followed = last_partier
+		new_follower.front_person = last_partier
 		new_follower.parent_level = self
 		$Metronome.connect("UpdateFrame",new_follower,"tick_tock")
 		$People.add_child(new_follower)
