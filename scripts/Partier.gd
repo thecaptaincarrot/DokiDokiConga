@@ -3,9 +3,9 @@ extends Node2D
 var parent_level = null
 
 var grid_position = Vector2()
+var movement_time = 0.1
 var is_leader = false
 var can_move = true
-var exiting = false
 
 var front_person = null
 var follower = null
@@ -15,6 +15,8 @@ var mouse_in = false
 
 #Weird States
 var reverse = false
+var force_move = false
+var force_move_vector = Vector2(0,0) #must be unit vector or 0
 
 signal MovementAttempted
 signal IMoved
@@ -32,10 +34,10 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	if grid_position != position:
-		position = lerp(position, grid_position, 0.1) #turn into interpolation
-		if grid_position.distance_squared_to(position) < .001:
-			position = grid_position #Snap
+#	if grid_position != position:
+#		position = lerp(position, grid_position, 0.1) #turn into interpolation
+#		if grid_position.distance_squared_to(position) < .001:
+#			position = grid_position #Snap
 	
 	if is_leader:
 		$Sprite.show()
@@ -51,28 +53,20 @@ func _unhandled_input(event):
 	elif event.is_action_pressed("ui_rclick") and mouse_in:
 		reverse = !reverse
 
-func leader_move(direction):
-	#takes in a orthogonal unit vector, checks if it can move in that direction (i.e. space is unoccupied)
-	#if true: move_to that direction
-	#if false: bounce animation ***TODO***
-	
-	if parent_level.check_clear(direction, self):
-		move_to(grid_position + direction * Global.grid_size)
-	else:
-		pass #Bounce animation
-
 
 func move_to(destination):
-	#takes in a orthogonal unit vector, then moves to that location.
-	#No checks are done here, this is a forced movemnet
-	var prev_position = grid_position
-	grid_position = destination
-	emit_signal("IMoved",prev_position)
-	if !is_leader:
-		check_follower_direction() #Change animation to face towards next in line
-	
-	if parent_level.check_exit(destination): #????? This sucks I think
-		exit()
+#	#takes in a orthogonal unit vector, then moves to that location.
+#	#No checks are done here, this is a forced movemnet
+#	var prev_position = grid_position
+#	grid_position = destination
+#	emit_signal("IMoved",prev_position)
+#	if !is_leader:
+#		check_follower_direction() #Change animation to face towards next in line
+#
+#	if parent_level.check_exit(destination): #????? This sucks I think
+#		exit()
+	$MovementTween.interpolate_property(self,"position", position, destination, movement_time)
+	$MovementTween.start()
 
 
 func teleport_to(destination):
@@ -110,10 +104,9 @@ func check_follower_direction(): #Changes the animation based on where its leade
 
 
 func exit(): #Leave the level
-	if follower != null:
+	if follower:
 		follower.become_leader()
 	
-	exiting = true
 
 
 func set_walker_animation(animation): #TODO the sprite should load a random resource rather than having

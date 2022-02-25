@@ -35,11 +35,10 @@
 [node name="Level" type="Node2D"]
 pause_mode = 1
 script = ExtResource( 8 )
-line_size = 20
 
 [node name="LevelEntry" parent="." instance=ExtResource( 1 )]
 position = Vector2( 224, 288 )
-frame = 5
+frame = 4
 
 [node name="LineLengthHelper" type="Label" parent="LevelEntry"]
 anchor_left = 0.5
@@ -47,7 +46,7 @@ anchor_right = 0.5
 margin_left = -40.0
 margin_top = -16.0
 margin_bottom = -2.0
-text = "20"
+text = "10"
 align = 1
 script = ExtResource( 6 )
 __meta__ = {
@@ -56,8 +55,8 @@ __meta__ = {
 }
 
 [node name="LevelExit" parent="." instance=ExtResource( 3 )]
-position = Vector2( 736, 256 )
-frame = 6
+position = Vector2( 544, 288 )
+frame = 5
 
 [node name="NumExitHelper" type="Label" parent="LevelExit"]
 anchor_left = 0.5
@@ -78,10 +77,14 @@ __meta__ = {
 
 [node name="Metronome" parent="." instance=ExtResource( 4 )]
 
+[node name="MovementLockout" type="Timer" parent="."]
+wait_time = 0.11
+one_shot = true
+
 [node name="Walls" type="TileMap" parent="."]
 tile_set = SubResource( 1 )
 cell_size = Vector2( 32, 32 )
 format = 1
-tile_data = PoolIntArray( 131074, 0, 1, 131075, 0, 196610, 131076, 0, 196610, 131077, 0, 196610, 131078, 0, 196610, 131079, 0, 196610, 131080, 0, 196610, 131081, 0, 196610, 131082, 0, 196610, 131083, 0, 196610, 131084, 0, 196610, 131085, 0, 196610, 131086, 0, 196610, 131087, 0, 196610, 131088, 0, 196610, 131089, 0, 196610, 131090, 0, 196610, 131091, 0, 196610, 131092, 0, 196610, 131093, 0, 196610, 131094, 0, 3, 196610, 0, 65536, 196630, 0, 65536, 262146, 0, 65536, 262166, 0, 65536, 327682, 0, 65536, 327702, 0, 65536, 393218, 0, 65536, 393237, 0, 8, 393238, 0, 65543, 458754, 0, 65536, 458773, 0, 65544, 458774, 0, 131083, 524290, 0, 65536, 524309, 0, 65544, 524310, 0, 131083, 589826, 0, 65536, 589845, 0, 196616, 589846, 0, 131079, 655362, 0, 65540, 655363, 0, 11, 655382, 0, 65536, 720898, 0, 65544, 720899, 0, 131083, 720918, 0, 65536, 786434, 0, 65544, 786435, 0, 131083, 786441, 0, 8, 786442, 0, 10, 786443, 0, 10, 786444, 0, 11, 786454, 0, 65536, 851970, 0, 65544, 851971, 0, 131083, 851977, 0, 65544, 851978, 0, 131081, 851979, 0, 131081, 851980, 0, 131083, 851990, 0, 65536, 917506, 0, 196616, 917507, 0, 196614, 917508, 0, 196610, 917509, 0, 196610, 917510, 0, 196610, 917511, 0, 196610, 917512, 0, 196610, 917513, 0, 196613, 917514, 0, 196617, 917515, 0, 196617, 917516, 0, 196614, 917517, 0, 196610, 917518, 0, 196610, 917519, 0, 196610, 917520, 0, 196610, 917521, 0, 196610, 917522, 0, 196610, 917523, 0, 196610, 917524, 0, 196610, 917525, 0, 196610, 917526, 0, 131075 )
 
 [connection signal="timeout" from="Metronome" to="Metronome" method="_on_Metronome_timeout"]
+[connection signal="timeout" from="MovementLockout" to="." method="_on_MovementLockout_timeout"]

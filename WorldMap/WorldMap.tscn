@@ -1,0 +1,178 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://WorldMap/LevelTile.tscn" type="PackedScene" id=1]
+[ext_resource path="res://WorldMap/Scripts/WorldMap.gd" type="Script" id=2]
+[ext_resource path="res://Sprites/npc1.png" type="Texture" id=3]
+[ext_resource path="res://WorldMap/Scripts/WorldPlayer.gd" type="Script" id=4]
+[ext_resource path="res://WorldMap/Scripts/World1.gd" type="Script" id=5]
+
+[sub_resource type="AtlasTexture" id=2]
+atlas = ExtResource( 3 )
+region = Rect2( 0, 144, 26, 36 )
+
+[sub_resource type="AtlasTexture" id=3]
+atlas = ExtResource( 3 )
+region = Rect2( 26, 144, 26, 36 )
+
+[sub_resource type="AtlasTexture" id=4]
+atlas = ExtResource( 3 )
+region = Rect2( 52, 144, 26, 36 )
+
+[sub_resource type="SpriteFrames" id=5]
+animations = [ {
+"frames": [ SubResource( 2 ), SubResource( 3 ), SubResource( 4 ), SubResource( 3 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
+
+[node name="WorldMap" type="Node2D"]
+script = ExtResource( 2 )
+
+[node name="Worlds" type="Node2D" parent="."]
+
+[node name="World1" type="Node2D" parent="Worlds"]
+script = ExtResource( 5 )
+
+[node name="LevelTile1" parent="Worlds/World1" instance=ExtResource( 1 )]
+position = Vector2( 256, 256 )
+
+[node name="LevelTile2" parent="Worlds/World1" instance=ExtResource( 1 )]
+position = Vector2( 320, 256 )
+level_num = 2
+
+[node name="LevelTile3" parent="Worlds/World1" instance=ExtResource( 1 )]
+position = Vector2( 384, 256 )
+level_num = 3
+
+[node name="LevelTile4" parent="Worlds/World1" instance=ExtResource( 1 )]
+position = Vector2( 448, 256 )
+level_num = 8
+
+[node name="LevelTile5" parent="Worlds/World1" instance=ExtResource( 1 )]
+position = Vector2( 384, 192 )
+level_num = 4
+
+[node name="LevelTile6" parent="Worlds/World1" instance=ExtResource( 1 )]
+position = Vector2( 384, 320 )
+level_num = 6
+
+[node name="LevelTile7" parent="Worlds/World1" instance=ExtResource( 1 )]
+position = Vector2( 448, 320 )
+level_num = 7
+
+[node name="LevelTile8" parent="Worlds/World1" instance=ExtResource( 1 )]
+position = Vector2( 448, 192 )
+level_num = 5
+
+[node name="World2" type="Node2D" parent="Worlds"]
+position = Vector2( 768, 0 )
+
+[node name="LevelTile1" parent="Worlds/World2" instance=ExtResource( 1 )]
+position = Vector2( 256, 256 )
+
+[node name="LevelTile2" parent="Worlds/World2" instance=ExtResource( 1 )]
+position = Vector2( 320, 256 )
+level_num = 2
+
+[node name="LevelTile3" parent="Worlds/World2" instance=ExtResource( 1 )]
+position = Vector2( 384, 256 )
+level_num = 3
+
+[node name="LevelTile4" parent="Worlds/World2" instance=ExtResource( 1 )]
+position = Vector2( 448, 256 )
+level_num = 8
+
+[node name="LevelTile5" parent="Worlds/World2" instance=ExtResource( 1 )]
+position = Vector2( 384, 192 )
+level_num = 4
+
+[node name="LevelTile6" parent="Worlds/World2" instance=ExtResource( 1 )]
+position = Vector2( 384, 320 )
+level_num = 6
+
+[node name="LevelTile7" parent="Worlds/World2" instance=ExtResource( 1 )]
+position = Vector2( 448, 320 )
+level_num = 7
+
+[node name="LevelTile8" parent="Worlds/World2" instance=ExtResource( 1 )]
+position = Vector2( 448, 192 )
+level_num = 5
+
+[node name="World3" type="Node2D" parent="Worlds"]
+position = Vector2( 768, -384 )
+
+[node name="LevelTile1" parent="Worlds/World3" instance=ExtResource( 1 )]
+position = Vector2( 256, 256 )
+
+[node name="LevelTile2" parent="Worlds/World3" instance=ExtResource( 1 )]
+position = Vector2( 320, 256 )
+level_num = 2
+
+[node name="LevelTile3" parent="Worlds/World3" instance=ExtResource( 1 )]
+position = Vector2( 384, 256 )
+level_num = 3
+
+[node name="LevelTile4" parent="Worlds/World3" instance=ExtResource( 1 )]
+position = Vector2( 448, 256 )
+level_num = 8
+
+[node name="LevelTile5" parent="Worlds/World3" instance=ExtResource( 1 )]
+position = Vector2( 384, 192 )
+level_num = 4
+
+[node name="LevelTile6" parent="Worlds/World3" instance=ExtResource( 1 )]
+position = Vector2( 384, 320 )
+level_num = 6
+
+[node name="LevelTile7" parent="Worlds/World3" instance=ExtResource( 1 )]
+position = Vector2( 448, 320 )
+level_num = 7
+
+[node name="LevelTile8" parent="Worlds/World3" instance=ExtResource( 1 )]
+position = Vector2( 448, 192 )
+level_num = 5
+
+[node name="World4" type="Node2D" parent="Worlds"]
+position = Vector2( 0, -416 )
+
+[node name="LevelTile1" parent="Worlds/World4" instance=ExtResource( 1 )]
+position = Vector2( 256, 256 )
+
+[node name="LevelTile2" parent="Worlds/World4" instance=ExtResource( 1 )]
+position = Vector2( 320, 256 )
+level_num = 2
+
+[node name="LevelTile3" parent="Worlds/World4" instance=ExtResource( 1 )]
+position = Vector2( 384, 256 )
+level_num = 3
+
+[node name="LevelTile4" parent="Worlds/World4" instance=ExtResource( 1 )]
+position = Vector2( 448, 256 )
+level_num = 8
+
+[node name="LevelTile5" parent="Worlds/World4" instance=ExtResource( 1 )]
+position = Vector2( 384, 192 )
+level_num = 4
+
+[node name="LevelTile6" parent="Worlds/World4" instance=ExtResource( 1 )]
+position = Vector2( 384, 320 )
+level_num = 6
+
+[node name="LevelTile7" parent="Worlds/World4" instance=ExtResource( 1 )]
+position = Vector2( 448, 320 )
+level_num = 7
+
+[node name="LevelTile8" parent="Worlds/World4" instance=ExtResource( 1 )]
+position = Vector2( 448, 192 )
+level_num = 5
+
+[node name="WorldPlayer" type="AnimatedSprite" parent="."]
+position = Vector2( 256.001, 256 )
+z_index = 1
+frames = SubResource( 5 )
+playing = true
+offset = Vector2( 0, -12 )
+script = ExtResource( 4 )
+
+[node name="MovementTween" type="Tween" parent="WorldPlayer"]

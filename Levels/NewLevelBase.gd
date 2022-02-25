@@ -10,6 +10,8 @@ export var need_exit = 10
 
 var partiers_left
 
+var can_move = true
+
 signal LevelOver
 signal PartierDied
 
@@ -42,14 +44,18 @@ func _process(delta):
 
 
 func _unhandled_input(event):
-	if event.is_action_pressed("ui_left"):
-		move(Vector2(-1 ,0))
-	elif event.is_action_pressed("ui_right"):
-		move(Vector2(1,0))
-	elif event.is_action_pressed("ui_up"):
-		move(Vector2(0,-1))
-	elif event.is_action_pressed("ui_down"):
-		move(Vector2(0,1))
+	if can_move:
+		if event.is_action_pressed("ui_left"):
+			move(Vector2(-1 ,0))
+		elif event.is_action_pressed("ui_right"):
+			move(Vector2(1,0))
+		elif event.is_action_pressed("ui_up"):
+			move(Vector2(0,-1))
+		elif event.is_action_pressed("ui_down"):
+			move(Vector2(0,1))
+	
+	if event.is_action_pressed("ui_escape"):
+		get_tree().change_scene("res://WorldMap/WorldMap.tscn")
 
 
 func move(direction): #move all leaders in the given directions
@@ -64,8 +70,12 @@ func move(direction): #move all leaders in the given directions
 	var leader_info = []
 	for leader in leaders:
 		var fixed_direction = direction
+		#Movement Modifiers
 		if leader.reverse:
 			fixed_direction *= -1
+		if leader.force_move:
+			fixed_direction = leader.force_move_vector
+			
 		var can_move = false
 		var leader_move = leader.grid_position + fixed_direction * Global.grid_size
 		var conga_positions = leader.get_line_positions() #line positions of line that is not moving
@@ -98,6 +108,9 @@ func move(direction): #move all leaders in the given directions
 						#Found myself in the array, anyone else?
 			if can_move:
 				leader_dict["leader"].move_to(leader_dict["leader_move"]) #Is this the last check? I think so
+	can_move = false
+	$MovementLockout.start()
+
 
 func add_leader():
 	#Add a leader to the congo line at the level entry
@@ -162,3 +175,7 @@ func partier_exit():
 		$LevelExit.animation = "Close"
 		print("done")
 		emit_signal("LevelOver")
+
+
+func _on_MovementLockout_timeout():
+	can_move = true
