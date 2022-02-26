@@ -6,7 +6,16 @@ var world = 1
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	#turn all completed levels green
+	print(Completed.completed_levels)
+	
+	#put the player on the last completed level
+	if Completed.current_level[0] != 0:
+		print(Completed.current_level[0])
+		var worldpath = "Worlds/World" + str(Completed.current_level[0])
+		var world = get_node(worldpath)
+		var leveltile = world.get_tile(Completed.current_level[1])
+		$WorldPlayer.position = leveltile.position
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -44,12 +53,18 @@ func check_tile(pos):
 
 func attempt_movement(direction):
 	var new_position = $WorldPlayer.position + direction * grid_size
-	if check_tile(new_position):
+	var tile = check_tile(new_position)
+	if !tile:
+		return
+	
+	if tile.allow_move():
 		
 		$WorldPlayer.set_movement_tween(new_position)
 
 
 func enter_level(tile):
+	Completed.current_level = [world,tile.level_num]
+	print(" New Level Entered: ", Completed.current_level)
 	match world:
 		1:
 			$Worlds/World1.enter_level(tile.level_num)

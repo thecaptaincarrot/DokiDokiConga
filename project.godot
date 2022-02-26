@@ -15,7 +15,7 @@ _global_script_class_icons={
 [application]
 
 config/name="Conganauts"
-run/main_scene="res://Deprecated/Splash.tscn"
+run/main_scene="res://WorldMap/WorldMap.tscn"
 boot_splash/bg_color=Color( 0, 0, 0, 1 )
 config/icon="res://Deprecated/head.png"
 
@@ -23,6 +23,7 @@ config/icon="res://Deprecated/head.png"
 
 Global="*res://scripts/Global.gd"
 MusicHandler="*res://Deprecated/MusicHandler.gd"
+Completed="*res://scripts/Completed.gd"
 
 [display]
 
@@ -110,7 +111,6 @@ ui_escape={
 
 [rendering]
 
-quality/driver/driver_name="GLES2"
 vram_compression/import_etc=true
 vram_compression/import_etc2=false
 environment/default_clear_color=Color( 0, 0, 0, 1 )

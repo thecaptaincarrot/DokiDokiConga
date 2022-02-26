@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Fonts/BodoniFLF-Bold.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://Deprecated/index.png" type="Texture" id=2]
@@ -9,6 +9,18 @@
 size = 32
 outline_color = Color( 0, 0, 0, 1 )
 font_data = ExtResource( 1 )
+
+[sub_resource type="ParticlesMaterial" id=2]
+emission_shape = 1
+emission_sphere_radius = 0.01
+flag_disable_z = true
+direction = Vector3( 0, -1, 0 )
+gravity = Vector3( 0, 980, 0 )
+initial_velocity = 400.0
+initial_velocity_random = 0.32
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+color = Color( 1, 0.914063, 0, 1 )
 
 [node name="LevelTile" type="Sprite"]
 scale = Vector2( 0.5, 0.5 )
@@ -33,3 +45,11 @@ script = ExtResource( 4 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="Confetti" type="Particles2D" parent="."]
+emitting = false
+amount = 60
+lifetime = 0.8
+one_shot = true
+explosiveness = 0.98
+process_material = SubResource( 2 )

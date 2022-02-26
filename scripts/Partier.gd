@@ -5,7 +5,9 @@ var parent_level = null
 var grid_position = Vector2()
 var movement_time = 0.1
 var is_leader = false
+var is_exit = false
 var can_move = true
+var exiting = false
 
 var front_person = null
 var follower = null
@@ -38,11 +40,7 @@ func _process(delta):
 #		position = lerp(position, grid_position, 0.1) #turn into interpolation
 #		if grid_position.distance_squared_to(position) < .001:
 #			position = grid_position #Snap
-	
-	if is_leader:
-		$Sprite.show()
-	else:
-		$Sprite.hide()
+	pass
 
 
 func _unhandled_input(event):
@@ -65,9 +63,17 @@ func move_to(destination):
 #
 #	if parent_level.check_exit(destination): #????? This sucks I think
 #		exit()
+	var prev_position = grid_position
+	grid_position = destination
+	emit_signal("IMoved",prev_position)
+	if !is_leader:
+		check_follower_direction() #Change animation to face towards next in line
 	$MovementTween.interpolate_property(self,"position", position, destination, movement_time)
 	$MovementTween.start()
-
+	
+	if parent_level.check_exit(destination): #????? This sucks I think
+		var exit_direction = (grid_position - prev_position).normalized()
+		exit(exit_direction)
 
 func teleport_to(destination):
 	#takes in a orthogonal unit vector, then moves to that location.
@@ -80,19 +86,15 @@ func teleport_to(destination):
 		check_follower_direction() #Change animation to face towards next in line
 	
 	if parent_level.check_exit(destination): #????? This sucks I think  You'll never exit on a teleport
-		exit()
-
-
-
-func simulate_movement(direction):
-	#1. Get the congaline positiosn
-	#2. find the caboose and remove its position from the array
-	#3. add the position of the 
-	pass
+		var exit_direction = (grid_position - prev_position).normalized()
+		exit(exit_direction)
 
 
 func check_follower_direction(): #Changes the animation based on where its leader is
 	#animation
+	if front_person.grid_position.x - grid_position.x > 64: #This is a hack, if something breaks it's this line's fault
+		return
+	
 	if front_person.grid_position.x - grid_position.x < 0:
 		set_walker_animation("Left")
 	elif front_person.grid_position.x - grid_position.x > 0:
@@ -103,10 +105,33 @@ func check_follower_direction(): #Changes the animation based on where its leade
 		set_walker_animation("Down")
 
 
-func exit(): #Leave the level
+func exit(exit_direction): #Leave the level
+	print("exit")
+	is_leader = false
+	$Sprite.hide()
 	if follower:
+		if get_line_length() <= 3:
+			follower.is_exit = true
+			follower.force_move = true
+			follower.force_move_vector = exit_direction
 		follower.become_leader()
+
 	
+	exiting = true
+	emit_signal("PartierExitted")
+
+
+func set_walker_animation_direction(direction : Vector2):
+	match direction:
+		Vector2(1,0):
+			set_walker_animation("Right")
+		Vector2(-1,0):
+			set_walker_animation("Left")
+		Vector2(0,1):
+			set_walker_animation("Down")
+		Vector2(0,-1):
+			set_walker_animation("Up")
+
 
 
 func set_walker_animation(animation): #TODO the sprite should load a random resource rather than having
@@ -115,13 +140,14 @@ func set_walker_animation(animation): #TODO the sprite should load a random reso
 		N.animation = animation
 
 
-
 func become_leader():
 	front_person.follower = null
 	front_person.disconnect("IMoved",self,"move_to")
 	front_person = null
 	
 	is_leader = true
+	if !is_exit:
+		$Sprite.show()
 
 
 func kill(): #rewrite because this isn't very cool
@@ -157,6 +183,10 @@ func get_conga_line():
 			break
 	
 	return line
+
+
+func get_line_length():
+	return len(get_conga_line())
 
 
 func get_line_positions():
@@ -202,7 +232,6 @@ func get_caboose_distance(): #returns distance to the caboose
 		tested_person = tested_person.follower
 
 
-
 func get_leader():
 	if is_leader:
 		return self
@@ -225,7 +254,6 @@ func get_caboose():
 			return tested_person
 		
 		tested_person = tested_person.follower
-
 
 
 func set_leader():
@@ -253,4 +281,8 @@ func _on_Area2D_mouse_exited():
 func tick_tock(frame): #timer based animation to keep every sprite on beat
 	for N in $Walkers.get_children():
 		N.frame = frame
-	
+
+
+func _on_MovementTween_tween_all_completed():
+	if exiting:
+		queue_free()

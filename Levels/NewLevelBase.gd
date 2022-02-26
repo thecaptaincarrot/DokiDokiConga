@@ -10,8 +10,6 @@ export var need_exit = 10
 
 var partiers_left
 
-var can_move = true
-
 signal LevelOver
 signal PartierDied
 
@@ -44,15 +42,14 @@ func _process(delta):
 
 
 func _unhandled_input(event):
-	if can_move:
-		if event.is_action_pressed("ui_left"):
-			move(Vector2(-1 ,0))
-		elif event.is_action_pressed("ui_right"):
-			move(Vector2(1,0))
-		elif event.is_action_pressed("ui_up"):
-			move(Vector2(0,-1))
-		elif event.is_action_pressed("ui_down"):
-			move(Vector2(0,1))
+	if event.is_action_pressed("ui_left"):
+		move(Vector2(-1 ,0))
+	elif event.is_action_pressed("ui_right"):
+		move(Vector2(1,0))
+	elif event.is_action_pressed("ui_up"):
+		move(Vector2(0,-1))
+	elif event.is_action_pressed("ui_down"):
+		move(Vector2(0,1))
 	
 	if event.is_action_pressed("ui_escape"):
 		get_tree().change_scene("res://WorldMap/WorldMap.tscn")
@@ -75,11 +72,13 @@ func move(direction): #move all leaders in the given directions
 			fixed_direction *= -1
 		if leader.force_move:
 			fixed_direction = leader.force_move_vector
-			
+		
+		leader.set_walker_animation_direction(fixed_direction)
+		
 		var can_move = false
 		var leader_move = leader.grid_position + fixed_direction * Global.grid_size
 		var conga_positions = leader.get_line_positions() #line positions of line that is not moving
-		if check_clear(fixed_direction, leader) and !leader.check_line_fill(leader_move): #Leader can move in the direction, continue simulation
+		if check_clear(fixed_direction, leader): #Leader can move in the direction, continue simulation
 #			leader_move = leader.grid_position + fixed_direction * Global.grid_size
 			conga_positions.append(leader_move)
 			conga_positions.erase(leader.get_caboose().grid_position)
@@ -108,8 +107,6 @@ func move(direction): #move all leaders in the given directions
 						#Found myself in the array, anyone else?
 			if can_move:
 				leader_dict["leader"].move_to(leader_dict["leader_move"]) #Is this the last check? I think so
-	can_move = false
-	$MovementLockout.start()
 
 
 func add_leader():
@@ -119,6 +116,7 @@ func add_leader():
 	new_leader.connect("IMoved", self, "add_follower") #No this sucks
 	new_leader.connect("PartierExitted",self,"partier_exit")
 	new_leader.is_leader = true
+	new_leader.get_node("Sprite").show()
 	new_leader.parent_level = self
 	$Metronome.connect("UpdateFrame",new_leader,"tick_tock")
 	$People.add_child(new_leader)
@@ -162,6 +160,7 @@ func check_clear(direction, person_moving):
 		return false
 	return true
 
+
 func check_exit(destination):
 	if destination == $LevelExit.position:
 		return true
@@ -171,11 +170,15 @@ func check_exit(destination):
 
 func partier_exit():
 	need_exit -= 1
+	print("Exit ", need_exit)
 	if need_exit <= 0:
 		$LevelExit.animation = "Close"
 		print("done")
-		emit_signal("LevelOver")
+		#Go back to world map, etc
+		end_level()
 
 
-func _on_MovementLockout_timeout():
-	can_move = true
+func end_level():
+	Completed.level_completed()
+	#TODO ADD ANIMATIONS OR WHATEVER
+	get_tree().change_scene("res://WorldMap/WorldMap.tscn")
