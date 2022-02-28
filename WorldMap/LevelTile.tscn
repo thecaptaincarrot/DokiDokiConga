@@ -22,7 +22,7 @@ orbit_velocity = 0.0
 orbit_velocity_random = 0.0
 color = Color( 1, 0.914063, 0, 1 )
 
-[node name="LevelTile" type="Sprite"]
+[node name="LevelTile" type="Sprite" groups=["LevelTile"]]
 scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 2 )
 script = ExtResource( 3 )

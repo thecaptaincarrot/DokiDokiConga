@@ -106,7 +106,6 @@ func check_follower_direction(): #Changes the animation based on where its leade
 
 
 func exit(exit_direction): #Leave the level
-	print("exit")
 	is_leader = false
 	$Sprite.hide()
 	if follower:

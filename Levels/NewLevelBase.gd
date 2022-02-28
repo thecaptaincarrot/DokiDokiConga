@@ -170,7 +170,6 @@ func check_exit(destination):
 
 func partier_exit():
 	need_exit -= 1
-	print("Exit ", need_exit)
 	if need_exit <= 0:
 		$LevelExit.animation = "Close"
 		print("done")

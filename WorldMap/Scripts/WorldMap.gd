@@ -2,7 +2,7 @@ extends Node2D
 
 var grid_size = 64
 
-var world = 1
+var current_world = 1
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -11,12 +11,19 @@ func _ready():
 	
 	#put the player on the last completed level
 	if Completed.current_level[0] != 0:
-		print(Completed.current_level[0])
+		current_world = Completed.current_level[0]
+		
 		var worldpath = "Worlds/World" + str(Completed.current_level[0])
-		var world = get_node(worldpath)
-		var leveltile = world.get_tile(Completed.current_level[1])
+		var completion_world = get_node(worldpath)
+		var leveltile = completion_world.get_tile(Completed.current_level[1])
 		$WorldPlayer.position = leveltile.position
-
+		
+		$WorldCamera.change_world(Completed.current_level[0])
+	else:
+		$WorldPlayer.position = $Worlds/World1/LevelTile1.position
+		$WorldCamera.change_world(1)
+	
+	$WorldCamera.warp_camera()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
@@ -46,7 +53,7 @@ func check_tile(pos):
 	
 	for world in $Worlds.get_children():
 		for tile in world.get_children():
-			if tile.position == pos:
+			if tile.global_position == pos:
 				return tile
 	return false
 
@@ -63,10 +70,32 @@ func attempt_movement(direction):
 
 
 func enter_level(tile):
-	Completed.current_level = [world,tile.level_num]
-	print(" New Level Entered: ", Completed.current_level)
-	match world:
+	if tile.is_in_group("LevelTile"):
+		Completed.current_level = [current_world,tile.level_num]
+		print(" New Level Entered: ", Completed.current_level)
+		print("world: ", current_world)
+		match current_world:
+			1:
+				$Worlds/World1.enter_level(tile.level_num)
+			2:
+				$Worlds/World2.enter_level(tile.level_num)
+	elif tile.is_in_group("Portal"):
+		#1. find what world we're going to
+		var target_world_num = tile.target_world
+		var target_world = get_world_node(target_world_num)
+		#2. get the position of the portal in the target world that leads to this world
+		if target_world:
+			var target_portal = target_world.get_portal(current_world)
+			if target_portal:
+				#teleport player to the target_portal
+				current_world = target_world_num
+				$WorldPlayer.position = target_portal.global_position
+				$WorldCamera.change_world(current_world)
+
+func get_world_node(world_num):
+	match world_num:
 		1:
-			$Worlds/World1.enter_level(tile.level_num)
+			return $Worlds/World1
 		2:
-			pass
+			return $Worlds/World2
+	return null
