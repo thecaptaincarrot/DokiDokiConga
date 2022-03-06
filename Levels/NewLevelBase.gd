@@ -1,14 +1,16 @@
 extends Node2D
-
 const PARTIER = preload("res://Partier.tscn")
 
-const movement_events = ["ui_left","ui_right","ui_up","ui_down"]
+export var time_sensitive = false
 
 var last_partier #the last member of the line that was spawned
 export var line_size = 10
 export var need_exit = 10
 
 var partiers_left
+
+var turn = 0
+var undo_actions = []
 
 signal LevelOver
 signal PartierDied
@@ -50,6 +52,9 @@ func _unhandled_input(event):
 		move(Vector2(0,-1))
 	elif event.is_action_pressed("ui_down"):
 		move(Vector2(0,1))
+	elif event.is_action_pressed("undo"):
+		undo()
+	
 	
 	if event.is_action_pressed("ui_escape"):
 		get_tree().change_scene("res://WorldMap/WorldMap.tscn")
@@ -88,9 +93,11 @@ func move(direction): #move all leaders in the given directions
 		simulated_positions += conga_positions
 		leader_info.append({"leader" : leader, "positions" : conga_positions, "leader_move" : leader_move, "moving" : can_move })
 	#I now have all leaders and where they're going to be. Now I need to see if they can move
+	var movement_occured = false
 	for leader_dict in leader_info:
 		#Don't care if the leader isn't moving from the obstacle check
 		if leader_dict["moving"]:
+			movement_occured = true
 			#check if their prospective position is already taken up
 			#must be taken up at least twice since their own position is in the array too
 			var self_check = false
@@ -107,14 +114,34 @@ func move(direction): #move all leaders in the given directions
 						#Found myself in the array, anyone else?
 			if can_move:
 				leader_dict["leader"].move_to(leader_dict["leader_move"]) #Is this the last check? I think so
+	if !time_sensitive and !movement_occured: return
+	turn += 1
+	print("turn: ", turn)
+
+
+func new_leader_added():
+	print("new leader on turn ", turn)
+	turn += 1
+
+func undo():
+	if turn <= 0:
+		return
+	turn -= 1
+	for partier in $People.get_children():
+		partier.undo_move(turn)
+		if partier.became_leader == turn:
+			partier.undo_leader()
 
 
 func add_leader():
 	#Add a leader to the congo line at the level entry
 	var new_leader = PARTIER.instance()
 	new_leader.position = $LevelEntry.position
+	new_leader.entered_level = turn - 1
 	new_leader.connect("IMoved", self, "add_follower") #No this sucks
 	new_leader.connect("PartierExitted",self,"partier_exit")
+	new_leader.connect("PartierUnExitted",self,"partier_unexit")
+	new_leader.connect("BecomeLeader",self,"new_leader_added")
 	new_leader.is_leader = true
 	new_leader.get_node("Sprite").show()
 	new_leader.parent_level = self
@@ -131,7 +158,10 @@ func add_follower(_destination):
 	if line_size > 0:
 		var new_follower = PARTIER.instance()
 		new_follower.position = $LevelEntry.position
+		new_follower.entered_level = turn
 		new_follower.connect("PartierExitted",self,"partier_exit")
+		new_follower.connect("PartierUnExitted",self,"partier_unexit")
+		new_follower.connect("BecomeLeader",self,"new_leader_added")
 		new_follower.front_person = last_partier
 		new_follower.parent_level = self
 		$Metronome.connect("UpdateFrame",new_follower,"tick_tock")
@@ -177,7 +207,15 @@ func partier_exit():
 		end_level()
 
 
+func partier_unexit():
+	need_exit += 1
+
+
 func end_level():
 	Completed.level_completed()
 	#TODO ADD ANIMATIONS OR WHATEVER
 	get_tree().change_scene("res://WorldMap/WorldMap.tscn")
+
+
+func get_turn():
+	return turn

@@ -9,9 +9,18 @@ var is_exit = false
 var can_move = true
 var exiting = false
 
+#Undo shit
+var move_undo = {}
+var became_leader = -1
+var entered_level = -1
+var last_front = null
+var max_undo = 100 #TODO: max number of moves to save in dict
+var turn_exited = -1
+
 var front_person = null
 var follower = null
 var leader = null
+var playable = true
 
 var mouse_in = false
 
@@ -23,6 +32,9 @@ var force_move_vector = Vector2(0,0) #must be unit vector or 0
 signal MovementAttempted
 signal IMoved
 signal PartierExitted
+signal PartierUnExitted
+signal BecomeLeader
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -46,24 +58,18 @@ func _process(delta):
 func _unhandled_input(event):
 	if event.is_action_pressed("ui_click") and mouse_in and get_caboose_distance() > 2 and get_leader_distance() > 2:
 		if follower.follower != null and front_person.front_person.leader != true:
-			become_leader()
+			leader_click()
 	
 	elif event.is_action_pressed("ui_rclick") and mouse_in:
 		reverse = !reverse
 
 
 func move_to(destination):
+	if !playable: return
 #	#takes in a orthogonal unit vector, then moves to that location.
 #	#No checks are done here, this is a forced movemnet
-#	var prev_position = grid_position
-#	grid_position = destination
-#	emit_signal("IMoved",prev_position)
-#	if !is_leader:
-#		check_follower_direction() #Change animation to face towards next in line
-#
-#	if parent_level.check_exit(destination): #????? This sucks I think
-#		exit()
 	var prev_position = grid_position
+	move_undo[parent_level.get_turn()] = prev_position
 	grid_position = destination
 	emit_signal("IMoved",prev_position)
 	if !is_leader:
@@ -74,6 +80,32 @@ func move_to(destination):
 	if parent_level.check_exit(destination): #????? This sucks I think
 		var exit_direction = (grid_position - prev_position).normalized()
 		exit(exit_direction)
+
+
+func undo_move(turn):
+	if move_undo.has(turn):
+		var prev_position = grid_position
+		grid_position = move_undo[turn]
+		
+		var direction = (grid_position - prev_position).normalized()
+		
+		move_undo.erase(turn)
+		
+		if turn_exited != -1:
+			print(turn,turn_exited)
+		if turn == turn_exited:
+			exiting = false
+			playable = true
+			is_leader = true
+			show()
+			turn_exited = -1
+			emit_signal("PartierUnExitted")
+		
+		$MovementTween.interpolate_property(self,"position", position, grid_position, movement_time)
+		$MovementTween.start()
+		
+		set_walker_animation_direction(-direction)
+
 
 func teleport_to(destination):
 	#takes in a orthogonal unit vector, then moves to that location.
@@ -107,7 +139,6 @@ func check_follower_direction(): #Changes the animation based on where its leade
 
 func exit(exit_direction): #Leave the level
 	is_leader = false
-	$Sprite.hide()
 	if follower:
 		if get_line_length() <= 3:
 			follower.is_exit = true
@@ -115,7 +146,7 @@ func exit(exit_direction): #Leave the level
 			follower.force_move_vector = exit_direction
 		follower.become_leader()
 
-	
+	turn_exited = parent_level.get_turn()
 	exiting = true
 	emit_signal("PartierExitted")
 
@@ -139,14 +170,35 @@ func set_walker_animation(animation): #TODO the sprite should load a random reso
 		N.animation = animation
 
 
+func leader_click():
+	become_leader()
+	emit_signal("BecomeLeader")
+
+
 func become_leader():
 	front_person.follower = null
 	front_person.disconnect("IMoved",self,"move_to")
+	last_front = front_person
 	front_person = null
 	
 	is_leader = true
+	
+	became_leader = parent_level.get_turn()
+	
 	if !is_exit:
 		$Sprite.show()
+
+
+func undo_leader():
+	front_person = last_front
+	front_person.follower = self
+	front_person.connect("IMoved",self,"move_to")
+	last_front = null
+	
+	became_leader = -1
+	
+	is_leader = false
+	$Sprite.hide()
 
 
 func kill(): #rewrite because this isn't very cool
@@ -284,4 +336,5 @@ func tick_tock(frame): #timer based animation to keep every sprite on beat
 
 func _on_MovementTween_tween_all_completed():
 	if exiting:
-		queue_free()
+		hide()
+		playable = false
