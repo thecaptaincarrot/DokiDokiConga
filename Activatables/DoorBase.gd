@@ -1,8 +1,13 @@
+tool
 extends AnimatedSprite
+
+export var code = "AAA"
 
 var blocking = true
 
-var activators = []
+var triggers = []
+
+var active = false
 
 export var all_or_nothing = false
 
@@ -13,24 +18,20 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	var num_activated = 0
+	if Engine.editor_hint:
+		pass
 	
-	for activator in activators:
-		if activator.active:
-			num_activated += 1
-	
-	
-	if num_activated > 0:
-		if all_or_nothing and num_activated == len(activators):
-			activate()
-		elif num_activated > 1:
-			activate()
-		else:
-			deactivate()
-		
 	else:
-		deactivate()
-
+		var active_check = false
+		for trigger in triggers:
+			if trigger.get_active():
+				active_check = true
+		
+		if active_check != active:
+			if active_check:
+				activate()
+			else:
+				deactivate()
 
 func activate():
 	blocking = false

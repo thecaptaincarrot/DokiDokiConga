@@ -5,10 +5,10 @@ signal deactivate
 
 export var code = "AAA"
 
-export var blocking = false
+var active = false
 
-var active_turns = []
-var inactive_turns = []
+var active_turns = [] #When it goes from inactive to active
+var inactive_turns = [] #When it goes from active to inactive
 
 var parent_level
 
@@ -30,12 +30,14 @@ func pair(node):
 func activate(): #only call when going from deactivated to activated
 	active_turns.append(parent_level.get_turn())
 	emit_signal("activate")
+	active = true
 
 
 func deactivate(): #only call when going from activated to deactivated
 	inactive_turns.append(parent_level.get_turn())
 	emit_signal("deactivate")
+	active = false
 
 
-func check_active():
-	pass
+func get_active():
+	return active

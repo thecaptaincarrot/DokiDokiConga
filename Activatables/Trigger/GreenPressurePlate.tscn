@@ -1,0 +1,42 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://Sprites/Button.png" type="Texture" id=1]
+[ext_resource path="res://Activatables/Trigger/GreenPressurePlate.gd" type="Script" id=2]
+[ext_resource path="res://Activatables/Helper.gd" type="Script" id=3]
+
+[sub_resource type="AtlasTexture" id=1]
+atlas = ExtResource( 1 )
+region = Rect2( 32, 0, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=2]
+atlas = ExtResource( 1 )
+region = Rect2( 0, 0, 32, 32 )
+
+[sub_resource type="SpriteFrames" id=3]
+animations = [ {
+"frames": [ SubResource( 1 ) ],
+"loop": true,
+"name": "Down",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 2 ) ],
+"loop": true,
+"name": "Up",
+"speed": 5.0
+} ]
+
+[node name="GreenPressurePlate" type="AnimatedSprite"]
+frames = SubResource( 3 )
+animation = "Down"
+centered = false
+script = ExtResource( 2 )
+
+[node name="Helper" type="Label" parent="."]
+margin_left = -47.0
+margin_top = -14.0
+margin_right = 77.0
+align = 1
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
