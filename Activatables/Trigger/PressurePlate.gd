@@ -1,7 +1,7 @@
 tool
 extends AnimatedSprite
 
-var code = ""
+var code = "ERROR"
 # Declare member variables here. Examples:
 # var a = 2
 # var b = "text"

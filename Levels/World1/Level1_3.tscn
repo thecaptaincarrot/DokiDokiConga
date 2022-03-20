@@ -1,24 +1,56 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Levels/NewLevelBase.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Activatables/Trigger/GreenPressurePlate.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Activatables/Trigger/PressurePlateBase.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Activatables/DoorBase.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Activatables/Trigger/RedPressurePlate.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Activatables/Trigger/LeverBase.tscn" type="PackedScene" id=6]
 
 [node name="Level" instance=ExtResource( 1 )]
 
+[node name="LevelEntry" parent="." index="0"]
+position = Vector2( 224, 320 )
+frame = 7
+
+[node name="LevelExit" parent="." index="1"]
+position = Vector2( 384, 64 )
+frame = 0
+
 [node name="Door" parent="Activators" index="0" instance=ExtResource( 4 )]
-position = Vector2( 416, 96 )
+position = Vector2( 384, 192 )
 code = "TEST"
 
 [node name="PressurePlateParent" parent="Triggers" index="0" groups=["Activator"] instance=ExtResource( 3 )]
 code = "TEST"
 
 [node name="GreenPressurePlate" parent="Triggers/PressurePlateParent" index="0" instance=ExtResource( 2 )]
-position = Vector2( 288, 96 )
+position = Vector2( 384, 128 )
 
 [node name="GreenPressurePlate2" parent="Triggers/PressurePlateParent" index="1" instance=ExtResource( 2 )]
-position = Vector2( 192, 96 )
+position = Vector2( 608, 320 )
+
+[node name="RedPressurePlate" parent="Triggers/PressurePlateParent" index="2" instance=ExtResource( 5 )]
+position = Vector2( 320, 384 )
+
+[node name="RedPressurePlate2" parent="Triggers/PressurePlateParent" index="3" instance=ExtResource( 5 )]
+position = Vector2( 352, 384 )
+
+[node name="RedPressurePlate3" parent="Triggers/PressurePlateParent" index="4" instance=ExtResource( 5 )]
+position = Vector2( 384, 384 )
+
+[node name="RedPressurePlate4" parent="Triggers/PressurePlateParent" index="5" instance=ExtResource( 5 )]
+position = Vector2( 416, 384 )
+
+[node name="RedPressurePlate5" parent="Triggers/PressurePlateParent" index="6" instance=ExtResource( 5 )]
+position = Vector2( 448, 384 )
+
+[node name="RedPressurePlate6" parent="Triggers/PressurePlateParent" index="7" instance=ExtResource( 5 )]
+position = Vector2( 448, 384 )
+
+[node name="LeverBase" parent="Triggers" index="1" instance=ExtResource( 6 )]
+position = Vector2( 416, 224 )
+code = "TEST"
 
 [node name="Walls" parent="." index="6"]
-tile_data = PoolIntArray( 655368, 0, 196609, 655369, 0, 3, 655375, 0, 196609, 655376, 0, 196610, 655377, 0, 3, 720905, 0, 65536, 720913, 0, 65536, 786441, 0, 65536, 786443, 0, 196609, 786444, 0, 196610, 786445, 0, 196611, 786447, 0, 196609, 786448, 0, 196610, 786449, 0, 65539, 851977, 0, 65536, 851985, 0, 65536, 917512, 0, 196609, 917513, 0, 131074, 917514, 0, 196611, 917519, 0, 196609, 917520, 0, 196610, 917521, 0, 131075 )
+tile_data = PoolIntArray( 65546, 0, 1, 65547, 0, 196610, 65548, 0, 196610, 65549, 0, 196610, 65550, 0, 3, 131082, 0, 65536, 131086, 0, 65536, 196618, 0, 65536, 196622, 0, 65536, 262154, 0, 65536, 262158, 0, 65536, 327690, 0, 65536, 327694, 0, 65536, 393226, 0, 65537, 393227, 0, 196611, 393229, 0, 196609, 393230, 0, 65539, 458762, 0, 65536, 458766, 0, 65536, 524293, 0, 1, 524294, 0, 196610, 524295, 0, 196610, 524296, 0, 196610, 524297, 0, 196610, 524298, 0, 131075, 524302, 0, 131073, 524303, 0, 196610, 524304, 0, 196610, 524305, 0, 2, 524306, 0, 196610, 524307, 0, 196610, 524308, 0, 196610, 524309, 0, 3, 589829, 0, 65536, 589841, 0, 65536, 589845, 0, 65536, 655365, 0, 65536, 655375, 0, 0, 655377, 0, 131072, 655381, 0, 65536, 720901, 0, 65536, 720911, 0, 65536, 720917, 0, 65536, 786437, 0, 131073, 786438, 0, 196610, 786439, 0, 196610, 786440, 0, 196610, 786441, 0, 3, 786447, 0, 65537, 786448, 0, 196610, 786449, 0, 196610, 786450, 0, 196610, 786451, 0, 196610, 786452, 0, 196610, 786453, 0, 131075, 851977, 0, 65536, 851983, 0, 65536, 917513, 0, 131073, 917514, 0, 196610, 917515, 0, 196610, 917516, 0, 196610, 917517, 0, 196610, 917518, 0, 196610, 917519, 0, 131075 )

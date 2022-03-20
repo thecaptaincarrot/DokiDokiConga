@@ -4,4 +4,5 @@
 [ext_resource path="res://Activatables/Trigger/PressurePlateBase.gd" type="Script" id=3]
 
 [node name="PressurePlateParent" instance=ExtResource( 1 )]
+z_index = -1
 script = ExtResource( 3 )

@@ -4,22 +4,6 @@
 [ext_resource path="res://Activatables/FutureDoor.gd" type="Script" id=2]
 [ext_resource path="res://Activatables/DoorHelperLabel.gd" type="Script" id=3]
 
-[sub_resource type="AtlasTexture" id=9]
-atlas = ExtResource( 1 )
-region = Rect2( 0, 192, 32, 64 )
-
-[sub_resource type="AtlasTexture" id=10]
-atlas = ExtResource( 1 )
-region = Rect2( 0, 128, 32, 64 )
-
-[sub_resource type="AtlasTexture" id=11]
-atlas = ExtResource( 1 )
-region = Rect2( 0, 64, 32, 64 )
-
-[sub_resource type="AtlasTexture" id=12]
-atlas = ExtResource( 1 )
-region = Rect2( 0, 0, 32, 64 )
-
 [sub_resource type="AtlasTexture" id=5]
 atlas = ExtResource( 1 )
 region = Rect2( 0, 0, 32, 64 )
@@ -48,13 +32,24 @@ region = Rect2( 32, 0, 32, 64 )
 atlas = ExtResource( 1 )
 region = Rect2( 64, 0, 32, 64 )
 
+[sub_resource type="AtlasTexture" id=9]
+atlas = ExtResource( 1 )
+region = Rect2( 0, 192, 32, 64 )
+
+[sub_resource type="AtlasTexture" id=10]
+atlas = ExtResource( 1 )
+region = Rect2( 0, 128, 32, 64 )
+
+[sub_resource type="AtlasTexture" id=11]
+atlas = ExtResource( 1 )
+region = Rect2( 0, 64, 32, 64 )
+
+[sub_resource type="AtlasTexture" id=12]
+atlas = ExtResource( 1 )
+region = Rect2( 0, 0, 32, 64 )
+
 [sub_resource type="SpriteFrames" id=16]
 animations = [ {
-"frames": [ SubResource( 9 ), SubResource( 10 ), SubResource( 11 ), SubResource( 12 ) ],
-"loop": false,
-"name": "Close",
-"speed": 8.0
-}, {
 "frames": [ SubResource( 5 ), SubResource( 6 ), SubResource( 7 ), SubResource( 8 ) ],
 "loop": false,
 "name": "Open",
@@ -64,6 +59,11 @@ animations = [ {
 "loop": true,
 "name": "Closed",
 "speed": 6.0
+}, {
+"frames": [ SubResource( 9 ), SubResource( 10 ), SubResource( 11 ), SubResource( 12 ) ],
+"loop": false,
+"name": "Close",
+"speed": 8.0
 } ]
 
 [node name="FutureDoor" type="AnimatedSprite"]

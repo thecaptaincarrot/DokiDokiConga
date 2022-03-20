@@ -24,8 +24,10 @@ func _process(delta):
 	else:
 		var active_check = false
 		for trigger in triggers:
-			if trigger.get_active():
+			if trigger.get_active(): #Only need one true state
 				active_check = true
+				print("Active")
+				break
 		
 		if active_check != active:
 			if active_check:
@@ -34,10 +36,12 @@ func _process(delta):
 				deactivate()
 
 func activate():
+	active = true
 	blocking = false
 	animation = "Open"
 
 
 func deactivate():
+	active = false
 	blocking = true
 	animation = "Close"

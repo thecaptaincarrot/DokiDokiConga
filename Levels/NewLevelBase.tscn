@@ -38,7 +38,7 @@ script = ExtResource( 8 )
 
 [node name="LevelEntry" parent="." instance=ExtResource( 1 )]
 position = Vector2( 224, 288 )
-frame = 4
+frame = 5
 
 [node name="LineLengthHelper" type="Label" parent="LevelEntry"]
 anchor_left = 0.5
@@ -56,7 +56,7 @@ __meta__ = {
 
 [node name="LevelExit" parent="." instance=ExtResource( 3 )]
 position = Vector2( 544, 288 )
-frame = 5
+frame = 6
 
 [node name="NumExitHelper" type="Label" parent="LevelExit"]
 anchor_left = 0.5

@@ -9,6 +9,8 @@ export var need_exit = 10
 
 var partiers_left
 
+var something_happened = false
+
 var turn = 0
 var undo_actions = []
 
@@ -19,6 +21,13 @@ signal PartierDied
 func _ready():
 	partiers_left = line_size
 	need_exit = line_size
+	
+	#Triggers and Activators
+	for trigger in $Triggers.get_children():
+		trigger.parent_level = self
+		for activator in $Activators.get_children():
+			if activator.code == trigger.code:
+				activator.triggers.append(trigger)
 	
 	start()
 
@@ -58,9 +67,14 @@ func _unhandled_input(event):
 	
 	if event.is_action_pressed("ui_escape"):
 		get_tree().change_scene("res://WorldMap/WorldMap.tscn")
-
+	
+	if event.is_action_pressed("reset"):
+		get_tree().reload_current_scene()
 
 func move(direction): #move all leaders in the given directions
+	#0. If nothing happens, do not advance the turn
+	something_happened = false
+	
 	#1. find all leaders among all partiers
 	var leaders = []
 	for partier in $People.get_children():
@@ -97,7 +111,7 @@ func move(direction): #move all leaders in the given directions
 	for leader_dict in leader_info:
 		#Don't care if the leader isn't moving from the obstacle check
 		if leader_dict["moving"]:
-			movement_occured = true
+			something_happened = true
 			#check if their prospective position is already taken up
 			#must be taken up at least twice since their own position is in the array too
 			var self_check = false
@@ -114,9 +128,9 @@ func move(direction): #move all leaders in the given directions
 						#Found myself in the array, anyone else?
 			if can_move:
 				leader_dict["leader"].move_to(leader_dict["leader_move"]) #Is this the last check? I think so
-	if !time_sensitive and !movement_occured: return
-	turn += 1
-	print("turn: ", turn)
+	if something_happened: #Something happened that should be recorded
+		turn += 1
+		print("turn: ", turn)
 
 
 func new_leader_added():
@@ -131,6 +145,9 @@ func undo():
 		partier.undo_move(turn)
 		if partier.became_leader == turn:
 			partier.undo_leader()
+	
+	for trigger in $Triggers.get_children():
+		trigger.undo(turn)
 
 
 func add_leader():
@@ -188,6 +205,22 @@ func check_clear(direction, person_moving):
 		#If filled with a tile, return false
 	if $Walls.get_cellv(destination / Global.grid_size) != -1:
 		return false
+	#Check Triggers
+	#Some Pressure plates and gates do not block movement, but switches do
+	#This will only be called if movement is attempted, right? Can we activate switches here?
+	for trigger in $Triggers.get_children():
+		if trigger.position == destination and trigger.blocking:
+			if trigger.is_in_group("Lever"):
+				something_happened = true
+				trigger.toggle()
+			return false
+	
+	#Check Activators
+	#Doors will toggle between blocking and not blocking
+	#They can move into a door while it closes, but this will kill them
+	for activator in $Activators.get_children():
+		if activator.position == destination and activator.blocking:
+			return false
 	return true
 
 
@@ -219,3 +252,10 @@ func end_level():
 
 func get_turn():
 	return turn
+
+
+func get_partier_positions(): #in grid positions
+	var position_array = []
+	for partier in $People.get_children():
+		position_array.append(partier.grid_position)
+	return position_array

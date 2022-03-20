@@ -6,6 +6,7 @@ signal deactivate
 export var code = "AAA"
 
 var active = false
+var blocking = false
 
 var active_turns = [] #When it goes from inactive to active
 var inactive_turns = [] #When it goes from active to inactive
@@ -31,13 +32,19 @@ func activate(): #only call when going from deactivated to activated
 	active_turns.append(parent_level.get_turn())
 	emit_signal("activate")
 	active = true
+	print("Active, ", name)
 
 
 func deactivate(): #only call when going from activated to deactivated
 	inactive_turns.append(parent_level.get_turn())
 	emit_signal("deactivate")
 	active = false
-
+	print("InActive, ", name)
+	
 
 func get_active():
 	return active
+
+
+func undo(turn):
+	pass

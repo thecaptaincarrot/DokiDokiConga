@@ -18,7 +18,7 @@ func enter_level(level_number):
 		2:
 			get_tree().change_scene("res://Levels/World1/Level1_2.tscn")
 		3:
-			pass
+			get_tree().change_scene("res://Levels/World1/Level1_3.tscn")
 		4:
 			pass
 		5:
