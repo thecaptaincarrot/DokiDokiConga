@@ -10,9 +10,12 @@ export var need_exit = 10
 var partiers_left
 
 var something_happened = false
+var play_active = true
 
 var turn = 0
 var undo_actions = []
+
+var party_positions = []
 
 signal LevelOver
 signal PartierDied
@@ -48,22 +51,24 @@ func start():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 #	check_buttons()
-#	check_dead()
-	pass
+	if play_active:
+		check_dead()
+	party_positions = get_partier_positions()
 
 
 func _unhandled_input(event):
-	if event.is_action_pressed("ui_left"):
-		move(Vector2(-1 ,0))
-	elif event.is_action_pressed("ui_right"):
-		move(Vector2(1,0))
-	elif event.is_action_pressed("ui_up"):
-		move(Vector2(0,-1))
-	elif event.is_action_pressed("ui_down"):
-		move(Vector2(0,1))
-	elif event.is_action_pressed("undo"):
-		undo()
+	if play_active:
+		if event.is_action_pressed("ui_left"):
+			move(Vector2(-1 ,0))
+		elif event.is_action_pressed("ui_right"):
+			move(Vector2(1,0))
+		elif event.is_action_pressed("ui_up"):
+			move(Vector2(0,-1))
+		elif event.is_action_pressed("ui_down"):
+			move(Vector2(0,1))
 	
+	if event.is_action_pressed("undo"):
+		undo()
 	
 	if event.is_action_pressed("ui_escape"):
 		get_tree().change_scene("res://WorldMap/WorldMap.tscn")
@@ -138,6 +143,7 @@ func new_leader_added():
 	turn += 1
 
 func undo():
+	print("undid turn, ", turn)
 	if turn <= 0:
 		return
 	turn -= 1
@@ -148,6 +154,11 @@ func undo():
 	
 	for trigger in $Triggers.get_children():
 		trigger.undo(turn)
+	
+	if !play_active:
+		yield(get_tree().create_timer(0.1),"timeout")
+		play_active = true
+		$HUD/Dead.hide()
 
 
 func add_leader():
@@ -159,6 +170,7 @@ func add_leader():
 	new_leader.connect("PartierExitted",self,"partier_exit")
 	new_leader.connect("PartierUnExitted",self,"partier_unexit")
 	new_leader.connect("BecomeLeader",self,"new_leader_added")
+	new_leader.connect("PartierDied",self,"partier_died")
 	new_leader.is_leader = true
 	new_leader.get_node("Sprite").show()
 	new_leader.parent_level = self
@@ -179,6 +191,7 @@ func add_follower(_destination):
 		new_follower.connect("PartierExitted",self,"partier_exit")
 		new_follower.connect("PartierUnExitted",self,"partier_unexit")
 		new_follower.connect("BecomeLeader",self,"new_leader_added")
+		new_follower.connect("PartierDied",self,"partier_died")
 		new_follower.front_person = last_partier
 		new_follower.parent_level = self
 		$Metronome.connect("UpdateFrame",new_follower,"tick_tock")
@@ -224,6 +237,17 @@ func check_clear(direction, person_moving):
 	return true
 
 
+func check_dead(): #Checks if a door closed on a person.
+	#There may be other reasons to kill people, but I can deal with that elsewhere
+	#Kill should be a generic function
+	for partier in $People.get_children():
+		for activator in $Activators.get_children():
+			if activator.is_in_group("Door"):
+				if activator.position == partier.grid_position and activator.blocking:
+					partier.kill()
+					break
+
+
 func check_exit(destination):
 	if destination == $LevelExit.position:
 		return true
@@ -242,6 +266,12 @@ func partier_exit():
 
 func partier_unexit():
 	need_exit += 1
+
+
+func partier_died():
+	play_active = false
+	#TODO: UI Elements
+	$HUD/Dead.show()
 
 
 func end_level():

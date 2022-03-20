@@ -48,7 +48,7 @@ func _process(delta):
 
 func check_pressed(): #Presses all buttons if a 
 	for plate in get_children():
-		if parent_level.get_partier_positions().has(plate.position):
+		if parent_level.party_positions.has(plate.position):
 			plate.play("Down")
 		else:
 			plate.play("Up")
@@ -56,12 +56,12 @@ func check_pressed(): #Presses all buttons if a
 func get_active(): #Only needs to return true once, doesn't matter if multiple true states
 	#Greens, only one needs to be pressed
 	for plate in greens:
-		if parent_level.get_partier_positions().has(plate.position):
+		if parent_level.party_positions.has(plate.position):
 			return true
 	if reds != []: #needs to have at least one red to make this check
 		var red_check = true
 		for plate in reds:
-			if !parent_level.get_partier_positions().has(plate.position):
+			if !parent_level.party_positions.has(plate.position):
 				red_check = false
 		if red_check:
 			return true

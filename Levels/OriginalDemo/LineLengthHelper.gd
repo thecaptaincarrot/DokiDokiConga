@@ -9,6 +9,6 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	text = str(get_parent().get_parent().line_size)
-	if get_parent().get_parent().line_size == 0:
+	text = str(get_parent().line_size)
+	if get_parent().line_size == 0:
 		queue_free()

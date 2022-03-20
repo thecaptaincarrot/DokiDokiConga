@@ -41,7 +41,7 @@ animations = [ {
 "speed": 5.0
 } ]
 
-[node name="Door" type="AnimatedSprite"]
+[node name="Door" type="AnimatedSprite" groups=["Door"]]
 z_index = 1
 frames = SubResource( 8 )
 animation = "Close"

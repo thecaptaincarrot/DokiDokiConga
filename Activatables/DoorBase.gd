@@ -26,7 +26,6 @@ func _process(delta):
 		for trigger in triggers:
 			if trigger.get_active(): #Only need one true state
 				active_check = true
-				print("Active")
 				break
 		
 		if active_check != active:

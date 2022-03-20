@@ -8,6 +8,7 @@ var is_leader = false
 var is_exit = false
 var can_move = true
 var exiting = false
+var dead = false
 
 #Undo shit
 var move_undo = {}
@@ -16,6 +17,7 @@ var entered_level = -1
 var last_front = null
 var max_undo = 100 #TODO: max number of moves to save in dict
 var turn_exited = -1
+var turn_died = -1
 
 var front_person = null
 var follower = null
@@ -33,6 +35,7 @@ signal MovementAttempted
 signal IMoved
 signal PartierExitted
 signal PartierUnExitted
+signal PartierDied
 signal BecomeLeader
 
 
@@ -52,6 +55,10 @@ func _process(delta):
 #		position = lerp(position, grid_position, 0.1) #turn into interpolation
 #		if grid_position.distance_squared_to(position) < .001:
 #			position = grid_position #Snap
+	if dead:
+		hide()
+	elif !dead and !exiting:
+		show()
 	pass
 
 
@@ -91,8 +98,6 @@ func undo_move(turn):
 		
 		move_undo.erase(turn)
 		
-		if turn_exited != -1:
-			print(turn,turn_exited)
 		if turn == turn_exited:
 			exiting = false
 			playable = true
@@ -100,6 +105,13 @@ func undo_move(turn):
 			show()
 			turn_exited = -1
 			emit_signal("PartierUnExitted")
+		
+		if turn_died != -1:
+			print(turn_died, " " , turn)
+		if turn == turn_died:
+			print("undead")
+			dead = false
+			turn_died = -1
 		
 		$MovementTween.interpolate_property(self,"position", position, grid_position, movement_time)
 		$MovementTween.start()
@@ -202,13 +214,10 @@ func undo_leader():
 
 
 func kill(): #rewrite because this isn't very cool
-	if follower != null:
-		follower.become_leader()
-	
-	if front_person != null:
-		front_person.follower = null
-	
-	queue_free()
+	dead = true
+	turn_died = parent_level.get_turn() - 1 #The scalar is shit and I hope it never breaks
+	print("I died on turn ", turn_died, " and the current turn is ", parent_level.get_turn())
+	emit_signal("PartierDied")
 
 
 func get_conga_line():
