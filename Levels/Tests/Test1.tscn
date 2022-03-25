@@ -11,71 +11,86 @@
 
 [node name="LevelEntry" parent="Entries" index="0"]
 position = Vector2( 608, 320 )
-frame = 6
+frame = 1
 line_size = 8
 
 [node name="LevelEntry2" parent="Entries" index="1" instance=ExtResource( 2 )]
 position = Vector2( 128, 128 )
+frame = 4
 line_size = 8
 
 [node name="LevelExit" parent="Exits" index="0"]
 position = Vector2( 608, 128 )
-frame = 0
 
 [node name="LevelExit2" parent="Exits" index="1" instance=ExtResource( 3 )]
 position = Vector2( 128, 320 )
-frame = 4
+frame = 7
 
 [node name="Door" parent="Activators" index="0" instance=ExtResource( 4 )]
 position = Vector2( 192, 128 )
 offset = Vector2( 0, -32 )
+code = "UP1"
 
 [node name="Door2" parent="Activators" index="1" instance=ExtResource( 4 )]
 position = Vector2( 352, 128 )
 offset = Vector2( 0, -32 )
+code = "UP2"
 
 [node name="Door3" parent="Activators" index="2" instance=ExtResource( 4 )]
 position = Vector2( 512, 128 )
 offset = Vector2( 0, -32 )
+code = "UP3"
 
 [node name="Door4" parent="Activators" index="3" instance=ExtResource( 4 )]
-position = Vector2( 512, 320 )
+position = Vector2( 544, 320 )
 offset = Vector2( 0, -32 )
-code = "DOWN"
+code = "DOWN1"
 
 [node name="Door5" parent="Activators" index="4" instance=ExtResource( 4 )]
-position = Vector2( 352, 320 )
+position = Vector2( 384, 320 )
 offset = Vector2( 0, -32 )
-code = "DOWN"
+code = "DOWN2"
 
 [node name="Door6" parent="Activators" index="5" instance=ExtResource( 4 )]
-position = Vector2( 192, 320 )
+position = Vector2( 224, 320 )
 offset = Vector2( 0, -32 )
-code = "DOWN"
+code = "DOWN3"
 
 [node name="UpperPlates" parent="Triggers" index="0" instance=ExtResource( 6 )]
-code = "DOWN"
+code = "DOWN1"
 
 [node name="GreenPressurePlate" parent="Triggers/UpperPlates" index="0" instance=ExtResource( 7 )]
 position = Vector2( 160, 128 )
 
-[node name="GreenPressurePlate2" parent="Triggers/UpperPlates" index="1" instance=ExtResource( 7 )]
+[node name="UpperPlates2" parent="Triggers" index="1" instance=ExtResource( 6 )]
+code = "DOWN2"
+
+[node name="GreenPressurePlate" parent="Triggers/UpperPlates2" index="0" instance=ExtResource( 7 )]
 position = Vector2( 320, 128 )
 
-[node name="GreenPressurePlate3" parent="Triggers/UpperPlates" index="2" instance=ExtResource( 7 )]
+[node name="UpperPlates3" parent="Triggers" index="2" instance=ExtResource( 6 )]
+code = "DOWN3"
+
+[node name="GreenPressurePlate" parent="Triggers/UpperPlates3" index="0" instance=ExtResource( 7 )]
 position = Vector2( 480, 128 )
 
-[node name="LowerPlates" parent="Triggers" index="1" instance=ExtResource( 6 )]
-code = "UP"
+[node name="LowerPlates" parent="Triggers" index="3" instance=ExtResource( 6 )]
+code = "UP1"
 
 [node name="GreenPressurePlate" parent="Triggers/LowerPlates" index="0" instance=ExtResource( 7 )]
-position = Vector2( 96, 320 )
+position = Vector2( 416, 320 )
 
-[node name="GreenPressurePlate2" parent="Triggers/LowerPlates" index="1" instance=ExtResource( 7 )]
+[node name="LowerPlates2" parent="Triggers" index="4" instance=ExtResource( 6 )]
+code = "UP2"
+
+[node name="GreenPressurePlate" parent="Triggers/LowerPlates2" index="0" instance=ExtResource( 7 )]
 position = Vector2( 256, 320 )
 
-[node name="GreenPressurePlate3" parent="Triggers/LowerPlates" index="2" instance=ExtResource( 7 )]
-position = Vector2( 416, 320 )
+[node name="LowerPlates3" parent="Triggers" index="5" instance=ExtResource( 6 )]
+code = "UP3"
+
+[node name="GreenPressurePlate" parent="Triggers/LowerPlates3" index="0" instance=ExtResource( 7 )]
+position = Vector2( 96, 320 )
 
 [node name="Walls" parent="." index="6"]
 cell_y_sort = true
