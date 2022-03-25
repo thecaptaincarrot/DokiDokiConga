@@ -8,18 +8,14 @@
 [ext_resource path="res://Activatables/Trigger/LeverBase.tscn" type="PackedScene" id=6]
 
 [node name="Level" instance=ExtResource( 1 )]
-line_size = 20
 
-[node name="LevelEntry" parent="." index="0"]
-position = Vector2( 224, 320 )
+[node name="LevelEntry" parent="Entries" index="0"]
+position = Vector2( 192, 320 )
 frame = 1
 
-[node name="LineLengthHelper" parent="LevelEntry" index="0"]
-text = "20"
-
-[node name="LevelExit" parent="." index="1"]
+[node name="LevelExit" parent="Exits" index="0"]
 position = Vector2( 384, 64 )
-frame = 2
+frame = 3
 
 [node name="Door" parent="Activators" index="0" instance=ExtResource( 4 )]
 position = Vector2( 384, 192 )

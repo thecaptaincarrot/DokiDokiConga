@@ -2,6 +2,7 @@ extends AnimatedSprite
 
 export var line_size = 10
 
+var last_partier #the last member of the line that was spawned
 
 # Called when the node enters the scene tree for the first time.
 func _ready():

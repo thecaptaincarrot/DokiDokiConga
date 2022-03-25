@@ -9,7 +9,6 @@ var triggers = []
 
 var active = false
 
-export var all_or_nothing = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
