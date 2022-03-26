@@ -1,0 +1,76 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://Activatables/DoorBase.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Activatables/Trigger/PressurePlateBase.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Levels/NewLevelBase.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Activatables/SideDoor.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Activatables/Trigger/SwitchBase.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Activatables/Trigger/GreenPressurePlate.tscn" type="PackedScene" id=6]
+
+[node name="Level" instance=ExtResource( 3 )]
+
+[node name="LevelEntry" parent="Entries" index="0"]
+position = Vector2( 320, 448 )
+frame = 7
+
+[node name="LevelExit" parent="Exits" index="0"]
+position = Vector2( 320, 32 )
+frame = 2
+
+[node name="Door" parent="Activators" index="0" instance=ExtResource( 1 )]
+position = Vector2( 320, 224 )
+code = "GATE"
+
+[node name="SideDoor" parent="Activators" index="1" instance=ExtResource( 4 )]
+position = Vector2( 128, 64 )
+
+[node name="PressurePlateParent" parent="Triggers" index="0" instance=ExtResource( 2 )]
+
+[node name="GreenPressurePlate" parent="Triggers/PressurePlateParent" index="0" instance=ExtResource( 6 )]
+position = Vector2( 32, 64 )
+
+[node name="SwitchBase" parent="Triggers" index="1" instance=ExtResource( 5 )]
+position = Vector2( 352, 160 )
+code = "GATE"
+
+[node name="Walls" parent="." index="6"]
+tile_data = PoolIntArray( -65532, 0, 1, -65531, 0, 196610, -65530, 0, 196610, -65529, 0, 196610, -65528, 0, 196610, -65527, 0, 196610, -65526, 0, 196610, -65525, 0, 196610, -65524, 0, 196610, -65523, 0, 196610, -65522, 0, 196610, -65521, 0, 196610, -65520, 0, 3, 4, 0, 65536, 16, 0, 65536, 65540, 0, 131072, 65552, 0, 65536, 131088, 0, 65536, 196612, 0, 0, 196624, 0, 65536, 262148, 0, 65536, 262160, 0, 65536, 327684, 0, 65536, 327696, 0, 65536, 393220, 0, 65536, 393232, 0, 65536, 458756, 0, 131073, 458757, 0, 196610, 458758, 0, 196610, 458759, 0, 196610, 458760, 0, 196610, 458761, 0, 196611, 458763, 0, 196609, 458764, 0, 196610, 458765, 0, 196610, 458766, 0, 196610, 458767, 0, 196610, 458768, 0, 131075 )
+
+[node name="Notes" type="Control" parent="." index="8"]
+margin_right = 40.0
+margin_bottom = 40.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="Notes" index="0"]
+margin_left = 64.0
+margin_right = 337.0
+margin_bottom = 14.0
+text = "Medieval world, switch opens postern gate"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label2" type="Label" parent="Notes" index="1"]
+margin_left = -100.0
+margin_top = 139.0
+margin_right = 173.0
+margin_bottom = 170.0
+text = "Forest maze, fun fun
+trees, bushes, and shit"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label3" type="Label" parent="Notes" index="2"]
+margin_left = 204.0
+margin_top = 264.0
+margin_right = 477.0
+margin_bottom = 295.0
+text = "Main drawbridge opens by pressure plate"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}

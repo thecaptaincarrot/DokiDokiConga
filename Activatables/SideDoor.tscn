@@ -49,23 +49,22 @@ animations = [ {
 "speed": 5.0
 } ]
 
-[node name="Door" type="AnimatedSprite" groups=["Door"]]
+[node name="SideDoor" type="AnimatedSprite" groups=["Door"]]
 z_index = 1
 frames = SubResource( 10 )
 animation = "Close"
 frame = 3
 playing = true
 centered = false
-offset = Vector2( 0, -16 )
+offset = Vector2( 0, -32 )
 script = ExtResource( 2 )
-code = "UP"
 
 [node name="Helper" type="Label" parent="."]
 margin_left = -32.0
 margin_top = -32.0
 margin_right = 65.0
 margin_bottom = -18.0
-text = "UP"
+text = "AAA"
 align = 1
 script = ExtResource( 3 )
 __meta__ = {

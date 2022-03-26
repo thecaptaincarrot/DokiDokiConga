@@ -2,7 +2,7 @@
 
 [ext_resource path="res://Tilesets/Hospital/Hospital Tiles/!$Elevator Doors-Alt.png" type="Texture" id=1]
 [ext_resource path="res://Activatables/DoorHelperLabel.gd" type="Script" id=2]
-[ext_resource path="res://Activatables/HospitalTrapDoor.gd" type="Script" id=3]
+[ext_resource path="res://Levels/OriginalDemo/HospitalTrapDoor.gd" type="Script" id=3]
 
 [sub_resource type="AtlasTexture" id=1]
 atlas = ExtResource( 1 )

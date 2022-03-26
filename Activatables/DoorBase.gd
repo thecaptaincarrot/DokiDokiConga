@@ -20,18 +20,18 @@ func _process(delta):
 	if Engine.editor_hint:
 		pass
 	
-	else:
-		var active_check = false
-		for trigger in triggers:
-			if trigger.get_active(): #Only need one true state
-				active_check = true
-				break
-		
-		if active_check != active:
-			if active_check:
-				activate()
-			else:
-				deactivate()
+#	else:
+#		var active_check = false
+#		for trigger in triggers:
+#			if trigger.get_active(): #Only need one true state
+#				active_check = true
+#				break
+#
+#		if active_check != active:
+#			if active_check:
+#				activate()
+#			else:
+#				deactivate()
 
 func activate():
 	active = true
@@ -43,3 +43,17 @@ func deactivate():
 	active = false
 	blocking = true
 	animation = "Close"
+
+
+func force_active_check():
+	var active_check = false
+	for trigger in triggers:
+		if trigger.get_active(): #Only need one true state
+			active_check = true
+			break
+	if active_check:
+		activate()
+		return true
+	else:
+		deactivate()
+		return false
