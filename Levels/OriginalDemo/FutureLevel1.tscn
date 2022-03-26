@@ -1,13 +1,14 @@
 [gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Deprecated/Blocker.tscn" type="PackedScene" id=1]
-[ext_resource path="res://Activatables/FutureSideDoor.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Levels/OriginalDemo/FutureSideDoor.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Levels/OriginalDemo/LevelBase.tscn" type="PackedScene" id=3]
-[ext_resource path="res://Activatables/RedPressureSwitch.tscn" type="PackedScene" id=4]
-[ext_resource path="res://Activatables/FutureDoor.tscn" type="PackedScene" id=5]
-[ext_resource path="res://Activatables/PressureSwitch.tscn" type="PackedScene" id=6]
+[ext_resource path="res://scripts/RedPressureSwitch.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Levels/OriginalDemo/FutureDoor.tscn" type="PackedScene" id=5]
+[ext_resource path="res://scripts/PressureSwitch.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Tilesets/Future/FutureTileset.tres" type="TileSet" id=7]
 [ext_resource path="res://Tilesets/Future/FutureTilesetForeground.tres" type="TileSet" id=8]
+
 
 
 [node name="TutorialLevel2" instance=ExtResource( 3 )]

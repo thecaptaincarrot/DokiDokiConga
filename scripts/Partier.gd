@@ -55,15 +55,15 @@ func _process(delta):
 #		position = lerp(position, grid_position, 0.1) #turn into interpolation
 #		if grid_position.distance_squared_to(position) < .001:
 #			position = grid_position #Snap
-	if dead:
-		hide()
-	elif !dead and !exiting:
-		show()
+#	if dead:
+#		hide()
+#	elif !dead and !exiting:
+#		show()
 	pass
 
 
 func _unhandled_input(event):
-	if event.is_action_pressed("ui_click") and mouse_in and get_caboose_distance() > 2 and get_leader_distance() > 2:
+	if event.is_action_pressed("ui_click") and mouse_in and get_caboose_distance() >= 2 and get_leader_distance() >= 3:
 		if follower.follower != null and front_person.front_person.leader != true:
 			leader_click()
 	
@@ -75,6 +75,8 @@ func move_to(destination):
 	if !playable: return
 #	#takes in a orthogonal unit vector, then moves to that location.
 #	#No checks are done here, this is a forced movemnet
+	
+	
 	var prev_position = grid_position
 	move_undo[parent_level.get_turn()] = prev_position
 	grid_position = destination
@@ -87,6 +89,10 @@ func move_to(destination):
 	if parent_level.check_exit(destination): #????? This sucks I think
 		var exit_direction = (grid_position - prev_position).normalized()
 		exit(exit_direction)
+	
+	#Hack, change if necessary
+	if prev_position != destination and follower: #I actually moved trust me bro
+		follower.show() #Unhide follower coming out of portal
 
 
 func undo_move(turn):
@@ -105,13 +111,12 @@ func undo_move(turn):
 			show()
 			turn_exited = -1
 			emit_signal("PartierUnExitted")
-		
-		if turn_died != -1:
-			print(turn_died, " " , turn)
+	
 		if turn == turn_died:
 			print("undead")
 			dead = false
 			turn_died = -1
+			show()
 		
 		$MovementTween.interpolate_property(self,"position", position, grid_position, movement_time)
 		$MovementTween.start()
@@ -218,6 +223,7 @@ func kill(): #rewrite because this isn't very cool
 	turn_died = parent_level.get_turn() - 1 #The scalar is shit and I hope it never breaks
 	print("I died on turn ", turn_died, " and the current turn is ", parent_level.get_turn())
 	emit_signal("PartierDied")
+	hide()
 
 
 func get_conga_line():

@@ -23,14 +23,12 @@ func toggle():
 
 func undo(turn):
 	if active_turns.has(turn):
-		print("Undid Active)")
 		emit_signal("deactivate")
 		active = false
 		$LeverSprite.play("Off")
 		
 		active_turns.erase(turn)
 	elif inactive_turns.has(turn):
-		print("Undid Inactive)")
 		emit_signal("activate")
 		active = true
 		$LeverSprite.play("On")

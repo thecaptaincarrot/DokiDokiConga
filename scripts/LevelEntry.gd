@@ -18,3 +18,7 @@ func start():
 func _on_LevelEntry_animation_finished():
 	if animation == "Open":
 		animation = "Loop"
+
+
+func add_follower(_destionation):
+	pass

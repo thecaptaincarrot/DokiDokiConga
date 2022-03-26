@@ -13,7 +13,7 @@ var play_active = true
 var turn = 0
 var undo_actions = []
 
-var party_positions = []
+#var party_positions = []
 
 signal LevelOver
 signal PartierDied
@@ -22,6 +22,12 @@ signal PartierDied
 func _ready():
 	for entry in $Entries.get_children():
 		need_exit += entry.line_size
+		add_leader(entry)
+		for i in need_exit - 1: #add remaining followers onto same space
+			pass
+			add_follower(entry)
+			#Followers need to be hidden until the person they follow moves for the first time
+			#When a partier leaves the portal, decrement the portal number
 	
 	#Triggers and Activators
 	for trigger in $Triggers.get_children():
@@ -33,7 +39,7 @@ func _ready():
 	start()
 
 
-func start():
+func start(): #TODO: turn into animation
 	for entry in $Entries.get_children():
 		entry.start()
 	for exit in $Exits.get_children():
@@ -45,16 +51,15 @@ func start():
 	t.start()
 	yield(t,"timeout")
 	t.queue_free()
-	add_leader() #turn this into an animation instead??
 
+	for leader in get_leaders():
+		leader.show()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	$HUD/ExitNum.text = str(need_exit) 
 #	check_buttons()
-	if play_active:
-		check_dead()
-	party_positions = get_partier_positions()
+#	party_positions = get_partier_positions()
 
 
 func _unhandled_input(event):
@@ -134,9 +139,11 @@ func move(direction): #move all leaders in the given directions
 						#Found myself in the array, anyone else?
 			if can_move:
 				leader_dict["leader"].move_to(leader_dict["leader_move"]) #Is this the last check? I think so
+				
 	if something_happened: #Something happened that should be recorded
 		turn += 1
 		print("turn: ", turn)
+	check_dead()
 
 
 func new_leader_added():
@@ -160,50 +167,51 @@ func undo():
 		yield(get_tree().create_timer(0.1),"timeout")
 		play_active = true
 		$HUD/Dead.hide()
+	check_dead()
 
 
-func add_leader():
+func add_leader(entry): #entry is the portal that the leader is coming out of
 	#Add a leader to the congo line at the level entry
-	for entry in $Entries.get_children():
-		var new_leader = PARTIER.instance()
-		new_leader.position = entry.position
-		new_leader.entered_level = turn - 1
-		new_leader.connect("IMoved", self, "add_follower") #No this sucks
-		new_leader.connect("PartierExitted",self,"partier_exit")
-		new_leader.connect("PartierUnExitted",self,"partier_unexit")
-		new_leader.connect("BecomeLeader",self,"new_leader_added")
-		new_leader.connect("PartierDied",self,"partier_died")
-		new_leader.is_leader = true
-		new_leader.get_node("Sprite").show()
-		new_leader.parent_level = self
-		$Metronome.connect("UpdateFrame",new_leader,"tick_tock")
-		$People.add_child(new_leader)
-		entry.line_size -= 1
-		entry.last_partier = new_leader
+	var new_leader = PARTIER.instance()
+	new_leader.position = entry.position
+	new_leader.entered_level = turn - 1
+#	new_leader.connect("IMoved", self, "add_follower") #No this sucks
+	new_leader.connect("PartierExitted",self,"partier_exit")
+	new_leader.connect("PartierUnExitted",self,"partier_unexit")
+	new_leader.connect("BecomeLeader",self,"new_leader_added")
+	new_leader.connect("PartierDied",self,"partier_died")
+	new_leader.is_leader = true
+	new_leader.get_node("Sprite").show()
+	new_leader.parent_level = self
+	$Metronome.connect("UpdateFrame",new_leader,"tick_tock")
+	$People.add_child(new_leader)
+	entry.line_size -= 1
+	entry.last_partier = new_leader
+	new_leader.hide()
 
 
-func add_follower(_destination):
+func add_follower(entry):
 	#This gets called way too often, every time movement is attempted
 	#Add a follower following the leader at the level entry
-	for entry in $Entries.get_children():
-		if entry.line_size > 0:
-			var new_follower = PARTIER.instance()
-			new_follower.position = entry.position
-			new_follower.entered_level = turn
-			new_follower.connect("PartierExitted",self,"partier_exit")
-			new_follower.connect("PartierUnExitted",self,"partier_unexit")
-			new_follower.connect("BecomeLeader",self,"new_leader_added")
-			new_follower.connect("PartierDied",self,"partier_died")
-			new_follower.front_person = entry.last_partier
-			new_follower.parent_level = self
-			$Metronome.connect("UpdateFrame",new_follower,"tick_tock")
-			$People.add_child(new_follower)
-			entry.line_size -= 1
-			entry.last_partier.follower = new_follower
-			entry.last_partier = new_follower
-		else:
-			entry.animation = "Close"
-			#disconnect signal?
+	if entry.line_size > 0:
+		var new_follower = PARTIER.instance()
+		new_follower.position = entry.position
+		new_follower.entered_level = turn
+		new_follower.connect("PartierExitted",self,"partier_exit")
+		new_follower.connect("PartierUnExitted",self,"partier_unexit")
+		new_follower.connect("BecomeLeader",self,"new_leader_added")
+		new_follower.connect("PartierDied",self,"partier_died")
+		new_follower.front_person = entry.last_partier
+		new_follower.parent_level = self
+		$Metronome.connect("UpdateFrame",new_follower,"tick_tock")
+		$People.add_child(new_follower)
+		entry.line_size -= 1
+		entry.last_partier.follower = new_follower
+		entry.last_partier = new_follower
+		new_follower.hide()
+	else:
+		entry.animation = "Close"
+		#disconnect signal?
 
 
 func check_clear(direction, person_moving):
@@ -245,6 +253,7 @@ func check_dead(): #Checks if a door closed on a person.
 	for partier in $People.get_children():
 		for activator in $Activators.get_children():
 			if activator.is_in_group("Door"):
+				activator.force_active_check()
 				if activator.position == partier.grid_position and activator.blocking:
 					partier.kill()
 					break
@@ -300,3 +309,12 @@ func get_exit_positions():
 		exit_array.append(exit.position)
 	
 	return exit_array
+
+
+func get_leaders():
+	var leaders = []
+	for partier in $People.get_children():
+		if partier.is_leader:
+			leaders.append(partier)
+	
+	return leaders

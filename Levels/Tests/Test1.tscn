@@ -21,6 +21,7 @@ line_size = 8
 
 [node name="LevelExit" parent="Exits" index="0"]
 position = Vector2( 608, 128 )
+frame = 3
 
 [node name="LevelExit2" parent="Exits" index="1" instance=ExtResource( 3 )]
 position = Vector2( 128, 320 )
@@ -28,32 +29,26 @@ frame = 7
 
 [node name="Door" parent="Activators" index="0" instance=ExtResource( 4 )]
 position = Vector2( 192, 128 )
-offset = Vector2( 0, -32 )
 code = "UP1"
 
 [node name="Door2" parent="Activators" index="1" instance=ExtResource( 4 )]
 position = Vector2( 352, 128 )
-offset = Vector2( 0, -32 )
 code = "UP2"
 
 [node name="Door3" parent="Activators" index="2" instance=ExtResource( 4 )]
 position = Vector2( 512, 128 )
-offset = Vector2( 0, -32 )
 code = "UP3"
 
 [node name="Door4" parent="Activators" index="3" instance=ExtResource( 4 )]
 position = Vector2( 544, 320 )
-offset = Vector2( 0, -32 )
 code = "DOWN1"
 
 [node name="Door5" parent="Activators" index="4" instance=ExtResource( 4 )]
 position = Vector2( 384, 320 )
-offset = Vector2( 0, -32 )
 code = "DOWN2"
 
 [node name="Door6" parent="Activators" index="5" instance=ExtResource( 4 )]
 position = Vector2( 224, 320 )
-offset = Vector2( 0, -32 )
 code = "DOWN3"
 
 [node name="UpperPlates" parent="Triggers" index="0" instance=ExtResource( 6 )]
