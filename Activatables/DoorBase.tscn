@@ -1,63 +1,56 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://Sprites/World1/Door.png" type="Texture" id=1]
-[ext_resource path="res://Activatables/DoorBase.gd" type="Script" id=2]
-[ext_resource path="res://Activatables/Helper.gd" type="Script" id=3]
+[ext_resource path="res://Activatables/Door.gd" type="Script" id=2]
+[ext_resource path="res://Activatables/ActivatorBase.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Activatables/Helper.tscn" type="PackedScene" id=4]
 
-[sub_resource type="AtlasTexture" id=9]
+[sub_resource type="AtlasTexture" id=1]
 atlas = ExtResource( 1 )
 region = Rect2( 0, 0, 44, 36 )
 
-[sub_resource type="AtlasTexture" id=10]
+[sub_resource type="AtlasTexture" id=2]
 atlas = ExtResource( 1 )
 region = Rect2( 44, 0, 44, 36 )
 
-[sub_resource type="AtlasTexture" id=11]
+[sub_resource type="AtlasTexture" id=3]
 atlas = ExtResource( 1 )
 region = Rect2( 88, 0, 44, 36 )
 
-[sub_resource type="AtlasTexture" id=12]
+[sub_resource type="AtlasTexture" id=4]
 atlas = ExtResource( 1 )
 region = Rect2( 88, 0, 44, 36 )
 
-[sub_resource type="AtlasTexture" id=13]
+[sub_resource type="AtlasTexture" id=5]
 atlas = ExtResource( 1 )
 region = Rect2( 44, 0, 44, 36 )
 
-[sub_resource type="AtlasTexture" id=14]
+[sub_resource type="AtlasTexture" id=6]
 atlas = ExtResource( 1 )
 region = Rect2( 0, 0, 44, 36 )
 
-[sub_resource type="SpriteFrames" id=8]
+[sub_resource type="SpriteFrames" id=7]
 animations = [ {
-"frames": [ SubResource( 9 ), SubResource( 10 ), SubResource( 11 ) ],
+"frames": [ SubResource( 1 ), SubResource( 2 ), SubResource( 3 ) ],
 "loop": false,
 "name": "Open",
 "speed": 5.0
 }, {
-"frames": [ SubResource( 12 ), SubResource( 13 ), SubResource( 14 ) ],
+"frames": [ SubResource( 4 ), SubResource( 5 ), SubResource( 6 ) ],
 "loop": false,
 "name": "Close",
 "speed": 5.0
 } ]
 
-[node name="Door" type="AnimatedSprite" groups=["Door"]]
-z_index = 1
-frames = SubResource( 8 )
-animation = "Close"
-frame = 2
-playing = true
-centered = false
-offset = Vector2( -6, 0 )
+[node name="Activator" instance=ExtResource( 3 )]
 script = ExtResource( 2 )
 
-[node name="Helper" type="Label" parent="."]
-margin_left = -32.0
-margin_top = -14.0
-margin_right = 65.0
-text = "AAA"
-align = 1
-script = ExtResource( 3 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
+[node name="Helper" parent="." index="0" instance=ExtResource( 4 )]
+margin_left = -20.0
+margin_right = 67.0
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="." index="1"]
+frames = SubResource( 7 )
+animation = "Open"
+centered = false
+offset = Vector2( -6, 0 )

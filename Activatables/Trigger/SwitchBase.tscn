@@ -2,7 +2,7 @@
 
 [ext_resource path="res://Activatables/Trigger/SwitchBase.gd" type="Script" id=1]
 [ext_resource path="res://Sprites/Switch.png" type="Texture" id=2]
-[ext_resource path="res://Activatables/Helper.gd" type="Script" id=3]
+[ext_resource path="res://Activatables/Helper.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Activatables/TriggerBase.tscn" type="PackedScene" id=4]
 
 [sub_resource type="AtlasTexture" id=2]
@@ -34,14 +34,4 @@ frames = SubResource( 3 )
 animation = "Off"
 centered = false
 
-[node name="Helper" type="Label" parent="." index="1"]
-margin_left = -29.0
-margin_top = -15.0
-margin_right = 58.0
-margin_bottom = -1.0
-text = "AAA"
-align = 1
-script = ExtResource( 3 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
+[node name="Helper" parent="." index="1" groups=["Switch"] instance=ExtResource( 3 )]
