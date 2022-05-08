@@ -7,7 +7,7 @@
 
 [sub_resource type="AtlasTexture" id=1]
 atlas = ExtResource( 1 )
-region = Rect2( 0, 0, 44, 36 )
+region = Rect2( 88, 0, 44, 36 )
 
 [sub_resource type="AtlasTexture" id=2]
 atlas = ExtResource( 1 )
@@ -15,11 +15,11 @@ region = Rect2( 44, 0, 44, 36 )
 
 [sub_resource type="AtlasTexture" id=3]
 atlas = ExtResource( 1 )
-region = Rect2( 88, 0, 44, 36 )
+region = Rect2( 0, 0, 44, 36 )
 
 [sub_resource type="AtlasTexture" id=4]
 atlas = ExtResource( 1 )
-region = Rect2( 88, 0, 44, 36 )
+region = Rect2( 0, 0, 44, 36 )
 
 [sub_resource type="AtlasTexture" id=5]
 atlas = ExtResource( 1 )
@@ -27,30 +27,32 @@ region = Rect2( 44, 0, 44, 36 )
 
 [sub_resource type="AtlasTexture" id=6]
 atlas = ExtResource( 1 )
-region = Rect2( 0, 0, 44, 36 )
+region = Rect2( 88, 0, 44, 36 )
 
 [sub_resource type="SpriteFrames" id=7]
 animations = [ {
 "frames": [ SubResource( 1 ), SubResource( 2 ), SubResource( 3 ) ],
 "loop": false,
-"name": "Open",
+"name": "Close",
 "speed": 5.0
 }, {
 "frames": [ SubResource( 4 ), SubResource( 5 ), SubResource( 6 ) ],
 "loop": false,
-"name": "Close",
+"name": "Open",
 "speed": 5.0
 } ]
 
-[node name="Activator" instance=ExtResource( 3 )]
+[node name="Door" groups=["Door"] instance=ExtResource( 3 )]
 script = ExtResource( 2 )
 
-[node name="Helper" parent="." index="0" instance=ExtResource( 4 )]
-margin_left = -20.0
-margin_right = 67.0
-
-[node name="AnimatedSprite" type="AnimatedSprite" parent="." index="1"]
+[node name="DoorSprite" type="AnimatedSprite" parent="." index="0"]
 frames = SubResource( 7 )
-animation = "Open"
+animation = "Close"
+frame = 2
+playing = true
 centered = false
 offset = Vector2( -6, 0 )
+
+[node name="Helper" parent="." index="1" instance=ExtResource( 4 )]
+margin_left = -20.0
+margin_right = 67.0

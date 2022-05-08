@@ -14,17 +14,17 @@ func _ready():
 func enter_level(level_number):
 	match level_number:
 		1:
-			get_tree().change_scene("res://Levels/World1/Level1_1.tscn")
+			get_tree().change_scene("res://Levels/Tests/Test1.tscn")
 		2:
-			get_tree().change_scene("res://Levels/World1/Level1_2.tscn")
+			get_tree().change_scene("res://Levels/Tests/Test2.tscn")
 		3:
-			get_tree().change_scene("res://Levels/World1/Level1_3.tscn")
+			get_tree().change_scene("res://Levels/Tests/Test3.tscn")
 		4:
-			pass
+			get_tree().change_scene("res://Levels/Tests/Test4.tscn")
 		5:
-			pass
+			get_tree().change_scene("res://Levels/Tests/Test5.tscn")
 		6:
-			pass
+			get_tree().change_scene("res://Levels/World1/Level1_1.tscn")
 		7:
 			pass
 		8:

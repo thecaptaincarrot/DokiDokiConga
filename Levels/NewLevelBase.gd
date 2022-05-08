@@ -28,7 +28,9 @@ func _ready():
 			add_follower(entry)
 			#Followers need to be hidden until the person they follow moves for the first time
 			#When a partier leaves the portal, decrement the portal number
-	
+		
+		entry.parent_level = self
+		
 	#Triggers and Activators
 	for trigger in $Triggers.get_children():
 		trigger.parent_level = self
@@ -143,7 +145,12 @@ func move(direction): #move all leaders in the given directions
 				
 	if something_happened: #Something happened that should be recorded
 		turn += 1
-		print("turn: ", turn)
+#		print("turn: ", turn)
+	for trigger in $Triggers.get_children():
+		trigger.update()
+	
+	for activator in $Activators.get_children():
+		activator.active_check()
 	check_dead()
 
 
@@ -243,18 +250,20 @@ func check_clear(direction, person_moving):
 	#Doors will toggle between blocking and not blocking
 	#They can move into a door while it closes, but this will kill them
 	for activator in $Activators.get_children():
-		if activator.position == destination and activator.blocking:
+		if activator.position == destination and activator.blocking == true:
 			return false
 	return true
+
+
 
 
 func check_dead(): #Checks if a door closed on a person.
 	#There may be other reasons to kill people, but I can deal with that elsewhere
 	#Kill should be a generic function
-	for partier in $People.get_children():
-		for activator in $Activators.get_children():
-			if activator.is_in_group("Door"):
-				activator.force_active_check()
+	for activator in $Activators.get_children():
+		if activator.is_in_group("Door"):
+			activator.active_check()
+			for partier in $People.get_children():
 				if activator.position == partier.grid_position and activator.blocking:
 					partier.kill()
 					break
@@ -305,7 +314,6 @@ func get_partier_positions(): #in grid positions
 
 func get_exit_positions():
 	var exit_array = []
-	
 	for exit in $Exits.get_children():
 		exit_array.append(exit.position)
 	

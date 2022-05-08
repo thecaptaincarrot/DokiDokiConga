@@ -68,7 +68,7 @@ __meta__ = {
 }
 
 [node name="LevelExit" parent="Exits" instance=ExtResource( 3 )]
-frame = 7
+frame = 1
 
 [node name="People" type="Node2D" parent="."]
 __meta__ = {

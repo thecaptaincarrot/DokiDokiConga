@@ -9,6 +9,9 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	text = str(get_parent().line_size)
-	if get_parent().line_size == 0:
-		queue_free()
+	if Engine.editor_hint:
+		text = str(get_parent().line_size)
+	else:
+		text = str(get_parent().partiers_inside)
+		if get_parent().partiers_inside == 1:
+			queue_free()

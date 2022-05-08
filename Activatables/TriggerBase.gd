@@ -1,8 +1,5 @@
 extends Node2D
 
-signal activate
-signal deactivate
-
 export var code = "AAA"
 
 var active = false
@@ -23,24 +20,21 @@ func _ready():
 #	pass
 
 
-func pair(node):
-	connect("activate", node, "activate") #The actor (?) needs to have an activate function
-	connect("deactivate", node, "deactivate") #The actor (?) needs to have a deactivate function
-
-
 func activate(): #only call when going from deactivated to activated
 	active_turns.append(parent_level.get_turn())
-	emit_signal("activate")
 	active = true
 	print("Active, ", name)
 
 
 func deactivate(): #only call when going from activated to deactivated
 	inactive_turns.append(parent_level.get_turn())
-	emit_signal("deactivate")
 	active = false
 	print("InActive, ", name)
-	
+
+
+func update():
+	pass
+
 
 func get_active():
 	return active
