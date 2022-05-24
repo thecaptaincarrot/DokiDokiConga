@@ -1,4 +1,4 @@
-extends Node2D
+extends Node
 const PARTIER = preload("res://Partier.tscn")
 
 export var time_sensitive = false
@@ -85,6 +85,7 @@ func _unhandled_input(event):
 	if event.is_action_pressed("reset"):
 		get_tree().reload_current_scene()
 
+
 func move(direction): #move all leaders in the given directions
 	#0. If nothing happens, do not advance the turn
 	something_happened = false
@@ -112,14 +113,13 @@ func move(direction): #move all leaders in the given directions
 		var leader_move = leader.grid_position + fixed_direction * Global.grid_size
 		var conga_positions = leader.get_line_positions() #line positions of line that is not moving
 		if check_clear(fixed_direction, leader): #Leader can move in the direction, continue simulation
-#			leader_move = leader.grid_position + fixed_direction * Global.grid_size
 			conga_positions.append(leader_move)
 			conga_positions.erase(leader.get_caboose().grid_position)
 			can_move = true
 		else: #Way is blocked, cannot move so the orignal array is fine
 			pass
 		simulated_positions += conga_positions
-		leader_info.append({"leader" : leader, "positions" : conga_positions, "leader_move" : leader_move, "moving" : can_move })
+		leader_info.append({"leader" : leader, "positions" : conga_positions, "leader_move" : leader_move, "moving" : can_move , "direction": fixed_direction})
 	#I now have all leaders and where they're going to be. Now I need to see if they can move
 	var movement_occured = false
 	for leader_dict in leader_info:
@@ -142,7 +142,11 @@ func move(direction): #move all leaders in the given directions
 						#Found myself in the array, anyone else?
 			if can_move:
 				leader_dict["leader"].move_to(leader_dict["leader_move"]) #Is this the last check? I think so
-				
+			else:
+				leader_dict["leader"].bounce(leader_dict["direction"])
+		else:
+			leader_dict["leader"].bounce(leader_dict["direction"])
+
 	if something_happened: #Something happened that should be recorded
 		turn += 1
 #		print("turn: ", turn)
@@ -152,6 +156,40 @@ func move(direction): #move all leaders in the given directions
 	for activator in $Activators.get_children():
 		activator.active_check()
 	check_dead()
+
+
+func check_clear(direction, person_moving):
+	#only checks obstacles, not people
+	#TODO activators
+	var grid_position = person_moving.grid_position
+	var destination = person_moving.grid_position + direction * Global.grid_size
+	#This checks the destination of the congaline and does appropriate actions
+	#Must return true if the target is open for movement
+	#Must return false if the congaline cannot move to the destination
+		#Even if there's an activator or something else for the congaline to hit
+	#Check tileset
+		#compare the destination (which is in 32x32 blocks) to the tilemap
+		#If filled with a tile, return false
+	if $Walls.get_cellv(destination / Global.grid_size) != -1:
+		return false
+	#Check Triggers
+	#Some Pressure plates and gates do not block movement, but switches do
+	#This will only be called if movement is attempted, right? Can we activate switches here?
+	for trigger in $Triggers.get_children():
+		if trigger.position == destination and trigger.blocking:
+			if trigger.is_in_group("Lever"):
+				something_happened = true
+				trigger.toggle()
+			return false
+	
+	#Check Activators
+	#Doors will toggle between blocking and not blocking
+	#They can move into a door while it closes, but this will kill them
+	for activator in $Activators.get_children():
+		if activator.position == destination and activator.blocking == true:
+			activator.active_check()
+			return false
+	return true
 
 
 func new_leader_added():
@@ -220,41 +258,6 @@ func add_follower(entry):
 	else:
 		entry.animation = "Close"
 		#disconnect signal?
-
-
-func check_clear(direction, person_moving):
-	#only checks obstacles, not people
-	#TODO activators
-	var grid_position = person_moving.grid_position
-	var destination = person_moving.grid_position + direction * Global.grid_size
-	#This checks the destination of the congaline and does appropriate actions
-	#Must return true if the target is open for movement
-	#Must return false if the congaline cannot move to the destination
-		#Even if there's an activator or something else for the congaline to hit
-	#Check tileset
-		#compare the destination (which is in 32x32 blocks) to the tilemap
-		#If filled with a tile, return false
-	if $Walls.get_cellv(destination / Global.grid_size) != -1:
-		return false
-	#Check Triggers
-	#Some Pressure plates and gates do not block movement, but switches do
-	#This will only be called if movement is attempted, right? Can we activate switches here?
-	for trigger in $Triggers.get_children():
-		if trigger.position == destination and trigger.blocking:
-			if trigger.is_in_group("Lever"):
-				something_happened = true
-				trigger.toggle()
-			return false
-	
-	#Check Activators
-	#Doors will toggle between blocking and not blocking
-	#They can move into a door while it closes, but this will kill them
-	for activator in $Activators.get_children():
-		if activator.position == destination and activator.blocking == true:
-			return false
-	return true
-
-
 
 
 func check_dead(): #Checks if a door closed on a person.

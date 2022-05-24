@@ -10,11 +10,11 @@
 
 [node name="LevelEntry" parent="Entries" index="0"]
 position = Vector2( 320, 448 )
-frame = 5
+frame = 3
 
 [node name="LevelExit" parent="Exits" index="0"]
 position = Vector2( 320, 32 )
-frame = 0
+frame = 6
 
 [node name="Door" parent="Activators" index="0" instance=ExtResource( 1 )]
 position = Vector2( 320, 224 )

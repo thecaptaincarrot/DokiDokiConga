@@ -127,7 +127,6 @@ world = 1
 [node name="World2Portal" type="AnimatedSprite" parent="Worlds/World1" groups=["Portal"]]
 position = Vector2( 592, 208 )
 frames = SubResource( 14 )
-frame = 6
 playing = true
 offset = Vector2( 0, -8 )
 script = ExtResource( 8 )
@@ -184,7 +183,6 @@ world = 2
 [node name="World1Portal" type="AnimatedSprite" parent="Worlds/World2" groups=["Portal"]]
 position = Vector2( 96, 208 )
 frames = SubResource( 14 )
-frame = 6
 playing = true
 offset = Vector2( 0, -8 )
 script = ExtResource( 8 )
@@ -193,7 +191,6 @@ target_world = 1
 [node name="World3Portal" type="AnimatedSprite" parent="Worlds/World2" groups=["Portal"]]
 position = Vector2( 608, 208 )
 frames = SubResource( 14 )
-frame = 6
 playing = true
 offset = Vector2( 0, -8 )
 script = ExtResource( 8 )

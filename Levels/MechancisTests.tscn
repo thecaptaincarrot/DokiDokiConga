@@ -5,7 +5,14 @@
 [node name="Level" instance=ExtResource( 1 )]
 
 [node name="LevelEntry" parent="Entries" index="0"]
-frame = 1
+frame = 6
 
 [node name="LevelExit" parent="Exits" index="0"]
-frame = 4
+position = Vector2( 512, 288 )
+frame = 3
+
+[node name="Walls" parent="." index="6"]
+tile_data = PoolIntArray(  )
+
+[node name="ExitNum" parent="HUD" index="1"]
+visible = false

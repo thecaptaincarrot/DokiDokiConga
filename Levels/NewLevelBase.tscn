@@ -46,44 +46,26 @@ polygon = PoolVector2Array( 0, 64, 24.4722, 64, 24.4722, 11.7684, 0, 11.7684 )
 size = 32
 font_data = ExtResource( 6 )
 
-[node name="Level" type="Node2D"]
+[node name="Level" type="Node"]
 pause_mode = 1
 script = ExtResource( 8 )
-__meta__ = {
-"_edit_lock_": true
-}
 
-[node name="Entries" type="Node2D" parent="."]
-__meta__ = {
-"_edit_lock_": true
-}
+[node name="Entries" type="Node" parent="."]
 
 [node name="LevelEntry" parent="Entries" instance=ExtResource( 1 )]
 position = Vector2( 192, 288 )
-frame = 4
+frame = 7
 
-[node name="Exits" type="Node2D" parent="."]
-__meta__ = {
-"_edit_lock_": true
-}
+[node name="Exits" type="Node" parent="."]
 
 [node name="LevelExit" parent="Exits" instance=ExtResource( 3 )]
-frame = 1
+frame = 4
 
-[node name="People" type="Node2D" parent="."]
-__meta__ = {
-"_edit_lock_": true
-}
+[node name="People" type="Node" parent="."]
 
-[node name="Activators" type="Node2D" parent="."]
-__meta__ = {
-"_edit_lock_": true
-}
+[node name="Activators" type="Node" parent="."]
 
-[node name="Triggers" type="Node2D" parent="."]
-__meta__ = {
-"_edit_lock_": true
-}
+[node name="Triggers" type="Node" parent="."]
 
 [node name="Metronome" parent="." instance=ExtResource( 4 )]
 
@@ -91,6 +73,7 @@ __meta__ = {
 tile_set = SubResource( 1 )
 cell_size = Vector2( 32, 32 )
 format = 1
+tile_data = PoolIntArray( 262154, 0, 8, 262155, 0, 11, 327690, 0, 65544, 327691, 0, 131083, 393225, 0, 1, 393226, 0, 196613, 393227, 0, 131079, 458761, 0, 65536, 458763, 0, 65536, 524297, 0, 131072, 524299, 0, 131072 )
 __meta__ = {
 "_edit_lock_": true
 }
@@ -104,6 +87,7 @@ scale = Vector2( 2, 2 )
 word = "DED"
 
 [node name="ExitNum" type="Label" parent="HUD"]
+visible = false
 margin_right = 40.0
 margin_bottom = 14.0
 custom_fonts/font = SubResource( 2 )

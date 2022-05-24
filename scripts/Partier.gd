@@ -180,11 +180,20 @@ func set_walker_animation_direction(direction : Vector2):
 			set_walker_animation("Up")
 
 
-
 func set_walker_animation(animation): #TODO the sprite should load a random resource rather than having
 	#15000 animated sprites going at once
 	for N in $Walkers.get_children():
 		N.animation = animation
+
+
+func bounce(direction):
+	pass
+	var destination = position + direction * 12.0
+	$MovementTween.interpolate_property(self,"position", position, destination, movement_time / 2.0)
+	$MovementTween.start()
+	yield($MovementTween,"tween_all_completed")
+	$MovementTween.interpolate_property(self,"position", position, grid_position, movement_time / 2.0)
+	$MovementTween.start()
 
 
 func leader_click():
