@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Star2.png-777a95470dd7df56cf38a55c4ba619a3.stex"
+path="res://.import/Bridge.png-066c9ec86b6510471a0b433272855d52.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/Star2.png"
-dest_files=[ "res://.import/Star2.png-777a95470dd7df56cf38a55c4ba619a3.stex" ]
+source_file="res://WorldMap/Sprites/Bridge.png"
+dest_files=[ "res://.import/Bridge.png-066c9ec86b6510471a0b433272855d52.stex" ]
 
 [params]
 

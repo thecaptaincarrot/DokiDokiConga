@@ -80,7 +80,8 @@ func _unhandled_input(event):
 		undo()
 	
 	if event.is_action_pressed("ui_escape"):
-		get_tree().change_scene("res://WorldMap/WorldMap.tscn")
+		escape()
+		
 	
 	if event.is_action_pressed("reset"):
 		get_tree().reload_current_scene()
@@ -214,6 +215,10 @@ func undo():
 		play_active = true
 		$HUD/Dead.hide()
 	check_dead()
+
+
+func escape():
+	get_tree().change_scene("res://WorldMap/WorldMap.tscn")
 
 
 func add_leader(entry): #entry is the portal that the leader is coming out of

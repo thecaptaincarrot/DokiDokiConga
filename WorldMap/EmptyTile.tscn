@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://WorldMap/Sprites/LevelTile.png" type="Texture" id=2]
+[ext_resource path="res://WorldMap/Scripts/LevelTile.gd" type="Script" id=3]
+
+[node name="EmptyTile" type="Sprite" groups=["Tile"]]
+texture = ExtResource( 2 )
+script = ExtResource( 3 )
+level_num = 1

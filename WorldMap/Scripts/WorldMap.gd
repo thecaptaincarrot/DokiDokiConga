@@ -1,8 +1,10 @@
 extends Node2D
 
-var grid_size = 64
+var grid_size = 32
 
 var current_world = 1
+
+var movement_disabled
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -10,7 +12,7 @@ func _ready():
 	print(Completed.completed_levels)
 	
 	#put the player on the last completed level
-	if Completed.current_level[0] != 0:
+	if Completed.current_level[0] != -1:
 		current_world = Completed.current_level[0]
 		
 		var worldpath = "Worlds/World" + str(Completed.current_level[0])
@@ -19,7 +21,13 @@ func _ready():
 		$WorldPlayer.position = leveltile.position
 		
 		$WorldCamera.change_world(Completed.current_level[0])
-	else:
+		#if completed the tutorial for the first time
+		if Completed.current_level==[0,1] and Completed.first_complete:
+			#put player at the node
+			print("Smiley Face")
+			pass
+	else: #No save file,  game booted up for first time (without tutorial)
+		#TODO: Change when no longer needed for debug
 		$WorldPlayer.position = $Worlds/World1/LevelTile1.position
 		$WorldCamera.change_world(1)
 	
@@ -32,6 +40,9 @@ func _ready():
 
 func _unhandled_input(event):
 	#movement
+	if movement_disabled:
+		return
+	
 	if event.is_action_pressed("ui_right"):
 		attempt_movement(Vector2(1,0))
 	elif event.is_action_pressed("ui_left"):
@@ -53,8 +64,9 @@ func check_tile(pos):
 	
 	for world in $Worlds.get_children():
 		for tile in world.get_children():
-			if tile.global_position == pos:
-				return tile
+			if tile.is_in_group("Tile"):
+				if tile.global_position == pos:
+					return tile
 	return false
 
 
@@ -67,6 +79,13 @@ func attempt_movement(direction):
 	if tile.allow_move():
 		
 		$WorldPlayer.set_movement_tween(new_position)
+	
+	if tile.is_in_group("Tutorial"):
+		current_world = 0
+		print("Tutorial Island")
+	elif current_world == 0:
+		print("Left Tutorial Island")
+		current_world = 1
 
 
 func enter_level(tile):
@@ -75,6 +94,8 @@ func enter_level(tile):
 		print(" New Level Entered: ", Completed.current_level)
 		print("world: ", current_world)
 		match current_world:
+			0:
+				$Worlds/World0.enter_level(tile.level_num)
 			1:
 				$Worlds/World1.enter_level(tile.level_num)
 			2:
@@ -94,8 +115,18 @@ func enter_level(tile):
 
 func get_world_node(world_num):
 	match world_num:
+		0:
+			return $Worlds/World0
 		1:
 			return $Worlds/World1
 		2:
 			return $Worlds/World2
 	return null
+
+
+func _on_World0_TutorialComplete():
+	movement_disabled = true #Disable Movement Inputs
+	
+
+func _on_BridgeAnimation_animation_finished(anim_name):
+	movement_disabled = false

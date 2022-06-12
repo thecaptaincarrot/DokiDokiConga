@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Star3.png-15a4d92b2fc325499d14cce24ada8709.stex"
+path="res://.import/Temporary_Tilemap.png-95b614334f0379c6e43548930f3421d9.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/Star3.png"
-dest_files=[ "res://.import/Star3.png-15a4d92b2fc325499d14cce24ada8709.stex" ]
+source_file="res://WorldMap/Tilemaps/Temporary_Tilemap.png"
+dest_files=[ "res://.import/Temporary_Tilemap.png-95b614334f0379c6e43548930f3421d9.stex" ]
 
 [params]
 

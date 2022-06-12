@@ -16,7 +16,8 @@ func _process(delta):
 
 func change_world(world_num):
 	match world_num:
-		1: target_location = Vector2(384, 192)
+		0: target_location = Vector2(384, 192+64)
+		1: target_location = Vector2(384, 192+64)
 		2: target_location = Vector2(1216,192)
 	print("world # and Vector: " , world_num , target_location)
 

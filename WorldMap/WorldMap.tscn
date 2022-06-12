@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=2]
+[gd_scene load_steps=43 format=2]
 
 [ext_resource path="res://WorldMap/LevelTile.tscn" type="PackedScene" id=1]
 [ext_resource path="res://WorldMap/Scripts/WorldMap.gd" type="Script" id=2]
@@ -11,6 +11,109 @@
 [ext_resource path="res://WorldMap/Gate.tscn" type="PackedScene" id=9]
 [ext_resource path="res://WorldMap/World2.gd" type="Script" id=10]
 [ext_resource path="res://WorldMap/Scripts/WorldCamera.gd" type="Script" id=11]
+[ext_resource path="res://WorldMap/Sprites/Star3.png" type="Texture" id=12]
+[ext_resource path="res://WorldMap/Sprites/Star4.png" type="Texture" id=13]
+[ext_resource path="res://WorldMap/Sprites/Star2.png" type="Texture" id=14]
+[ext_resource path="res://WorldMap/Sprites/Star1.png" type="Texture" id=15]
+[ext_resource path="res://WorldMap/World0.gd" type="Script" id=16]
+[ext_resource path="res://WorldMap/EmptyTile.tscn" type="PackedScene" id=17]
+[ext_resource path="res://WorldMap/Sprites/Bridge.png" type="Texture" id=18]
+[ext_resource path="res://WorldMap/Bridge.gd" type="Script" id=19]
+
+[sub_resource type="AtlasTexture" id=21]
+atlas = ExtResource( 18 )
+region = Rect2( 48, 0, 48, 64 )
+
+[sub_resource type="AtlasTexture" id=22]
+atlas = ExtResource( 18 )
+region = Rect2( 96, 0, 48, 64 )
+
+[sub_resource type="AtlasTexture" id=23]
+atlas = ExtResource( 18 )
+region = Rect2( 144, 0, 48, 64 )
+
+[sub_resource type="AtlasTexture" id=24]
+atlas = ExtResource( 18 )
+region = Rect2( 192, 0, 48, 64 )
+
+[sub_resource type="AtlasTexture" id=25]
+atlas = ExtResource( 18 )
+region = Rect2( 240, 0, 48, 64 )
+
+[sub_resource type="AtlasTexture" id=26]
+atlas = ExtResource( 18 )
+region = Rect2( 0, 0, 48, 64 )
+
+[sub_resource type="AtlasTexture" id=27]
+atlas = ExtResource( 18 )
+region = Rect2( 0, 0, 48, 64 )
+
+[sub_resource type="SpriteFrames" id=20]
+animations = [ {
+"frames": [ SubResource( 21 ), SubResource( 22 ), SubResource( 23 ), SubResource( 24 ), SubResource( 25 ), SubResource( 26 ) ],
+"loop": false,
+"name": "Deploy",
+"speed": 4.0
+}, {
+"frames": [ SubResource( 27 ) ],
+"loop": true,
+"name": "Opened",
+"speed": 5.0
+} ]
+
+[sub_resource type="Animation" id=28]
+resource_name = "Bridge"
+length = 4.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("Bridge:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath("Bridge")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 2 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ "Deploy", false ],
+"method": "play"
+} ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Bridge:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 1.9 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 0 ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("../World1:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 1.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
 
 [sub_resource type="AtlasTexture" id=6]
 atlas = ExtResource( 7 )
@@ -72,61 +175,115 @@ animations = [ {
 "speed": 5.0
 } ]
 
+[sub_resource type="AnimatedTexture" id=15]
+frames = 4
+frame_0/texture = ExtResource( 15 )
+frame_1/texture = ExtResource( 14 )
+frame_1/delay_sec = 0.0
+frame_2/texture = ExtResource( 12 )
+frame_2/delay_sec = 0.0
+frame_3/texture = ExtResource( 13 )
+frame_3/delay_sec = 0.0
+
 [node name="WorldMap" type="Node2D"]
 script = ExtResource( 2 )
 
 [node name="Worlds" type="Node2D" parent="."]
 
+[node name="World0" parent="Worlds" instance=ExtResource( 5 )]
+script = ExtResource( 16 )
+
+[node name="TileMap" parent="Worlds/World0" index="0"]
+tile_data = PoolIntArray( 1441813, 0, 13, 1441814, 0, 3, 1441815, 0, 4, 1441816, 0, 2, 1441817, 0, 2, 1441818, 0, 12, 1507348, 0, 13, 1507349, 0, 65551, 1507350, 0, 65536, 1507351, 0, 65537, 1507352, 0, 65538, 1507353, 0, 65537, 1507354, 0, 65550, 1507355, 0, 12, 1572884, 0, 6, 1572885, 0, 65536, 1572886, 0, 65539, 1572887, 0, 65538, 1572888, 0, 65539, 1572889, 0, 65536, 1572890, 0, 65536, 1572891, 0, 10, 1638420, 0, 14, 1638421, 0, 65549, 1638422, 0, 65537, 1638423, 0, 65538, 1638424, 0, 65538, 1638425, 0, 65537, 1638426, 0, 65548, 1638427, 0, 15, 1703957, 0, 14, 1703958, 0, 1, 1703959, 0, 0, 1703960, 0, 1, 1703961, 0, 0, 1703962, 0, 15 )
+
+[node name="LevelTile1" parent="Worlds/World0" groups=["Tutorial"] instance=ExtResource( 1 )]
+position = Vector2( 384, 384 )
+
+[node name="LevelLabel" parent="Worlds/World0/LevelTile1" index="0"]
+visible = false
+
+[node name="Question" type="Label" parent="Worlds/World0/LevelTile1"]
+margin_left = -3.0
+margin_top = -6.0
+margin_right = 37.0
+margin_bottom = 8.0
+text = "?"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Tile" parent="Worlds/World0" instance=ExtResource( 17 )]
+visible = false
+position = Vector2( 384, 320 )
+
+[node name="Tile2" parent="Worlds/World0" instance=ExtResource( 17 )]
+visible = false
+position = Vector2( 384, 352 )
+
+[node name="Bridge" type="AnimatedSprite" parent="Worlds/World0"]
+position = Vector2( 384, 336 )
+frames = SubResource( 20 )
+animation = "Opened"
+playing = true
+script = ExtResource( 19 )
+
+[node name="BridgeAnimation" type="AnimationPlayer" parent="Worlds/World0"]
+anims/Bridge = SubResource( 28 )
+
 [node name="World1" parent="Worlds" instance=ExtResource( 5 )]
 script = ExtResource( 6 )
 
+[node name="TileMap" parent="Worlds/World1" index="0"]
+tile_data = PoolIntArray( 458770, 0, 13, 458771, 0, 5, 458772, 0, 2, 458773, 0, 4, 458774, 0, 5, 458775, 0, 4, 458776, 0, 5, 458777, 0, 3, 458778, 0, 3, 458779, 0, 2, 458780, 0, 3, 458781, 0, 12, 524306, 0, 7, 524307, 0, 65539, 524308, 0, 65536, 524309, 0, 65536, 524310, 0, 65536, 524311, 0, 65538, 524312, 0, 65539, 524313, 0, 65536, 524314, 0, 65536, 524315, 0, 65537, 524316, 0, 65538, 524317, 0, 9, 589842, 0, 7, 589843, 0, 65539, 589844, 0, 65537, 589845, 0, 65538, 589846, 0, 65538, 589847, 0, 65539, 589848, 0, 65539, 589849, 0, 65538, 589850, 0, 65537, 589851, 0, 65538, 589852, 0, 65536, 589853, 0, 10, 655378, 0, 14, 655379, 0, 65549, 655380, 0, 65536, 655381, 0, 65537, 655382, 0, 65536, 655383, 0, 65539, 655384, 0, 65538, 655385, 0, 65537, 655386, 0, 65536, 655387, 0, 65537, 655388, 0, 65548, 655389, 0, 15, 720915, 0, 6, 720916, 0, 65539, 720917, 0, 65536, 720918, 0, 65537, 720919, 0, 65538, 720920, 0, 65537, 720921, 0, 65539, 720922, 0, 65539, 720923, 0, 65536, 720924, 0, 9, 786451, 0, 8, 786452, 0, 65539, 786453, 0, 65538, 786454, 0, 65537, 786455, 0, 65539, 786456, 0, 65536, 786457, 0, 65537, 786458, 0, 65538, 786459, 0, 65538, 786460, 0, 11, 851987, 0, 7, 851988, 0, 65538, 851989, 0, 65538, 851990, 0, 65539, 851991, 0, 65537, 851992, 0, 65536, 851993, 0, 65539, 851994, 0, 65537, 851995, 0, 65538, 851996, 0, 11, 917523, 0, 7, 917524, 0, 65539, 917525, 0, 65537, 917526, 0, 65536, 917527, 0, 65537, 917528, 0, 65536, 917529, 0, 65538, 917530, 0, 65537, 917531, 0, 65538, 917532, 0, 9, 983059, 0, 6, 983060, 0, 65537, 983061, 0, 65537, 983062, 0, 65538, 983063, 0, 65539, 983064, 0, 65538, 983065, 0, 65539, 983066, 0, 65538, 983067, 0, 65536, 983068, 0, 10, 1048595, 0, 14, 1048596, 0, 65549, 1048597, 0, 65539, 1048598, 0, 65537, 1048599, 0, 65537, 1048600, 0, 65536, 1048601, 0, 65537, 1048602, 0, 65537, 1048603, 0, 65548, 1048604, 0, 15, 1114132, 0, 14, 1114133, 0, 65549, 1114134, 0, 65538, 1114135, 0, 65539, 1114136, 0, 65536, 1114137, 0, 65538, 1114138, 0, 65548, 1114139, 0, 15, 1179669, 0, 8, 1179670, 0, 65539, 1179671, 0, 65538, 1179672, 0, 65537, 1179673, 0, 65536, 1179674, 0, 10, 1245205, 0, 14, 1245206, 0, 1, 1245207, 0, 0, 1245208, 0, 1, 1245209, 0, 0, 1245210, 0, 15 )
+
 [node name="LevelTile1" parent="Worlds/World1" instance=ExtResource( 1 )]
-position = Vector2( 144, 208 )
+position = Vector2( 384, 288 )
 
 [node name="LevelTile2" parent="Worlds/World1" instance=ExtResource( 1 )]
-position = Vector2( 208, 208 )
+position = Vector2( 352, 256 )
 level_num = 2
 
 [node name="LevelTile3" parent="Worlds/World1" instance=ExtResource( 1 )]
-position = Vector2( 272, 208 )
+position = Vector2( 384, 256 )
 level_num = 3
 
 [node name="LevelTile4" parent="Worlds/World1" instance=ExtResource( 1 )]
-position = Vector2( 272, 144 )
+position = Vector2( 416, 256 )
 level_num = 4
 
 [node name="LevelTile5" parent="Worlds/World1" instance=ExtResource( 1 )]
-position = Vector2( 336, 144 )
+position = Vector2( 352, 224 )
 level_num = 5
 
 [node name="LevelTile6" parent="Worlds/World1" instance=ExtResource( 1 )]
-position = Vector2( 336, 208 )
+position = Vector2( 384, 224 )
 level_num = 6
 
 [node name="LevelTile7" parent="Worlds/World1" instance=ExtResource( 1 )]
-position = Vector2( 336, 272 )
+position = Vector2( 416, 224 )
 level_num = 7
 
 [node name="LevelTile8" parent="Worlds/World1" instance=ExtResource( 1 )]
-position = Vector2( 272, 272 )
+position = Vector2( 352, 160 )
 level_num = 8
 
 [node name="LevelTile9" parent="Worlds/World1" instance=ExtResource( 1 )]
-position = Vector2( 464, 208 )
+position = Vector2( 384, 160 )
 level_num = 9
 
 [node name="LevelTile10" parent="Worlds/World1" instance=ExtResource( 1 )]
-position = Vector2( 528, 208 )
+position = Vector2( 416, 160 )
 level_num = 10
 
 [node name="Gate" parent="Worlds/World1" instance=ExtResource( 9 )]
-position = Vector2( 400, 208 )
+position = Vector2( 416, 192 )
 pass_num = 1
 world = 1
 
 [node name="World2Portal" type="AnimatedSprite" parent="Worlds/World1" groups=["Portal"]]
-position = Vector2( 592, 208 )
+position = Vector2( 384, 128 )
 frames = SubResource( 14 )
+frame = 2
 playing = true
 offset = Vector2( 0, -8 )
 script = ExtResource( 8 )
@@ -183,6 +340,7 @@ world = 2
 [node name="World1Portal" type="AnimatedSprite" parent="Worlds/World2" groups=["Portal"]]
 position = Vector2( 96, 208 )
 frames = SubResource( 14 )
+frame = 2
 playing = true
 offset = Vector2( 0, -8 )
 script = ExtResource( 8 )
@@ -191,6 +349,7 @@ target_world = 1
 [node name="World3Portal" type="AnimatedSprite" parent="Worlds/World2" groups=["Portal"]]
 position = Vector2( 608, 208 )
 frames = SubResource( 14 )
+frame = 2
 playing = true
 offset = Vector2( 0, -8 )
 script = ExtResource( 8 )
@@ -210,3 +369,32 @@ script = ExtResource( 4 )
 position = Vector2( 1216, 256 )
 current = true
 script = ExtResource( 11 )
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="ParallaxBackground"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0.0941176, 0.203922, 0.211765, 1 )
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect" type="TextureRect" parent="ParallaxBackground"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = SubResource( 15 )
+expand = true
+stretch_mode = 2
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[connection signal="TutorialComplete" from="Worlds/World0" to="." method="_on_World0_TutorialComplete"]
+[connection signal="animation_finished" from="Worlds/World0/BridgeAnimation" to="." method="_on_BridgeAnimation_animation_finished"]
+
+[editable path="Worlds/World0"]
+[editable path="Worlds/World0/LevelTile1"]
+[editable path="Worlds/World1"]

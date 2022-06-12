@@ -9,7 +9,7 @@ var completed_levels = {
 }
 
 var first_complete = false
-var current_level = [0,0]
+var current_level = [-1,-1]
 
 # Called when the node enters the scene tree for the first time.
 func _ready():

@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Star1.png-793c139cc51bc64ba9118c199a7d6c37.stex"
+path="res://.import/LevelTile.png-a716065ac2311c21ac6bcc5576bac9bc.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/Star1.png"
-dest_files=[ "res://.import/Star1.png-793c139cc51bc64ba9118c199a7d6c37.stex" ]
+source_file="res://WorldMap/Sprites/LevelTile.png"
+dest_files=[ "res://.import/LevelTile.png-a716065ac2311c21ac6bcc5576bac9bc.stex" ]
 
 [params]
 

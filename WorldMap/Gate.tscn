@@ -37,7 +37,7 @@ animations = [ {
 "speed": 5.0
 } ]
 
-[node name="Gate" type="AnimatedSprite"]
+[node name="Gate" type="AnimatedSprite" groups=["Tile"]]
 position = Vector2( 512, 256 )
 frames = SubResource( 7 )
 animation = "Closed"
