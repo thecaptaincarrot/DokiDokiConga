@@ -82,7 +82,6 @@ func _unhandled_input(event):
 	
 	if event.is_action_pressed("ui_escape"):
 		escape()
-		
 	
 	if event.is_action_pressed("reset"):
 		get_tree().reload_current_scene()
@@ -122,33 +121,51 @@ func move(direction): #move all leaders in the given directions
 			pass
 		simulated_positions += conga_positions
 		leader_info.append({"leader" : leader, "positions" : conga_positions, "leader_move" : leader_move, "moving" : can_move , "direction": fixed_direction})
-	#I now have all leaders and where they're going to be. Now I need to see if they can move
+	#I now have all leaders and where they're going to be.
+	#**Checks for running into other partiers**
+	#Next check to see if the leader is running into their own line
 	var movement_occured = false
-	for leader_dict in leader_info:
-		#Don't care if the leader isn't moving from the obstacle check
-		if leader_dict["moving"]:
-			something_happened = true
-			#check if their prospective position is already taken up
-			#must be taken up at least twice since their own position is in the array too
-			var self_check = false
-			var can_move = true
-			for simulated_position in simulated_positions:
-				if simulated_position == leader_dict["leader_move"]:
-					if self_check:
-						#I found myself and one other person and I cannot move
-						#TODO check if two leaders are trying to enter the same space
-						can_move = false
-						break
-					else:
-						self_check = true
-						#Found myself in the array, anyone else?
-			if can_move:
-				leader_dict["leader"].move_to(leader_dict["leader_move"]) #Is this the last check? I think so
+	var checking_movement = true
+	var i = 0
+	while checking_movement:
+		checking_movement = false
+		i += 1
+		print("Checking Movement ",i)
+		for leader_dict in leader_info:
+			#Don't care if the leader isn't moving from the obstacle check
+			if leader_dict["moving"]:
+				something_happened = true
+				#check if their prospective position is already taken up by their own congaline
+				#must be taken up at least twice since their own position is in the array too
+				var self_check = false
+				var can_move = true
+				for simulated_position in simulated_positions:
+					if simulated_position == leader_dict["leader_move"]:
+						if self_check:
+							#I found myself and one other person and I cannot move
+							#TODO check if two leaders are trying to enter the same space
+							can_move = false
+							break
+						else:
+							self_check = true
+							#Found myself in the array, anyone else?
+#				if can_move:
+#					leader_dict["leader"].move_to(leader_dict["leader_move"]) #Is this the last check? I think so
+				if !can_move: #I can't move. therefore, I should add my caboose to simulated movements
+					var new_caboose = leader_dict["leader"].get_caboose()
+					simulated_positions.append(new_caboose.grid_position)
+					leader_dict["leader"].bounce(leader_dict["direction"])
+					#Redo check
+					checking_movement = true
+				leader_dict["moving"] = can_move
 			else:
 				leader_dict["leader"].bounce(leader_dict["direction"])
-		else:
-			leader_dict["leader"].bounce(leader_dict["direction"])
-
+	
+	for leader_dict in leader_info:
+		if leader_dict["moving"]:
+			pass
+			leader_dict["leader"].move_to(leader_dict["leader_move"]) #Is this the last check? I think so
+	
 	if something_happened: #Something happened that should be recorded
 		turn += 1
 #		print("turn: ", turn)

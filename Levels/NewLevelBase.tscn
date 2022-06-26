@@ -54,12 +54,12 @@ script = ExtResource( 8 )
 
 [node name="LevelEntry" parent="Entries" instance=ExtResource( 1 )]
 position = Vector2( 192, 288 )
-frame = 4
+frame = 1
 
 [node name="Exits" type="Node" parent="."]
 
 [node name="LevelExit" parent="Exits" instance=ExtResource( 3 )]
-frame = 1
+frame = 6
 
 [node name="People" type="Node" parent="."]
 
@@ -73,7 +73,6 @@ frame = 1
 tile_set = SubResource( 1 )
 cell_size = Vector2( 32, 32 )
 format = 1
-tile_data = PoolIntArray( 262154, 0, 8, 262155, 0, 11, 327690, 0, 65544, 327691, 0, 131083, 393225, 0, 1, 393226, 0, 196613, 393227, 0, 131079, 458761, 0, 65536, 458763, 0, 65536, 524297, 0, 131072, 524299, 0, 131072 )
 __meta__ = {
 "_edit_lock_": true
 }
