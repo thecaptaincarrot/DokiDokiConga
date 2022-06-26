@@ -358,7 +358,6 @@ target_world = 3
 [node name="WorldPlayer" type="AnimatedSprite" parent="."]
 z_index = 1
 frames = SubResource( 5 )
-frame = 2
 playing = true
 offset = Vector2( 0, -12 )
 script = ExtResource( 4 )

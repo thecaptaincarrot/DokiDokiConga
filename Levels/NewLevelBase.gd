@@ -18,6 +18,10 @@ var undo_actions = []
 signal LevelOver
 signal PartierDied
 
+#Node declarations
+onready var Walls = $Tilemaps/Walls
+onready var ThinWalls = $Tilemaps/ThinWalls
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	for entry in $Entries.get_children():
@@ -180,8 +184,10 @@ func move(direction): #move all leaders in the given directions
 func check_clear(direction, person_moving):
 	#only checks obstacles, not people
 	#TODO activators
-	var grid_position = person_moving.grid_position
+	var grid_position = person_moving.grid_position / Global.grid_size
 	var destination = person_moving.grid_position + direction * Global.grid_size
+	var grid_destination = destination / Global.grid_size
+
 	#This checks the destination of the congaline and does appropriate actions
 	#Must return true if the target is open for movement
 	#Must return false if the congaline cannot move to the destination
@@ -189,8 +195,29 @@ func check_clear(direction, person_moving):
 	#Check tileset
 		#compare the destination (which is in 32x32 blocks) to the tilemap
 		#If filled with a tile, return false
-	if $Walls.get_cellv(destination / Global.grid_size) != -1:
+	if Walls.get_cellv(destination / Global.grid_size) != -1:
 		return false
+	#Thin Walls
+		#Vertical thin walls can't be crossed from X -1 to 0 or 0 to -1
+		#Horizontal thin walls can't be crossed from Y -1 to 0 or 0 to -1
+		#just do position - destination and see if it's negative
+	var thin_wall_end_index = ThinWalls.get_cellv(grid_destination)
+	var thin_wall_start_index = ThinWalls.get_cellv(grid_position)
+	if thin_wall_end_index != -1: #destination is a thin wall
+		var thin_wall_name = ThinWalls.tile_set.tile_get_name(thin_wall_end_index)
+		if thin_wall_name == "Vertical" and grid_position.x - grid_destination.x < 0:#Moving Left
+			return false
+		elif thin_wall_name == "Horizontal" and grid_position.y - grid_destination.y < 0 :#Moving Up
+			return false
+	
+	elif thin_wall_start_index != -1:  #current position is a thin wall
+		var thin_wall_name = ThinWalls.tile_set.tile_get_name(thin_wall_start_index)
+		if thin_wall_name == "Vertical" and grid_position.x - grid_destination.x > 0:#Moving Right
+			return false
+		elif thin_wall_name == "Horizontal" and grid_position.y - grid_destination.y > 0 : #Moving Down
+			return false
+		
+	
 	#Check Triggers
 	#Some Pressure plates and gates do not block movement, but switches do
 	#This will only be called if movement is attempted, right? Can we activate switches here?

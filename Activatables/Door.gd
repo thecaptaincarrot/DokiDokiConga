@@ -1,9 +1,13 @@
 extends "res://Activatables/ActivatorBase.gd"
 
-
+export var default_open = false
 
 func _ready():
-	pass # Replace with function body.
+	if default_open:
+		active = true
+		blocking = false
+		$DoorSprite.animation = "Open"
+		$DoorSprite.frame = 3
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -12,12 +16,22 @@ func _process(delta):
 
 
 func activate():
-	active = true
-	blocking = false
-	$DoorSprite.animation = "Open"
+	if default_open:
+		active = false
+		blocking = true
+		$DoorSprite.animation = "Close"
+	else:
+		active = true
+		blocking = false
+		$DoorSprite.animation = "Open"
 
 
 func deactivate():
-	active = false
-	blocking = true
-	$DoorSprite.animation = "Close"
+	if default_open:
+		active = true
+		blocking = false
+		$DoorSprite.animation = "Open"
+	else:
+		active = false
+		blocking = true
+		$DoorSprite.animation = "Close"

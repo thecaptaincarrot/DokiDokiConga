@@ -1,6 +1,7 @@
 extends Node
 
 var completed_levels = {
+	-1 : [], #Failsafe for levels without a world, testing
 	0 : [],
 	1 : [], #Key is the world, array holds integers representing levels that have been completed
 	2 : [],
