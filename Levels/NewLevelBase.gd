@@ -8,7 +8,7 @@ var need_exit = 0
 var partiers_left
 
 var something_happened = false
-var play_active = true
+var play_active = false
 
 var turn = 0
 var undo_actions = []
@@ -57,6 +57,7 @@ func start(): #TODO: turn into animation
 
 	for leader in get_leaders():
 		leader.show()
+	play_active = true
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
