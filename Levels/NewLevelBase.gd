@@ -24,6 +24,9 @@ onready var ThinWalls = $Tilemaps/ThinWalls
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	
+	set_camera()
+	
 	for entry in $Entries.get_children():
 		need_exit += entry.line_size
 		add_leader(entry)
@@ -380,3 +383,27 @@ func get_leaders():
 			leaders.append(partier)
 	
 	return leaders
+
+
+func set_camera():
+	#Do on startup
+	var resolution = get_viewport().get_visible_rect().size
+	
+	var center_point = Vector2(0,0)
+	
+	var playarea_size = Vector2($PlayArea.margin_right - $PlayArea.margin_left,$PlayArea.margin_bottom - $PlayArea.margin_top)
+	
+	center_point.x = ($PlayArea.margin_left + $PlayArea.margin_right) / 2.0
+	center_point.y = ($PlayArea.margin_top + $PlayArea.margin_bottom) / 2.0
+
+	print(center_point)
+	print(playarea_size)
+	
+	var zoom_factor = Vector2(0,0)
+	zoom_factor.x = playarea_size.x / resolution.x
+	zoom_factor.y = playarea_size.y / resolution.y
+	
+	var max_zoom_factor = max(zoom_factor.x,zoom_factor.y)
+	
+	$MainCamera.zoom = Vector2(max_zoom_factor,max_zoom_factor)
+	$MainCamera.offset = center_point
