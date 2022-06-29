@@ -52,7 +52,7 @@ animations = [ {
 z_index = 1
 
 [node name="DoorSprite" parent="." index="0"]
+position = Vector2( 8, 0 )
 frames = SubResource( 9 )
-animation = "Close"
 frame = 3
 offset = Vector2( -6, -32 )

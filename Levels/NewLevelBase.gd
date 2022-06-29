@@ -121,6 +121,8 @@ func move(direction): #move all leaders in the given directions
 		var leader_move = leader.grid_position + fixed_direction * Global.grid_size
 		var conga_positions = leader.get_line_positions() #line positions of line that is not moving
 		if check_clear(fixed_direction, leader): #Leader can move in the direction, continue simulation
+			#Check if target is outside of bounds play area
+			
 			conga_positions.append(leader_move)
 			conga_positions.erase(leader.get_caboose().grid_position)
 			can_move = true
@@ -137,7 +139,6 @@ func move(direction): #move all leaders in the given directions
 	while checking_movement:
 		checking_movement = false
 		i += 1
-		print("Checking Movement ",i)
 		for leader_dict in leader_info:
 			#Don't care if the leader isn't moving from the obstacle check
 			if leader_dict["moving"]:
@@ -238,6 +239,14 @@ func check_clear(direction, person_moving):
 		if activator.position == destination and activator.blocking == true:
 			activator.active_check()
 			return false
+	
+	#Check Playarea Bounds
+	if destination.x < $PlayArea.margin_left\
+	or destination.x > $PlayArea.margin_right\
+	or destination.y < $PlayArea.margin_top\
+	or destination.y > $PlayArea.margin_bottom:
+		return false
+	
 	return true
 
 
@@ -246,7 +255,6 @@ func new_leader_added():
 	turn += 1
 
 func undo():
-	print("undid turn, ", turn)
 	if turn <= 0:
 		return
 	turn -= 1

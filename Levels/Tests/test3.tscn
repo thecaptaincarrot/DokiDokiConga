@@ -10,11 +10,11 @@
 
 [node name="LevelEntry" parent="Entries" index="0"]
 position = Vector2( 320, 448 )
-frame = 5
+frame = 0
 
 [node name="LevelExit" parent="Exits" index="0"]
 position = Vector2( 320, 32 )
-frame = 0
+frame = 3
 
 [node name="Door" parent="Activators" index="0" instance=ExtResource( 1 )]
 position = Vector2( 320, 224 )
@@ -73,3 +73,9 @@ align = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="PlayArea" parent="." index="9"]
+margin_left = 32.0
+margin_top = -32.0
+margin_right = 640.0
+margin_bottom = 512.0
