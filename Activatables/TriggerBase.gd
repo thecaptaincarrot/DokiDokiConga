@@ -1,6 +1,6 @@
 extends Node2D
 
-export var code = "AAA"
+export var code = ["AAA"]
 
 var active = false
 var blocking = false

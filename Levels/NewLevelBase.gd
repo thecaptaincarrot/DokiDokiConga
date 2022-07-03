@@ -41,10 +41,11 @@ func _ready():
 	#Triggers and Activators
 	for trigger in $Triggers.get_children():
 		trigger.parent_level = self
-		for activator in $Activators.get_children():
-			activator.parent_level = self
-			if activator.code == trigger.code:
-				activator.pair_trigger(trigger)
+		for code in trigger.code:
+			for activator in $Activators.get_children():
+				activator.parent_level = self
+				if activator.code == code:
+					activator.pair_trigger(trigger)
 	
 	start()
 

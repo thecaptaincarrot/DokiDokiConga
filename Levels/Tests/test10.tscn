@@ -1,0 +1,104 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Activatables/DoorBase.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Levels/NewLevelBase.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Activatables/Trigger/RedPressurePlate.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Activatables/Trigger/GreenPressurePlate.tscn" type="PackedScene" id=4]
+
+[node name="Level" instance=ExtResource( 2 )]
+
+[node name="LevelEntry" parent="Entries" index="0"]
+position = Vector2( 384, 352 )
+frame = 7
+line_size = 26
+
+[node name="LevelExit" parent="Exits" index="0"]
+position = Vector2( 384, 64 )
+frame = 4
+
+[node name="Door" parent="Activators" index="0" instance=ExtResource( 1 )]
+position = Vector2( 384, 224 )
+
+[node name="RedPressurePlate" parent="Triggers" index="0" instance=ExtResource( 3 )]
+position = Vector2( 288, 256 )
+
+[node name="RedPressurePlate2" parent="Triggers" index="1" instance=ExtResource( 3 )]
+position = Vector2( 288, 288 )
+
+[node name="RedPressurePlate3" parent="Triggers" index="2" instance=ExtResource( 3 )]
+position = Vector2( 288, 320 )
+
+[node name="RedPressurePlate4" parent="Triggers" index="3" instance=ExtResource( 3 )]
+position = Vector2( 288, 352 )
+
+[node name="RedPressurePlate5" parent="Triggers" index="4" instance=ExtResource( 3 )]
+position = Vector2( 320, 352 )
+
+[node name="RedPressurePlate7" parent="Triggers" index="5" instance=ExtResource( 3 )]
+position = Vector2( 320, 288 )
+
+[node name="RedPressurePlate8" parent="Triggers" index="6" instance=ExtResource( 3 )]
+position = Vector2( 320, 256 )
+
+[node name="RedPressurePlate9" parent="Triggers" index="7" instance=ExtResource( 3 )]
+position = Vector2( 352, 256 )
+
+[node name="RedPressurePlate10" parent="Triggers" index="8" instance=ExtResource( 3 )]
+position = Vector2( 352, 288 )
+
+[node name="RedPressurePlate11" parent="Triggers" index="9" instance=ExtResource( 3 )]
+position = Vector2( 352, 320 )
+
+[node name="RedPressurePlate12" parent="Triggers" index="10" instance=ExtResource( 3 )]
+position = Vector2( 352, 352 )
+
+[node name="RedPressurePlate13" parent="Triggers" index="11" instance=ExtResource( 3 )]
+position = Vector2( 416, 352 )
+
+[node name="RedPressurePlate14" parent="Triggers" index="12" instance=ExtResource( 3 )]
+position = Vector2( 448, 352 )
+
+[node name="RedPressurePlate15" parent="Triggers" index="13" instance=ExtResource( 3 )]
+position = Vector2( 480, 352 )
+
+[node name="RedPressurePlate16" parent="Triggers" index="14" instance=ExtResource( 3 )]
+position = Vector2( 480, 320 )
+
+[node name="RedPressurePlate17" parent="Triggers" index="15" instance=ExtResource( 3 )]
+position = Vector2( 448, 320 )
+
+[node name="RedPressurePlate18" parent="Triggers" index="16" instance=ExtResource( 3 )]
+position = Vector2( 416, 320 )
+
+[node name="RedPressurePlate19" parent="Triggers" index="17" instance=ExtResource( 3 )]
+position = Vector2( 384, 320 )
+
+[node name="RedPressurePlate20" parent="Triggers" index="18" instance=ExtResource( 3 )]
+position = Vector2( 384, 288 )
+
+[node name="RedPressurePlate21" parent="Triggers" index="19" instance=ExtResource( 3 )]
+position = Vector2( 416, 288 )
+
+[node name="RedPressurePlate23" parent="Triggers" index="20" instance=ExtResource( 3 )]
+position = Vector2( 480, 288 )
+
+[node name="RedPressurePlate24" parent="Triggers" index="21" instance=ExtResource( 3 )]
+position = Vector2( 480, 256 )
+
+[node name="RedPressurePlate25" parent="Triggers" index="22" instance=ExtResource( 3 )]
+position = Vector2( 448, 256 )
+
+[node name="RedPressurePlate26" parent="Triggers" index="23" instance=ExtResource( 3 )]
+position = Vector2( 416, 256 )
+
+[node name="RedPressurePlate27" parent="Triggers" index="24" instance=ExtResource( 3 )]
+position = Vector2( 384, 256 )
+
+[node name="RedPressurePlate28" parent="Triggers" index="25" instance=ExtResource( 3 )]
+position = Vector2( 384, 256 )
+
+[node name="GreenPressurePlate" parent="Triggers" index="26" instance=ExtResource( 4 )]
+position = Vector2( 384, 192 )
+
+[node name="Walls" parent="Tilemaps" index="0"]
+tile_data = PoolIntArray( 65547, 0, 1, 65548, 0, 196610, 65549, 0, 3, 131083, 0, 65536, 131085, 0, 65536, 196619, 0, 65536, 196621, 0, 65536, 262155, 0, 65536, 262157, 0, 65536, 327691, 0, 65536, 327693, 0, 65536, 393227, 0, 65536, 393229, 0, 65536, 458760, 0, 1, 458761, 0, 196610, 458762, 0, 196610, 458763, 0, 131075, 458765, 0, 131073, 458766, 0, 196610, 458767, 0, 196610, 458768, 0, 3, 524296, 0, 65536, 524304, 0, 65536, 589832, 0, 65536, 589838, 0, 196608, 589840, 0, 65536, 655368, 0, 65536, 655370, 0, 196608, 655376, 0, 65536, 720904, 0, 65536, 720912, 0, 65536, 786440, 0, 131073, 786441, 0, 196610, 786442, 0, 196610, 786443, 0, 196610, 786444, 0, 196610, 786445, 0, 196610, 786446, 0, 196610, 786447, 0, 196610, 786448, 0, 131075 )

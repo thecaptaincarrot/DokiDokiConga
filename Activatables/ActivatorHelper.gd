@@ -16,6 +16,4 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	if Engine.editor_hint:
-		text = ""
-		for code in get_parent().code:
-			text += code + ","
+		text = get_parent().code
