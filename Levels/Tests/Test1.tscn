@@ -10,21 +10,20 @@
 
 [node name="LevelEntry" parent="Entries" index="0"]
 position = Vector2( 608, 320 )
-frame = 0
+frame = 5
 line_size = 8
 
 [node name="LevelEntry2" parent="Entries" index="1" instance=ExtResource( 2 )]
 position = Vector2( 128, 128 )
-frame = 3
 line_size = 8
 
 [node name="LevelExit" parent="Exits" index="0"]
 position = Vector2( 608, 128 )
-frame = 7
+frame = 2
 
 [node name="LevelExit2" parent="Exits" index="1" instance=ExtResource( 3 )]
 position = Vector2( 128, 320 )
-frame = 6
+frame = 1
 
 [node name="Door" parent="Activators" index="0" instance=ExtResource( 4 )]
 position = Vector2( 192, 128 )

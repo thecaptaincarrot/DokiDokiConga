@@ -17,7 +17,8 @@ func _ready():
 
 
 #Default End_Level() function
-
+func end_level():
+	get_tree().change_scene("res://Demo/DemoTestScreen.tscn")
 
 func escape(): #if tutorial has not been completed once, do not go to world map
 	if Completed.completed_levels.has([0,1]):

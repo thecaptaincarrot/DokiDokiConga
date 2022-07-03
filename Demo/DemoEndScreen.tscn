@@ -1,0 +1,394 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Demo/DemoEndScreen.gd" type="Script" id=1]
+
+[node name="DemoEndScreen" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Panel" type="Panel" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -219.0
+margin_top = -214.0
+margin_right = 210.0
+margin_bottom = 193.0
+
+[node name="Label" type="Label" parent="Panel"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -183.5
+margin_top = 6.0
+margin_right = 183.5
+margin_bottom = 37.0
+text = "Thanks For Playing!
+Please screenshot this and send it to CaptainCarrot#1312"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel"]
+margin_left = 101.0
+margin_top = 72.0
+margin_right = 203.0
+margin_bottom = 320.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Level1" type="HBoxContainer" parent="Panel/VBoxContainer"]
+margin_right = 102.0
+margin_bottom = 14.0
+
+[node name="Level" type="Label" parent="Panel/VBoxContainer/Level1"]
+margin_right = 46.0
+margin_bottom = 14.0
+text = "Level 1"
+
+[node name="Time" type="Label" parent="Panel/VBoxContainer/Level1"]
+margin_left = 50.0
+margin_right = 94.0
+margin_bottom = 14.0
+text = "200.00"
+
+[node name="Gave Up" type="Label" parent="Panel/VBoxContainer/Level1"]
+visible = false
+margin_left = 98.0
+margin_right = 152.0
+margin_bottom = 14.0
+text = "Gave Up"
+
+[node name="Level2" type="HBoxContainer" parent="Panel/VBoxContainer"]
+margin_top = 18.0
+margin_right = 102.0
+margin_bottom = 32.0
+
+[node name="Level" type="Label" parent="Panel/VBoxContainer/Level2"]
+margin_right = 46.0
+margin_bottom = 14.0
+text = "Level 2"
+
+[node name="Time" type="Label" parent="Panel/VBoxContainer/Level2"]
+margin_left = 50.0
+margin_right = 94.0
+margin_bottom = 14.0
+text = "200.00"
+
+[node name="Gave Up" type="Label" parent="Panel/VBoxContainer/Level2"]
+visible = false
+margin_left = 8.0
+margin_right = 62.0
+margin_bottom = 14.0
+text = "Gave Up"
+
+[node name="Level3" type="HBoxContainer" parent="Panel/VBoxContainer"]
+margin_top = 36.0
+margin_right = 102.0
+margin_bottom = 50.0
+
+[node name="Level" type="Label" parent="Panel/VBoxContainer/Level3"]
+margin_right = 46.0
+margin_bottom = 14.0
+text = "Level 3"
+
+[node name="Time" type="Label" parent="Panel/VBoxContainer/Level3"]
+margin_left = 50.0
+margin_right = 94.0
+margin_bottom = 14.0
+text = "200.00"
+
+[node name="Gave Up" type="Label" parent="Panel/VBoxContainer/Level3"]
+visible = false
+margin_left = 8.0
+margin_right = 62.0
+margin_bottom = 14.0
+text = "Gave Up"
+
+[node name="Level4" type="HBoxContainer" parent="Panel/VBoxContainer"]
+margin_top = 54.0
+margin_right = 102.0
+margin_bottom = 68.0
+
+[node name="Level" type="Label" parent="Panel/VBoxContainer/Level4"]
+margin_right = 46.0
+margin_bottom = 14.0
+text = "Level 4"
+
+[node name="Time" type="Label" parent="Panel/VBoxContainer/Level4"]
+margin_left = 50.0
+margin_right = 94.0
+margin_bottom = 14.0
+text = "200.00"
+
+[node name="Gave Up" type="Label" parent="Panel/VBoxContainer/Level4"]
+visible = false
+margin_left = 8.0
+margin_right = 62.0
+margin_bottom = 14.0
+text = "Gave Up"
+
+[node name="Level5" type="HBoxContainer" parent="Panel/VBoxContainer"]
+margin_top = 72.0
+margin_right = 102.0
+margin_bottom = 86.0
+
+[node name="Level" type="Label" parent="Panel/VBoxContainer/Level5"]
+margin_right = 46.0
+margin_bottom = 14.0
+text = "Level 5"
+
+[node name="Time" type="Label" parent="Panel/VBoxContainer/Level5"]
+margin_left = 50.0
+margin_right = 94.0
+margin_bottom = 14.0
+text = "200.00"
+
+[node name="Gave Up" type="Label" parent="Panel/VBoxContainer/Level5"]
+visible = false
+margin_left = 8.0
+margin_right = 62.0
+margin_bottom = 14.0
+text = "Gave Up"
+
+[node name="Level6" type="HBoxContainer" parent="Panel/VBoxContainer"]
+margin_top = 90.0
+margin_right = 102.0
+margin_bottom = 104.0
+
+[node name="Level" type="Label" parent="Panel/VBoxContainer/Level6"]
+margin_right = 46.0
+margin_bottom = 14.0
+text = "Level 6"
+
+[node name="Time" type="Label" parent="Panel/VBoxContainer/Level6"]
+margin_left = 50.0
+margin_right = 94.0
+margin_bottom = 14.0
+text = "200.00"
+
+[node name="Gave Up" type="Label" parent="Panel/VBoxContainer/Level6"]
+visible = false
+margin_left = 8.0
+margin_right = 62.0
+margin_bottom = 14.0
+text = "Gave Up"
+
+[node name="Level7" type="HBoxContainer" parent="Panel/VBoxContainer"]
+margin_top = 108.0
+margin_right = 102.0
+margin_bottom = 122.0
+
+[node name="Level" type="Label" parent="Panel/VBoxContainer/Level7"]
+margin_right = 46.0
+margin_bottom = 14.0
+text = "Level 7"
+
+[node name="Time" type="Label" parent="Panel/VBoxContainer/Level7"]
+margin_left = 50.0
+margin_right = 94.0
+margin_bottom = 14.0
+text = "200.00"
+
+[node name="Gave Up" type="Label" parent="Panel/VBoxContainer/Level7"]
+visible = false
+margin_left = 8.0
+margin_right = 62.0
+margin_bottom = 14.0
+text = "Gave Up"
+
+[node name="Level8" type="HBoxContainer" parent="Panel/VBoxContainer"]
+margin_top = 126.0
+margin_right = 102.0
+margin_bottom = 140.0
+
+[node name="Level" type="Label" parent="Panel/VBoxContainer/Level8"]
+margin_right = 46.0
+margin_bottom = 14.0
+text = "Level 8"
+
+[node name="Time" type="Label" parent="Panel/VBoxContainer/Level8"]
+margin_left = 50.0
+margin_right = 94.0
+margin_bottom = 14.0
+text = "200.00"
+
+[node name="Gave Up" type="Label" parent="Panel/VBoxContainer/Level8"]
+visible = false
+margin_left = 8.0
+margin_right = 62.0
+margin_bottom = 14.0
+text = "Gave Up"
+
+[node name="Level9" type="HBoxContainer" parent="Panel/VBoxContainer"]
+margin_top = 144.0
+margin_right = 102.0
+margin_bottom = 158.0
+
+[node name="Level" type="Label" parent="Panel/VBoxContainer/Level9"]
+margin_right = 46.0
+margin_bottom = 14.0
+text = "Level 9"
+
+[node name="Time" type="Label" parent="Panel/VBoxContainer/Level9"]
+margin_left = 50.0
+margin_right = 94.0
+margin_bottom = 14.0
+text = "200.00"
+
+[node name="Gave Up" type="Label" parent="Panel/VBoxContainer/Level9"]
+visible = false
+margin_left = 8.0
+margin_right = 62.0
+margin_bottom = 14.0
+text = "Gave Up"
+
+[node name="Level10" type="HBoxContainer" parent="Panel/VBoxContainer"]
+margin_top = 162.0
+margin_right = 102.0
+margin_bottom = 176.0
+
+[node name="Level" type="Label" parent="Panel/VBoxContainer/Level10"]
+margin_right = 54.0
+margin_bottom = 14.0
+text = "Level 10"
+
+[node name="Time" type="Label" parent="Panel/VBoxContainer/Level10"]
+margin_left = 58.0
+margin_right = 102.0
+margin_bottom = 14.0
+text = "200.00"
+
+[node name="Gave Up" type="Label" parent="Panel/VBoxContainer/Level10"]
+visible = false
+margin_left = 8.0
+margin_right = 62.0
+margin_bottom = 14.0
+text = "Gave Up"
+
+[node name="Level11" type="HBoxContainer" parent="Panel/VBoxContainer"]
+margin_top = 180.0
+margin_right = 102.0
+margin_bottom = 194.0
+
+[node name="Level" type="Label" parent="Panel/VBoxContainer/Level11"]
+margin_right = 54.0
+margin_bottom = 14.0
+text = "Level 11"
+
+[node name="Time" type="Label" parent="Panel/VBoxContainer/Level11"]
+margin_left = 58.0
+margin_right = 102.0
+margin_bottom = 14.0
+text = "200.00"
+
+[node name="Gave Up" type="Label" parent="Panel/VBoxContainer/Level11"]
+visible = false
+margin_left = 8.0
+margin_right = 62.0
+margin_bottom = 14.0
+text = "Gave Up"
+
+[node name="Level12" type="HBoxContainer" parent="Panel/VBoxContainer"]
+margin_top = 198.0
+margin_right = 102.0
+margin_bottom = 212.0
+
+[node name="Level" type="Label" parent="Panel/VBoxContainer/Level12"]
+margin_right = 54.0
+margin_bottom = 14.0
+text = "Level 12"
+
+[node name="Time" type="Label" parent="Panel/VBoxContainer/Level12"]
+margin_left = 58.0
+margin_right = 102.0
+margin_bottom = 14.0
+text = "200.00"
+
+[node name="Gave Up" type="Label" parent="Panel/VBoxContainer/Level12"]
+visible = false
+margin_left = 8.0
+margin_right = 62.0
+margin_bottom = 14.0
+text = "Gave Up"
+
+[node name="Level13" type="HBoxContainer" parent="Panel/VBoxContainer"]
+margin_top = 216.0
+margin_right = 102.0
+margin_bottom = 230.0
+
+[node name="Level" type="Label" parent="Panel/VBoxContainer/Level13"]
+margin_right = 54.0
+margin_bottom = 14.0
+text = "Level 13"
+
+[node name="Time" type="Label" parent="Panel/VBoxContainer/Level13"]
+margin_left = 58.0
+margin_right = 102.0
+margin_bottom = 14.0
+text = "200.00"
+
+[node name="Gave Up" type="Label" parent="Panel/VBoxContainer/Level13"]
+visible = false
+margin_left = 8.0
+margin_right = 62.0
+margin_bottom = 14.0
+text = "Gave Up"
+
+[node name="Level14" type="HBoxContainer" parent="Panel/VBoxContainer"]
+margin_top = 234.0
+margin_right = 102.0
+margin_bottom = 248.0
+
+[node name="Level" type="Label" parent="Panel/VBoxContainer/Level14"]
+margin_right = 54.0
+margin_bottom = 14.0
+text = "Level 14"
+
+[node name="Time" type="Label" parent="Panel/VBoxContainer/Level14"]
+margin_left = 58.0
+margin_right = 102.0
+margin_bottom = 14.0
+text = "200.00"
+
+[node name="Gave Up" type="Label" parent="Panel/VBoxContainer/Level14"]
+visible = false
+margin_left = 8.0
+margin_right = 62.0
+margin_bottom = 14.0
+text = "Gave Up"
+
+[node name="TextEdit" type="TextEdit" parent="Panel"]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -119.5
+margin_top = -40.0
+margin_right = 119.5
+text = "I do not wish to be in the credits"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label2" type="Label" parent="Panel"]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -176.5
+margin_top = -74.0
+margin_right = 177.5
+margin_bottom = -43.0
+text = "Enter below how you would like to appear in the credits
+as \"Puzzle Tester\""
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}

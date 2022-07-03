@@ -361,9 +361,12 @@ func partier_died():
 
 
 func end_level():
-	Completed.level_completed()
-	#TODO ADD ANIMATIONS OR WHATEVER
-	get_tree().change_scene("res://WorldMap/WorldMap.tscn")
+	#Readd when not a demo thing
+#	Completed.level_completed()
+#	#TODO ADD ANIMATIONS OR WHATEVER
+#	get_tree().change_scene("res://WorldMap/WorldMap.tscn")
+	DemoAutoLoad.complete_level()
+	pass
 
 
 func get_turn():
@@ -416,3 +419,11 @@ func set_camera():
 	
 	$MainCamera.zoom = Vector2(max_zoom_factor,max_zoom_factor)
 	$MainCamera.offset = center_point
+
+
+func _on_Button_pressed():
+	DemoAutoLoad.give_up()
+
+
+func _on_Timer_timeout():
+	$PlayArea/Button.show()

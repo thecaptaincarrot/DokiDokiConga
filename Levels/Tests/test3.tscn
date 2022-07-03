@@ -10,11 +10,11 @@
 
 [node name="LevelEntry" parent="Entries" index="0"]
 position = Vector2( 320, 448 )
-frame = 0
+frame = 4
 
 [node name="LevelExit" parent="Exits" index="0"]
 position = Vector2( 320, 32 )
-frame = 3
+frame = 7
 
 [node name="Door" parent="Activators" index="0" instance=ExtResource( 1 )]
 position = Vector2( 320, 224 )
@@ -25,11 +25,10 @@ position = Vector2( 128, 64 )
 
 [node name="LeverBase" parent="Triggers" index="0" instance=ExtResource( 2 )]
 position = Vector2( 384, 160 )
-code = "GATE"
+code = [ "GATE" ]
 
 [node name="GreenPressurePlate" parent="Triggers" index="1" instance=ExtResource( 6 )]
 position = Vector2( 64, 64 )
-code = "GATE"
 
 [node name="Walls" parent="Tilemaps" index="0"]
 tile_data = PoolIntArray( -65532, 0, 1, -65531, 0, 196610, -65530, 0, 196610, -65529, 0, 196610, -65528, 0, 196610, -65527, 0, 196610, -65526, 0, 196610, -65525, 0, 196610, -65524, 0, 196610, -65523, 0, 196610, -65522, 0, 196610, -65521, 0, 196610, -65520, 0, 3, 4, 0, 65536, 16, 0, 65536, 65540, 0, 131072, 65552, 0, 65536, 131088, 0, 65536, 196612, 0, 0, 196624, 0, 65536, 262148, 0, 65536, 262160, 0, 65536, 327684, 0, 65536, 327696, 0, 65536, 393220, 0, 65536, 393232, 0, 65536, 458756, 0, 131073, 458757, 0, 196610, 458758, 0, 196610, 458759, 0, 196610, 458760, 0, 196610, 458761, 0, 196611, 458763, 0, 196609, 458764, 0, 196610, 458765, 0, 196610, 458766, 0, 196610, 458767, 0, 196610, 458768, 0, 131075 )

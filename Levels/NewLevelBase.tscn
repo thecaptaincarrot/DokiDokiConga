@@ -103,12 +103,12 @@ script = ExtResource( 8 )
 
 [node name="LevelEntry" parent="Entries" instance=ExtResource( 1 )]
 position = Vector2( 192, 288 )
-frame = 5
+frame = 2
 
 [node name="Exits" type="Node" parent="."]
 
 [node name="LevelExit" parent="Exits" instance=ExtResource( 3 )]
-frame = 2
+frame = 7
 
 [node name="People" type="Node" parent="."]
 
@@ -165,9 +165,26 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="Button" type="Button" parent="PlayArea"]
+visible = false
+margin_left = 12.0
+margin_top = 11.0
+margin_right = 76.0
+margin_bottom = 43.0
+text = "Give Up"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="MainCamera" type="Camera2D" parent="."]
 visible = false
 offset = Vector2( 200, 300 )
 current = true
 
+[node name="Timer" type="Timer" parent="."]
+wait_time = 60.0
+autostart = true
+
 [connection signal="timeout" from="Metronome" to="Metronome" method="_on_Metronome_timeout"]
+[connection signal="pressed" from="PlayArea/Button" to="." method="_on_Button_pressed"]
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]

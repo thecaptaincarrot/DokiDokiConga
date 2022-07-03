@@ -116,6 +116,7 @@ func undo_move(turn):
 			print("undead")
 			dead = false
 			turn_died = -1
+			visible = true
 			show()
 		
 		$MovementTween.interpolate_property(self,"position", position, grid_position, movement_time)
