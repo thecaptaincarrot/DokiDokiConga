@@ -103,12 +103,12 @@ script = ExtResource( 8 )
 
 [node name="LevelEntry" parent="Entries" instance=ExtResource( 1 )]
 position = Vector2( 192, 288 )
-frame = 2
+frame = 7
 
 [node name="Exits" type="Node" parent="."]
 
 [node name="LevelExit" parent="Exits" instance=ExtResource( 3 )]
-frame = 7
+frame = 4
 
 [node name="People" type="Node" parent="."]
 

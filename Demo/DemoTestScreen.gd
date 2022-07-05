@@ -14,9 +14,7 @@ func _ready():
 
 
 func _input(event):
-	pass
 	if event is InputEventKey and Go:
-		pass
 		get_tree().change_scene("res://Levels/Tests/test1.tscn")
 		#Continue to test 1
 

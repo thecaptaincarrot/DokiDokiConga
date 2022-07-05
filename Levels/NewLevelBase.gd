@@ -69,6 +69,8 @@ func start(): #TODO: turn into animation
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	if DemoAutoLoad.current_time > 60.0:
+		$PlayArea/Button.show()
 	$HUD/ExitNum.text = str(need_exit) 
 #	check_buttons()
 #	party_positions = get_partier_positions()

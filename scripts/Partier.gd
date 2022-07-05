@@ -10,6 +10,8 @@ var can_move = true
 var exiting = false
 var dead = false
 
+var visible_check = false
+
 #Undo shit
 var move_undo = {}
 var became_leader = -1
@@ -59,6 +61,8 @@ func _process(delta):
 #		hide()
 #	elif !dead and !exiting:
 #		show()
+	if visible_check and !visible:
+		show()
 	pass
 
 
@@ -93,36 +97,48 @@ func move_to(destination):
 	#Hack, change if necessary
 	if prev_position != destination and follower: #I actually moved trust me bro
 		follower.show() #Unhide follower coming out of portal
+		visible_check = true
 
 
 func undo_move(turn):
+	if turn_died != -1:
+		print(turn_died)
+		print(turn)
+	
 	if move_undo.has(turn):
+		if turn_died != -1:
+			print(turn_died)
+			print(turn)
 		var prev_position = grid_position
 		grid_position = move_undo[turn]
 		
 		var direction = (grid_position - prev_position).normalized()
 		
 		move_undo.erase(turn)
-		
-		if turn == turn_exited:
-			exiting = false
-			playable = true
-			is_leader = true
-			show()
-			turn_exited = -1
-			emit_signal("PartierUnExitted")
-	
-		if turn == turn_died:
-			print("undead")
-			dead = false
-			turn_died = -1
-			visible = true
-			show()
-		
+		set_walker_animation_direction(-direction)
 		$MovementTween.interpolate_property(self,"position", position, grid_position, movement_time)
 		$MovementTween.start()
+	
+	if turn == turn_exited:
+		exiting = false
+		playable = true
+		is_leader = true
+		show()
+		visible_check = true
+		turn_exited = -1
+		emit_signal("PartierUnExitted")
+
+	if turn == turn_died:
+		print("undead")
+		dead = false
+		turn_died = -1
+		visible = true
+		visible_check = true
+		show()
 		
-		set_walker_animation_direction(-direction)
+
+		
+		
 
 
 func teleport_to(destination):
@@ -233,6 +249,7 @@ func kill(): #rewrite because this isn't very cool
 	turn_died = parent_level.get_turn() - 1 #The scalar is shit and I hope it never breaks
 	print("I died on turn ", turn_died, " and the current turn is ", parent_level.get_turn())
 	emit_signal("PartierDied")
+	visible_check = false
 	hide()
 
 
@@ -361,5 +378,6 @@ func tick_tock(frame): #timer based animation to keep every sprite on beat
 
 func _on_MovementTween_tween_all_completed():
 	if exiting:
+		visible_check = false
 		hide()
 		playable = false
