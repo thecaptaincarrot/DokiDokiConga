@@ -1,7 +1,7 @@
 extends Node
 
 var completion_times = {}
-var gave_up = [6]
+var completed = []
 
 
 var current_level = 1
@@ -38,7 +38,3 @@ func go_to_level(level):
 	var level_path = "res://Levels/Tests/test" + str(level) + ".tscn"
 	get_tree().change_scene(level_path)
 
-
-func give_up():
-	gave_up.append(current_level)
-	complete_level()
