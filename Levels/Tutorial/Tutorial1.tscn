@@ -39,6 +39,3 @@ make it to the exit."
 __meta__ = {
 "_edit_use_anchors_": false
 }
-
-[node name="Timer" parent="." index="12"]
-autostart = false

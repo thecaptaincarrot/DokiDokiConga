@@ -107,7 +107,7 @@ position = Vector2( 192, 288 )
 [node name="Exits" type="Node" parent="."]
 
 [node name="LevelExit" parent="Exits" instance=ExtResource( 3 )]
-frame = 1
+frame = 6
 
 [node name="People" type="Node" parent="."]
 
