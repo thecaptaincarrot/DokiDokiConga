@@ -12,22 +12,26 @@ func _ready():
 	print(Completed.completed_levels)
 	
 	#put the player on the last completed level
-	if Completed.current_level[0] != -1:
-		current_world = Completed.current_level[0]
-		
-		var worldpath = "Worlds/World" + str(Completed.current_level[0])
-		var completion_world = get_node(worldpath)
-		var leveltile = completion_world.get_tile(Completed.current_level[1])
-		$WorldPlayer.position = leveltile.position
-		
-		$WorldCamera.change_world(Completed.current_level[0])
-		#if completed the tutorial for the first time
-		if Completed.current_level==[0,1] and Completed.first_complete:
-			#put player at the node
-			print("Smiley Face")
-			pass
-	else:
-		$WorldPlayer.position = $Worlds/DemoWorld/LevelTile4.position
+#	if Completed.current_level[0] != -1:
+#		current_world = Completed.current_level[0]
+#
+#		var worldpath = "Worlds/World" + str(Completed.current_level[0])
+#		var completion_world = get_node(worldpath)
+#		var leveltile = completion_world.get_tile(Completed.current_level[1])
+#		$WorldPlayer.position = leveltile.position
+#
+#		#if completed the tutorial for the first time
+#		if Completed.current_level==[0,1] and Completed.first_complete:
+#			#put player at the node
+#			print("Smiley Face")
+#			pass
+#	else:
+	$WorldPlayer.position = $Worlds/DemoWorld/LevelTile4.position
+
+	for completed in DemoAutoLoad.completed:
+		print(completed)
+		var node_path = "Worlds/DemoWorld/LevelTile" + str(completed)
+		get_node(node_path).modulate = Color.green
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -91,7 +95,8 @@ func enter_level(tile):
 		print("world: ", current_world)
 		match current_world:
 			-1:
-				$Worlds/DemoWorld.enter_level(tile.level_num)
+				if !DemoAutoLoad.completed.has(tile.level_num):
+					$Worlds/DemoWorld.enter_level(tile.level_num)
 			0:
 				$Worlds/World0.enter_level(tile.level_num)
 			1:
@@ -102,6 +107,7 @@ func enter_level(tile):
 		#End Demo
 		pass
 		print("I tried to leave")
+		get_tree().change_scene("res://Demo/DemoEndScreen.tscn")
 
 
 func get_world_node(world_num):

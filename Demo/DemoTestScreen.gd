@@ -15,7 +15,7 @@ func _ready():
 
 func _input(event):
 	if event is InputEventKey and Go:
-		get_tree().change_scene("res://Levels/Tests/test1.tscn")
+		get_tree().change_scene("res://Demo/DemoWorldMap.tscn")
 		#Continue to test 1
 
 

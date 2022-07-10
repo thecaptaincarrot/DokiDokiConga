@@ -22,6 +22,7 @@ func end_level():
 
 func escape(): #if tutorial has not been completed once, do not go to world map
 	if Completed.completed_levels.has([0,1]):
-		get_tree().change_scene("res://WorldMap/WorldMap.tscn")
+		get_tree().change_scene("res://Demo/DemoWorldMap.tscn")
+#		get_tree().change_scene("res://WorldMap/WorldMap.tscn")
 	else:
 		pass

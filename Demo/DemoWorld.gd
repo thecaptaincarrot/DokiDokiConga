@@ -15,4 +15,7 @@ func enter_level(level_number):
 	var test_name = "test" + str(level_number)
 	var test_path = "res://Levels/Tests/" + test_name + ".tscn"
 	
+	DemoAutoLoad.current_level = level_number
+	DemoAutoLoad.start_timing()
+	
 	get_tree().change_scene(test_path)

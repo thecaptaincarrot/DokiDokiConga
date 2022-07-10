@@ -1,10 +1,10 @@
 [gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Levels/NewLevelBase.tscn" type="PackedScene" id=1]
-[ext_resource path="res://BaseNodes/LevelExit.tscn" type="PackedScene" id=2]
-[ext_resource path="res://BaseNodes/LevelEntry.tscn" type="PackedScene" id=3]
-[ext_resource path="res://Activatables/Trigger/GreenPressurePlate.tscn" type="PackedScene" id=4]
-[ext_resource path="res://Activatables/SideDoor.tscn" type="PackedScene" id=5]
+[ext_resource path="res://BaseNodes/LevelEntry.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Activatables/SideDoor.tscn" type="PackedScene" id=3]
+[ext_resource path="res://BaseNodes/LevelExit.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Activatables/Trigger/GreenPressurePlate.tscn" type="PackedScene" id=5]
 
 [node name="Level" instance=ExtResource( 1 )]
 
@@ -12,7 +12,7 @@
 position = Vector2( 608, 320 )
 line_size = 8
 
-[node name="LevelEntry2" parent="Entries" index="1" instance=ExtResource( 3 )]
+[node name="LevelEntry2" parent="Entries" index="1" instance=ExtResource( 2 )]
 position = Vector2( 128, 128 )
 frame = 3
 line_size = 8
@@ -20,55 +20,55 @@ line_size = 8
 [node name="LevelExit" parent="Exits" index="0"]
 position = Vector2( 608, 128 )
 
-[node name="LevelExit2" parent="Exits" index="1" instance=ExtResource( 2 )]
+[node name="LevelExit2" parent="Exits" index="1" instance=ExtResource( 4 )]
 position = Vector2( 128, 320 )
 frame = 6
 
-[node name="Door" parent="Activators" index="0" instance=ExtResource( 5 )]
+[node name="Door" parent="Activators" index="0" instance=ExtResource( 3 )]
 position = Vector2( 192, 128 )
 code = "UP1"
 
-[node name="Door2" parent="Activators" index="1" instance=ExtResource( 5 )]
+[node name="Door2" parent="Activators" index="1" instance=ExtResource( 3 )]
 position = Vector2( 352, 128 )
 code = "UP2"
 
-[node name="Door3" parent="Activators" index="2" instance=ExtResource( 5 )]
+[node name="Door3" parent="Activators" index="2" instance=ExtResource( 3 )]
 position = Vector2( 512, 128 )
 code = "UP3"
 
-[node name="Door4" parent="Activators" index="3" instance=ExtResource( 5 )]
+[node name="Door4" parent="Activators" index="3" instance=ExtResource( 3 )]
 position = Vector2( 544, 320 )
 code = "DOWN1"
 
-[node name="Door5" parent="Activators" index="4" instance=ExtResource( 5 )]
+[node name="Door5" parent="Activators" index="4" instance=ExtResource( 3 )]
 position = Vector2( 384, 320 )
 code = "DOWN2"
 
-[node name="Door6" parent="Activators" index="5" instance=ExtResource( 5 )]
+[node name="Door6" parent="Activators" index="5" instance=ExtResource( 3 )]
 position = Vector2( 224, 320 )
 code = "DOWN3"
 
-[node name="GreenPressurePlate" parent="Triggers" index="0" instance=ExtResource( 4 )]
+[node name="GreenPressurePlate" parent="Triggers" index="0" instance=ExtResource( 5 )]
 position = Vector2( 320, 128 )
 code = [ "DOWN1" ]
 
-[node name="GreenPressurePlate2" parent="Triggers" index="1" instance=ExtResource( 4 )]
+[node name="GreenPressurePlate2" parent="Triggers" index="1" instance=ExtResource( 5 )]
 position = Vector2( 480, 128 )
 code = [ "DOWN2" ]
 
-[node name="GreenPressurePlate3" parent="Triggers" index="2" instance=ExtResource( 4 )]
+[node name="GreenPressurePlate3" parent="Triggers" index="2" instance=ExtResource( 5 )]
 position = Vector2( 640, 128 )
 code = [ "DOWN3" ]
 
-[node name="GreenPressurePlate4" parent="Triggers" index="3" instance=ExtResource( 4 )]
+[node name="GreenPressurePlate4" parent="Triggers" index="3" instance=ExtResource( 5 )]
 position = Vector2( 576, 320 )
 code = [ "UP1" ]
 
-[node name="GreenPressurePlate5" parent="Triggers" index="4" instance=ExtResource( 4 )]
+[node name="GreenPressurePlate5" parent="Triggers" index="4" instance=ExtResource( 5 )]
 position = Vector2( 416, 320 )
 code = [ "UP2" ]
 
-[node name="GreenPressurePlate6" parent="Triggers" index="5" instance=ExtResource( 4 )]
+[node name="GreenPressurePlate6" parent="Triggers" index="5" instance=ExtResource( 5 )]
 position = Vector2( 256, 320 )
 code = [ "UP3" ]
 

@@ -61,9 +61,9 @@ text = "200.00"
 [node name="Gave Up" type="Label" parent="Panel/VBoxContainer/Level1"]
 visible = false
 margin_left = 98.0
-margin_right = 152.0
+margin_right = 168.0
 margin_bottom = 14.0
-text = "Gave Up"
+text = "Completed"
 
 [node name="Level2" type="HBoxContainer" parent="Panel/VBoxContainer"]
 margin_top = 18.0
@@ -83,10 +83,10 @@ text = "200.00"
 
 [node name="Gave Up" type="Label" parent="Panel/VBoxContainer/Level2"]
 visible = false
-margin_left = 8.0
-margin_right = 62.0
+margin_left = 98.0
+margin_right = 168.0
 margin_bottom = 14.0
-text = "Gave Up"
+text = "Completed"
 
 [node name="Level3" type="HBoxContainer" parent="Panel/VBoxContainer"]
 margin_top = 36.0
@@ -109,7 +109,7 @@ visible = false
 margin_left = 8.0
 margin_right = 62.0
 margin_bottom = 14.0
-text = "Gave Up"
+text = "Completed"
 
 [node name="Level4" type="HBoxContainer" parent="Panel/VBoxContainer"]
 margin_top = 54.0

@@ -23,21 +23,21 @@ All puzzles and art may not be representative of the final product
 This demo consists of 14 puzzles.  You will be timed on how long it takes 
 you to complete each level.
 
-After a minute, a button will appear to allow you to give up and move 
-on to the next puzzle.  This does not actually give me much useful
-information, so I'd encourage to not use it unless you're really stumped.
-All puzzles have a solution
+You may press escape at any time in a level to return to the world map.
+Your time in that level will not be reset.  Please try to complete all levels
+to the best of your abilities.
 
-After you've completed all 14 puzzles, you will be presented with
-an end screen with your times.  Please screenshot this screen and
-send it to captaincarrot#1312 on discord for research purposes.
+After you've completed all 14 puzzles, enter the portal at the north end
+of the world map where you will be given a screen showing your complettion
+times..  Please screenshot this screen and send it to captaincarrot#1312 on discord.
 
 It is best if you complete this in one attempt and send me the information
 for this first attempt.  It doesn't help me if you practice my puzzles a bunch
 and then submit amazing times just to flex.
 
 I am not looking for feedback about controls, art, puzzle variety,
-jankiness, or much else at this time."
+jankiness, or much else at this time. Only completetion times for
+the puzzles in this demo."
 align = 1
 __meta__ = {
 "_edit_use_anchors_": false

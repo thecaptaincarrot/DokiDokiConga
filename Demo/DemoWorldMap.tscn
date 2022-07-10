@@ -17,6 +17,10 @@
 [ext_resource path="res://WorldMap/Sprites/Bridge.png" type="Texture" id=18]
 [ext_resource path="res://WorldMap/Bridge.gd" type="Script" id=19]
 
+[sub_resource type="AtlasTexture" id=27]
+atlas = ExtResource( 18 )
+region = Rect2( 0, 0, 48, 64 )
+
 [sub_resource type="AtlasTexture" id=21]
 atlas = ExtResource( 18 )
 region = Rect2( 48, 0, 48, 64 )
@@ -41,21 +45,17 @@ region = Rect2( 240, 0, 48, 64 )
 atlas = ExtResource( 18 )
 region = Rect2( 0, 0, 48, 64 )
 
-[sub_resource type="AtlasTexture" id=27]
-atlas = ExtResource( 18 )
-region = Rect2( 0, 0, 48, 64 )
-
 [sub_resource type="SpriteFrames" id=20]
 animations = [ {
-"frames": [ SubResource( 21 ), SubResource( 22 ), SubResource( 23 ), SubResource( 24 ), SubResource( 25 ), SubResource( 26 ) ],
-"loop": false,
-"name": "Deploy",
-"speed": 4.0
-}, {
 "frames": [ SubResource( 27 ) ],
 "loop": true,
 "name": "Opened",
 "speed": 5.0
+}, {
+"frames": [ SubResource( 21 ), SubResource( 22 ), SubResource( 23 ), SubResource( 24 ), SubResource( 25 ), SubResource( 26 ) ],
+"loop": false,
+"name": "Deploy",
+"speed": 4.0
 } ]
 
 [sub_resource type="Animation" id=28]
@@ -288,33 +288,40 @@ level_num = 13
 position = Vector2( 384, 192 )
 level_num = 14
 
-[node name="LevelTile15" parent="Worlds/DemoWorld" instance=ExtResource( 1 )]
-position = Vector2( 416, 192 )
-level_num = 15
-
 [node name="World2Portal" type="AnimatedSprite" parent="Worlds/DemoWorld" groups=["Portal", "Tile"]]
 position = Vector2( 384, 160 )
 frames = SubResource( 14 )
+frame = 5
 playing = true
 offset = Vector2( 0, -8 )
 script = ExtResource( 8 )
 target_world = 2
 
-[node name="Label" type="Label" parent="Worlds/DemoWorld"]
-margin_left = 400.0
-margin_top = 128.0
-margin_right = 597.0
-margin_bottom = 159.0
+[node name="Panel" type="Panel" parent="Worlds/DemoWorld"]
+margin_left = 415.0
+margin_top = 121.0
+margin_right = 623.0
+margin_bottom = 161.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="Worlds/DemoWorld/Panel"]
+margin_left = 8.0
+margin_top = 6.0
+margin_right = 205.0
+margin_bottom = 37.0
 text = "Exit here to end the demo
 and get your completion times"
 __meta__ = {
+"_edit_lock_": true,
 "_edit_use_anchors_": false
 }
 
 [node name="WorldPlayer" type="AnimatedSprite" parent="."]
 z_index = 1
 frames = SubResource( 5 )
-frame = 2
+frame = 3
 playing = true
 offset = Vector2( 0, -12 )
 script = ExtResource( 4 )

@@ -48,6 +48,7 @@ func _ready():
 					activator.pair_trigger(trigger)
 	
 	start()
+	$PlayArea.hide()
 
 
 func start(): #TODO: turn into animation
@@ -277,7 +278,10 @@ func undo():
 
 
 func escape():
-	get_tree().change_scene("res://WorldMap/WorldMap.tscn")
+#	get_tree().change_scene("res://WorldMap/WorldMap.tscn")
+	DemoAutoLoad.stop_timing()
+	get_tree().change_scene("res://Demo/DemoWorldMap.tscn")
+
 
 
 func add_leader(entry): #entry is the portal that the leader is coming out of
@@ -421,11 +425,3 @@ func set_camera():
 	
 	$MainCamera.zoom = Vector2(max_zoom_factor,max_zoom_factor)
 	$MainCamera.offset = center_point
-
-
-func _on_Button_pressed():
-	DemoAutoLoad.give_up()
-
-
-func _on_Timer_timeout():
-	$PlayArea/Button.show()
