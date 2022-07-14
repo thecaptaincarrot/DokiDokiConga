@@ -1,5 +1,25 @@
 extends Node2D
 
+const FILEPATH = "res://Sprites/NewPartier/tres/"
+
+const frame_order = [1,0,2,0,1,0,3,3,2,0,1,2,4,4]
+const Heads = ["FHair1","FHair2","FHair3","FHair4","FHair5",\
+"MHair1","MHair2","MHair3","MHair4","MHat",\
+]
+const Shirts = ["Shirt1_1","Shirt2_1","Shirt3_1","Shirt4_1",\
+"Shirt1_2","Shirt2_2","Shirt3_2","Shirt4_2",\
+"Shirt1_3","Shirt2_3","Shirt3_3","Shirt4_3",\
+"Shirt1_4","Shirt2_4","Shirt3_4","Shirt4_4",\
+]
+
+const Pants = ["Pants1_1","Pants1_2","Pants1_3","Pants1_4",\
+"Pants2_1","Pants2_2","Pants2_3","Pants2_4",\
+"Pants4_1","Pants4_2","Pants4_3","Pants4_4",\
+"Pants3_1","Pants3_2","Pants3_3","Pants3_4",\
+]
+
+var frame = 0
+
 var parent_level = null
 
 var grid_position = Vector2()
@@ -43,12 +63,35 @@ signal BecomeLeader
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	randomize()
 	position = Vector2(stepify(position.x,Global.grid_size),stepify(position.y,Global.grid_size))	
 	grid_position = position
 	if front_person != null:
 		front_person.connect("IMoved",self,"move_to")
+	
+	#Animations
+	print(Heads)
+	Heads.shuffle()
+	var head = SpriteFrames.new()
+	head = load(FILEPATH + Heads.front() + ".tres")
+	
+	Pants.shuffle()
+	var pants = SpriteFrames.new()
+	pants = load(FILEPATH + Pants.front() + ".tres")
+	
+	Shirts.shuffle()
+	var shirt = SpriteFrames.new()
+	shirt = load(FILEPATH + Shirts.front() + ".tres")
+	
+	
+	$Head.frames = head
+	$UpperBody.frames = shirt
+	$LowerBody.frames = pants
+	
 	var walkers = $Walkers.get_children()
 	walkers[randi() % len(walkers)].show()
+	
+	
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -162,12 +205,16 @@ func check_follower_direction(): #Changes the animation based on where its leade
 		return
 	
 	if front_person.grid_position.x - grid_position.x < 0:
+		set_body_animation("Left")
 		set_walker_animation("Left")
 	elif front_person.grid_position.x - grid_position.x > 0:
+		set_body_animation("Right")
 		set_walker_animation("Right")
 	elif front_person.grid_position.y - grid_position.y < 0:
+		set_body_animation("Up")
 		set_walker_animation("Up")
 	elif front_person.grid_position.y - grid_position.y > 0:
+		set_body_animation("Down")
 		set_walker_animation("Down")
 
 
@@ -188,12 +235,16 @@ func exit(exit_direction): #Leave the level
 func set_walker_animation_direction(direction : Vector2):
 	match direction:
 		Vector2(1,0):
+			set_body_animation("Right")
 			set_walker_animation("Right")
 		Vector2(-1,0):
+			set_body_animation("Left")
 			set_walker_animation("Left")
 		Vector2(0,1):
+			set_body_animation("Down")
 			set_walker_animation("Down")
 		Vector2(0,-1):
+			set_body_animation("Up")
 			set_walker_animation("Up")
 
 
@@ -201,6 +252,13 @@ func set_walker_animation(animation): #TODO the sprite should load a random reso
 	#15000 animated sprites going at once
 	for N in $Walkers.get_children():
 		N.animation = animation
+
+
+func set_body_animation(animation):
+	$NewBody.animation = animation
+	$Head.animation = animation
+	$UpperBody.animation = animation
+	$LowerBody.animation = animation
 
 
 func bounce(direction):
@@ -372,8 +430,13 @@ func _on_Area2D_mouse_exited():
 
 
 func tick_tock(frame): #timer based animation to keep every sprite on beat
-	for N in $Walkers.get_children():
-		N.frame = frame
+	$NewBody.frame = frame
+	$Head.frame = frame
+	$UpperBody.frame = frame
+	$LowerBody.frame = frame
+	
+#	for N in $Walkers.get_children():
+#		N.frame = frame
 
 
 func _on_MovementTween_tween_all_completed():
@@ -381,3 +444,4 @@ func _on_MovementTween_tween_all_completed():
 		visible_check = false
 		hide()
 		playable = false
+	z_index = grid_position.y/Global.grid_size

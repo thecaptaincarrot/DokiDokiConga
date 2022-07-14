@@ -1,5 +1,6 @@
 extends Timer
 
+const frame_order = [1,0,2,0,1,0,3,3,2,0,1,0,2,0,4,4] #This is based on the current spritesheet
 var frame = 0
 
 signal UpdateFrame
@@ -16,7 +17,7 @@ func _ready():
 
 func _on_Metronome_timeout():
 	frame += 1
-	if frame > 3:
+	if frame > len(frame_order) - 1:
 		frame = 0
 	
-	emit_signal("UpdateFrame",frame)
+	emit_signal("UpdateFrame",frame_order[frame])

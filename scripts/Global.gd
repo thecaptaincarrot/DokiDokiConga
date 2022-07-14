@@ -1,6 +1,6 @@
 extends Node
 
-var grid_size = 32
+var grid_size = 24
 
 
 # Called when the node enters the scene tree for the first time.
