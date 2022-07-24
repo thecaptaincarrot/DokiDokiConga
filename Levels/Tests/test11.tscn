@@ -9,59 +9,59 @@
 [node name="Level" instance=ExtResource( 1 )]
 
 [node name="LevelEntry" parent="Entries" index="0"]
-position = Vector2( 128, 128 )
-frame = 6
+position = Vector2( 96, 96 )
+frame = 4
 line_size = 5
 
 [node name="LevelEntry2" parent="Entries" index="1" instance=ExtResource( 2 )]
-position = Vector2( 128, 192 )
-frame = 5
+position = Vector2( 96, 144 )
+frame = 3
 line_size = 5
 
 [node name="LevelEntry3" parent="Entries" index="2" instance=ExtResource( 2 )]
-position = Vector2( 128, 256 )
-frame = 4
+position = Vector2( 96, 192 )
+frame = 2
 line_size = 5
 
 [node name="LevelEntry4" parent="Entries" index="3" instance=ExtResource( 2 )]
-position = Vector2( 128, 320 )
-frame = 4
+position = Vector2( 96, 240 )
+frame = 2
 line_size = 5
 
 [node name="LevelExit" parent="Exits" index="0"]
-position = Vector2( 544, 192 )
-frame = 3
+position = Vector2( 384, 144 )
+frame = 1
 
 [node name="Door" parent="Activators" index="0" instance=ExtResource( 3 )]
-position = Vector2( 288, 352 )
+position = Vector2( 216, 264 )
 code = "4"
 
 [node name="Door2" parent="Activators" index="1" instance=ExtResource( 3 )]
-position = Vector2( 384, 352 )
+position = Vector2( 288, 264 )
 code = "2"
 
 [node name="SideDoor" parent="Activators" index="2" instance=ExtResource( 5 )]
-position = Vector2( 448, 160 )
+position = Vector2( 336, 120 )
 code = "3"
 
 [node name="SideDoor2" parent="Activators" index="3" instance=ExtResource( 5 )]
-position = Vector2( 416, 96 )
+position = Vector2( 336, 72 )
 code = "1"
 
 [node name="GreenPressurePlate3" parent="Triggers" index="0" instance=ExtResource( 4 )]
-position = Vector2( 416, 160 )
+position = Vector2( 288, 120 )
 code = [ "2" ]
 
 [node name="GreenPressurePlate4" parent="Triggers" index="1" instance=ExtResource( 4 )]
-position = Vector2( 448, 96 )
+position = Vector2( 360, 72 )
 code = [ "4" ]
 
 [node name="GreenPressurePlate5" parent="Triggers" index="2" instance=ExtResource( 4 )]
-position = Vector2( 288, 320 )
+position = Vector2( 216, 240 )
 code = [ "3" ]
 
 [node name="GreenPressurePlate6" parent="Triggers" index="3" instance=ExtResource( 4 )]
-position = Vector2( 384, 320 )
+position = Vector2( 288, 240 )
 code = [ "1" ]
 
 [node name="Walls" parent="Tilemaps" index="0"]

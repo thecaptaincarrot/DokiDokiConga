@@ -444,4 +444,4 @@ func _on_MovementTween_tween_all_completed():
 		visible_check = false
 		hide()
 		playable = false
-	z_index = grid_position.y/Global.grid_size
+#	z_index = grid_position.y/Global.grid_size - 1

@@ -209,6 +209,8 @@ func check_clear(direction, person_moving):
 		#just do position - destination and see if it's negative
 	var thin_wall_end_index = ThinWalls.get_cellv(grid_destination)
 	var thin_wall_start_index = ThinWalls.get_cellv(grid_position)
+	print(grid_destination,grid_position)
+	print(thin_wall_end_index,thin_wall_start_index)
 	if thin_wall_end_index != -1: #destination is a thin wall
 		var thin_wall_name = ThinWalls.tile_set.tile_get_name(thin_wall_end_index)
 		if thin_wall_name == "Vertical" and grid_position.x - grid_destination.x < 0:#Moving Left
@@ -216,7 +218,7 @@ func check_clear(direction, person_moving):
 		elif thin_wall_name == "Horizontal" and grid_position.y - grid_destination.y < 0 :#Moving Up
 			return false
 	
-	elif thin_wall_start_index != -1:  #current position is a thin wall
+	if thin_wall_start_index != -1:  #current position is a thin wall
 		var thin_wall_name = ThinWalls.tile_set.tile_get_name(thin_wall_start_index)
 		if thin_wall_name == "Vertical" and grid_position.x - grid_destination.x > 0:#Moving Right
 			return false

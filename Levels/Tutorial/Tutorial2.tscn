@@ -12,49 +12,53 @@
 script = ExtResource( 2 )
 
 [node name="LevelEntry" parent="Entries" index="0"]
-position = Vector2( 160, 320 )
-frame = 6
+position = Vector2( 120, 240 )
+frame = 7
 line_size = 8
 
 [node name="LevelEntry2" parent="Entries" index="1" instance=ExtResource( 6 )]
-position = Vector2( 160, 128 )
-frame = 3
+position = Vector2( 120, 96 )
+frame = 4
 line_size = 8
 
 [node name="LevelExit" parent="Exits" index="0"]
-position = Vector2( 416, 224 )
-frame = 3
+position = Vector2( 312, 96 )
+frame = 4
 
 [node name="SideDoor" parent="Activators" index="0" instance=ExtResource( 3 )]
-position = Vector2( 320, 320 )
+position = Vector2( 240, 240 )
 
 [node name="SideDoor2" parent="Activators" index="1" instance=ExtResource( 3 )]
-position = Vector2( 320, 128 )
+position = Vector2( 240, 96 )
 code = "BBB"
 
 [node name="GreenPressurePlate" parent="Triggers" index="0" instance=ExtResource( 5 )]
-position = Vector2( 288, 128 )
+position = Vector2( 216, 96 )
 
 [node name="RedPressurePlate" parent="Triggers" index="1" instance=ExtResource( 4 )]
-position = Vector2( 384, 320 )
+position = Vector2( 288, 240 )
 code = [ "BBB" ]
 
 [node name="RedPressurePlate2" parent="Triggers" index="2" instance=ExtResource( 4 )]
-position = Vector2( 448, 320 )
+position = Vector2( 336, 240 )
 code = [ "BBB" ]
 
 [node name="LeverBase" parent="Triggers" index="3" instance=ExtResource( 7 )]
-position = Vector2( 480, 96 )
+position = Vector2( 360, 72 )
 code = [ "AAA", "BBB" ]
 
 [node name="Walls" parent="Tilemaps" index="0"]
 tile_data = PoolIntArray( 131076, 0, 1, 131077, 0, 196610, 131078, 0, 196610, 131079, 0, 196610, 131080, 0, 196610, 131081, 0, 196610, 131082, 0, 2, 131083, 0, 196610, 131084, 0, 196610, 131085, 0, 196610, 131086, 0, 196610, 131087, 0, 196610, 131088, 0, 3, 196612, 0, 65536, 196618, 0, 131072, 196624, 0, 65536, 262148, 0, 65536, 262160, 0, 65536, 327684, 0, 65536, 327690, 0, 0, 327696, 0, 65536, 393220, 0, 131073, 393221, 0, 196610, 393222, 0, 196610, 393223, 0, 196610, 393224, 0, 196610, 393225, 0, 196610, 393226, 0, 65539, 393232, 0, 65536, 458762, 0, 65536, 458768, 0, 65536, 524292, 0, 1, 524293, 0, 196610, 524294, 0, 196610, 524295, 0, 196610, 524296, 0, 196610, 524297, 0, 196610, 524298, 0, 65539, 524304, 0, 65536, 589828, 0, 65536, 589834, 0, 131072, 589840, 0, 65536, 655364, 0, 65536, 655376, 0, 65536, 720900, 0, 65536, 720906, 0, 0, 720912, 0, 65536, 786436, 0, 131073, 786437, 0, 196610, 786438, 0, 196610, 786439, 0, 196610, 786440, 0, 196610, 786441, 0, 196610, 786442, 0, 131074, 786443, 0, 196610, 786444, 0, 196610, 786445, 0, 196610, 786446, 0, 196610, 786447, 0, 196610, 786448, 0, 131075 )
 
+[node name="PlayArea" parent="." index="8"]
+margin_right = 624.0
+margin_bottom = 384.0
+
 [node name="Label" type="Label" parent="." index="10"]
-margin_left = 128.0
-margin_top = 416.0
-margin_right = 449.0
-margin_bottom = 447.0
+margin_left = 96.0
+margin_top = 312.0
+margin_right = 417.0
+margin_bottom = 343.0
 text = "All red buttons must be pressed at the same time
 to activate"
 __meta__ = {
@@ -62,26 +66,23 @@ __meta__ = {
 }
 
 [node name="Label2" type="Label" parent="." index="11"]
-margin_left = 320.0
-margin_top = 32.0
-margin_right = 543.0
-margin_bottom = 46.0
+margin_left = 144.0
+margin_top = 24.0
+margin_right = 367.0
+margin_bottom = 38.0
 text = "Stand on a green button to activate"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Label3" type="Label" parent="." index="12"]
-margin_left = 544.0
-margin_top = 96.0
-margin_right = 767.0
-margin_bottom = 110.0
+margin_left = 408.0
+margin_top = 120.0
+margin_right = 631.0
+margin_bottom = 168.0
 text = "Running into a lever will toggle
 whether it's activated or
 deactivated"
 __meta__ = {
 "_edit_use_anchors_": false
 }
-
-[node name="Timer" parent="." index="13"]
-autostart = false
