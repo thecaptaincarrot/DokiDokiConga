@@ -11,31 +11,33 @@ script = ExtResource( 2 )
 
 [node name="LevelEntry" parent="Entries" index="0"]
 position = Vector2( 224, 224 )
+frame = 1
 line_size = 8
 
 [node name="LevelExit" parent="Exits" index="0"]
-position = Vector2( 480, 224 )
+position = Vector2( 360, 216 )
+frame = 6
 
 [node name="SideDoor" parent="Activators" index="0" instance=ExtResource( 3 )]
-position = Vector2( 416, 96 )
+position = Vector2( 336, 120 )
 
 [node name="SideDoor2" parent="Activators" index="1" instance=ExtResource( 3 )]
-position = Vector2( 416, 352 )
+position = Vector2( 336, 312 )
 
 [node name="GreenPressurePlate" parent="Triggers" index="0" instance=ExtResource( 4 )]
-position = Vector2( 480, 352 )
+position = Vector2( 360, 312 )
 
 [node name="GreenPressurePlate2" parent="Triggers" index="1" instance=ExtResource( 4 )]
-position = Vector2( 480, 96 )
+position = Vector2( 360, 120 )
 
 [node name="RedPressurePlate" parent="Triggers" index="2" instance=ExtResource( 5 )]
-position = Vector2( 384, 96 )
+position = Vector2( 312, 120 )
 
 [node name="RedPressurePlate2" parent="Triggers" index="3" instance=ExtResource( 5 )]
-position = Vector2( 384, 352 )
+position = Vector2( 312, 312 )
 
 [node name="Walls" parent="Tilemaps" index="0"]
-tile_data = PoolIntArray( 131083, 0, 1, 131084, 0, 196610, 131085, 0, 196610, 131086, 0, 196610, 131087, 0, 196610, 131088, 0, 3, 196619, 0, 65536, 196624, 0, 65536, 262155, 0, 65536, 262157, 0, 8, 262158, 0, 11, 262160, 0, 65536, 327685, 0, 1, 327686, 0, 196610, 327687, 0, 196610, 327688, 0, 196610, 327689, 0, 196610, 327690, 0, 196610, 327691, 0, 65539, 327693, 0, 65544, 327694, 0, 131083, 327696, 0, 65536, 393221, 0, 65536, 393227, 0, 131072, 393229, 0, 65544, 393230, 0, 131083, 393232, 0, 65536, 458757, 0, 65536, 458765, 0, 65544, 458766, 0, 131083, 458768, 0, 65536, 524293, 0, 65536, 524299, 0, 0, 524301, 0, 65544, 524302, 0, 131083, 524304, 0, 65536, 589829, 0, 131073, 589830, 0, 196610, 589831, 0, 196610, 589832, 0, 196610, 589833, 0, 196610, 589834, 0, 196610, 589835, 0, 65539, 589837, 0, 65544, 589838, 0, 131083, 589840, 0, 65536, 655371, 0, 65536, 655373, 0, 196616, 655374, 0, 196619, 655376, 0, 65536, 720907, 0, 65536, 720912, 0, 65536, 786443, 0, 131073, 786444, 0, 196610, 786445, 0, 196610, 786446, 0, 196610, 786447, 0, 196610, 786448, 0, 131075 )
+tile_data = PoolIntArray( 262156, 0, 1, 262157, 0, 196610, 262158, 0, 196610, 262159, 0, 196610, 262160, 0, 3, 327692, 0, 65536, 327696, 0, 65536, 393228, 0, 65536, 393230, 0, 0, 393232, 0, 65536, 458759, 0, 1, 458760, 0, 196610, 458761, 0, 196610, 458762, 0, 196610, 458763, 0, 196610, 458764, 0, 65539, 458766, 0, 65536, 458768, 0, 65536, 524295, 0, 65536, 524300, 0, 131072, 524302, 0, 65536, 524304, 0, 65536, 589831, 0, 65536, 589838, 0, 65536, 589840, 0, 65536, 655367, 0, 65536, 655372, 0, 0, 655374, 0, 65536, 655376, 0, 65536, 720903, 0, 131073, 720904, 0, 196610, 720905, 0, 196610, 720906, 0, 196610, 720907, 0, 196610, 720908, 0, 65539, 720910, 0, 65536, 720912, 0, 65536, 786444, 0, 65536, 786446, 0, 131072, 786448, 0, 65536, 851980, 0, 65536, 851984, 0, 65536, 917516, 0, 131073, 917517, 0, 196610, 917518, 0, 196610, 917519, 0, 196610, 917520, 0, 131075 )
 
 [node name="PlayArea" parent="." index="8"]
 margin_right = 576.0
@@ -51,6 +53,3 @@ A new conaline must include at least 3 members
 __meta__ = {
 "_edit_use_anchors_": false
 }
-
-[node name="Timer" parent="." index="11"]
-autostart = false
