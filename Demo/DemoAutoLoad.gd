@@ -26,8 +26,6 @@ func complete_level():
 	stop_timing()
 	
 	
-	print(completion_times)
-	
 	get_tree().change_scene("res://Demo/DemoWorldMap.tscn")
 	
 #	current_level += 1
@@ -47,15 +45,12 @@ func go_to_level(level):
 func start_timing():
 	if completion_times.has(current_level):
 		current_time = completion_times[current_level]
-		print("loaded time ",current_time," for level ", current_level)
 	else:
 		current_time = 0.0
 		completion_times[current_level] = current_time
-		print("started new timer for level ",current_level)
 
 
 func stop_timing():
-	print("Stopped timing for level ", current_level, " at time ", current_time)
 	completion_times[current_level] = current_time
 	current_level = -1
 	

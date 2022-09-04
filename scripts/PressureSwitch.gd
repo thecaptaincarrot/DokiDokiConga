@@ -8,7 +8,6 @@ var active = false
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	if active:
-		print("Active")
 		$AnimatedSprite.frame = 1
 	else:
 		$AnimatedSprite.frame = 0

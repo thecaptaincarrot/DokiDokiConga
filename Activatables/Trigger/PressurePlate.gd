@@ -24,7 +24,6 @@ func deactivate(): #only call when going from activated to deactivated
 	inactive_turns.append(parent_level.get_turn())
 	$PlateSprite.play("Up")
 	active = false
-	print("InActive, ", name)
 
 
 func update():
@@ -45,7 +44,6 @@ func undo(turn):
 	if is_in_group("Purple"):
 		if stuck:
 			if turn == stuck_turn - 1:
-				print("Unstick")
 				stuck_turn = -1
 				stuck = false
 				update()

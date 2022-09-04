@@ -30,7 +30,7 @@ func activate():
 
 
 func deactivate():
-	print("Inactive ",name)
+	pass
 
 
 func active_check():
@@ -84,7 +84,6 @@ func check_plates():
 
 
 func pair_trigger(new_trigger):
-	print("Pairing With ", new_trigger)
 	if new_trigger.is_in_group("Green"):
 		green_plates.append(new_trigger)
 	elif new_trigger.is_in_group("Red"):

@@ -1,6 +1,6 @@
 [gd_scene load_steps=29 format=2]
 
-[ext_resource path="res://Levels/OriginalDemo/LineLengthHelper.gd" type="Script" id=1]
+[ext_resource path="res://Demo/OriginalDemo/LineLengthHelper.gd" type="Script" id=1]
 [ext_resource path="res://scripts/LevelEntry.gd" type="Script" id=2]
 [ext_resource path="res://Sprites/purple_portal_sprite_sheet.png" type="Texture" id=3]
 
@@ -122,10 +122,10 @@ animations = [ {
 scale = Vector2( 1.5, 0.75 )
 frames = SubResource( 25 )
 animation = "Loop"
-frame = 1
+frame = 7
 playing = true
 centered = false
-offset = Vector2( -20, -16 )
+offset = Vector2( -24, -16 )
 script = ExtResource( 2 )
 
 [node name="LineLengthHelper" type="Label" parent="."]

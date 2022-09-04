@@ -17,12 +17,12 @@ _global_script_class_icons={
 config/name="Conganauts"
 run/main_scene="res://Levels/Tutorial/Tutorial1.tscn"
 boot_splash/bg_color=Color( 0, 0, 0, 1 )
-config/icon="res://Deprecated/head.png"
+config/icon="res://Demo/OriginalDemo/Deprecated/head.png"
 
 [autoload]
 
 Global="*res://scripts/Global.gd"
-MusicHandler="*res://Deprecated/MusicHandler.gd"
+MusicHandler="*res://Demo/OriginalDemo/Deprecated/MusicHandler.gd"
 Completed="*res://scripts/Completed.gd"
 DemoAutoLoad="*res://Demo/DemoAutoLoad.gd"
 

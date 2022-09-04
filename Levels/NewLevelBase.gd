@@ -1,6 +1,8 @@
 extends Node
 const PARTIER = preload("res://Partier.tscn")
 
+const HELPER_COLORS = [Color.lightblue,Color.aquamarine,Color.red, Color.orange, Color.purple, Color.yellow, Color.green, Color.pink,Color.coral]
+
 export var time_sensitive = false
 
 var need_exit = 0
@@ -47,6 +49,21 @@ func _ready():
 				if activator.code == code:
 					activator.pair_trigger(trigger)
 	
+	#Teleporter Pads
+	var i = 0
+	for pad in $Pads.get_children():
+		if pad.is_in_group("Teleport") and pad.paired == false:
+			for pad_pair in $Pads.get_children():
+				if pad_pair.is_in_group("Teleport"):
+					if pad.code[0] == pad_pair.code[0] and pad != pad_pair:
+						pad.paired_pad = pad_pair
+						pad.paired = true
+						pad.self_modulate = HELPER_COLORS[i]
+						
+						pad_pair.paired_pad = pad
+						pad_pair.paired = true
+						pad_pair.self_modulate = HELPER_COLORS[i]
+						i += 1
 	start()
 	$PlayArea.hide()
 
@@ -112,7 +129,7 @@ func move(direction): #move all leaders in the given directions
 	for leader in leaders:
 		var fixed_direction = direction
 		#Movement Modifiers
-		if leader.reverse:
+		if leader.confused:
 			fixed_direction *= -1
 		if leader.force_move:
 			fixed_direction = leader.force_move_vector
@@ -164,7 +181,7 @@ func move(direction): #move all leaders in the given directions
 				if !can_move: #I can't move. therefore, I should add my caboose to simulated movements
 					var new_caboose = leader_dict["leader"].get_caboose()
 					simulated_positions.append(new_caboose.grid_position)
-					leader_dict["leader"].bounce(leader_dict["direction"])
+#					leader_dict["leader"].bounce(leader_dict["direction"])
 					#Redo check
 					checking_movement = true
 				leader_dict["moving"] = can_move
@@ -175,7 +192,15 @@ func move(direction): #move all leaders in the given directions
 		if leader_dict["moving"]:
 			pass
 			leader_dict["leader"].move_to(leader_dict["leader_move"]) #Is this the last check? I think so
-	
+			#step on pad checks
+			for pad in $Pads.get_children():
+				if leader_dict["leader"].grid_position == pad.position:
+					if pad.is_in_group("Confusion"):
+						leader_dict["leader"].confuse()
+						break
+					elif pad.is_in_group("Teleport"):
+						leader_dict["leader"].teleport_to(pad.paired_pad.position)
+						break
 	if something_happened: #Something happened that should be recorded
 		turn += 1
 #		print("turn: ", turn)
@@ -209,8 +234,6 @@ func check_clear(direction, person_moving):
 		#just do position - destination and see if it's negative
 	var thin_wall_end_index = ThinWalls.get_cellv(grid_destination)
 	var thin_wall_start_index = ThinWalls.get_cellv(grid_position)
-	print(grid_destination,grid_position)
-	print(thin_wall_end_index,thin_wall_start_index)
 	if thin_wall_end_index != -1: #destination is a thin wall
 		var thin_wall_name = ThinWalls.tile_set.tile_get_name(thin_wall_end_index)
 		if thin_wall_name == "Vertical" and grid_position.x - grid_destination.x < 0:#Moving Left
@@ -224,7 +247,6 @@ func check_clear(direction, person_moving):
 			return false
 		elif thin_wall_name == "Horizontal" and grid_position.y - grid_destination.y > 0 : #Moving Down
 			return false
-		
 	
 	#Check Triggers
 	#Some Pressure plates and gates do not block movement, but switches do
@@ -255,7 +277,6 @@ func check_clear(direction, person_moving):
 
 
 func new_leader_added():
-	print("new leader on turn ", turn)
 	turn += 1
 
 func undo():
@@ -338,6 +359,14 @@ func check_dead(): #Checks if a door closed on a person.
 				if activator.position == partier.grid_position and activator.blocking:
 					partier.kill()
 					break
+	
+	#Kill Tiles
+	for obstacle in $Scenery.get_children():
+		if obstacle.is_in_group("Death"):
+			for partier in $People.get_children():
+				if partier.grid_position == obstacle.position:
+					partier.kill()
+					break
 
 
 func check_exit(destination):
@@ -413,9 +442,6 @@ func set_camera():
 	
 	center_point.x = ($PlayArea.margin_left + $PlayArea.margin_right) / 2.0
 	center_point.y = ($PlayArea.margin_top + $PlayArea.margin_bottom) / 2.0
-
-	print(center_point)
-	print(playarea_size)
 	
 	var zoom_factor = Vector2(0,0)
 	zoom_factor.x = playarea_size.x / resolution.x

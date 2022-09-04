@@ -29,7 +29,7 @@ func activate(): #only call when going from deactivated to activated
 func deactivate(): #only call when going from activated to deactivated
 	inactive_turns.append(parent_level.get_turn())
 	active = false
-	print("InActive, ", name)
+
 
 
 func update():

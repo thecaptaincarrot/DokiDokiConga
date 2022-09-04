@@ -9,8 +9,6 @@ var movement_disabled
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	#turn all completed levels green
-	print(Completed.completed_levels)
-	
 	#put the player on the last completed level
 #	if Completed.current_level[0] != -1:
 #		current_world = Completed.current_level[0]
@@ -82,17 +80,13 @@ func attempt_movement(direction):
 	
 	if tile.is_in_group("Tutorial"):
 		current_world = 0
-		print("Tutorial Island")
 	elif current_world == 0:
-		print("Left Tutorial Island")
 		current_world = -1
 
 
 func enter_level(tile):
 	if tile.is_in_group("LevelTile"):
 		Completed.current_level = [current_world,tile.level_num]
-		print(" New Level Entered: ", Completed.current_level)
-		print("world: ", current_world)
 		match current_world:
 			-1:
 				if !DemoAutoLoad.completed.has(tile.level_num):
@@ -106,7 +100,6 @@ func enter_level(tile):
 	elif tile.is_in_group("Portal"):
 		#End Demo
 		pass
-		print("I tried to leave")
 		get_tree().change_scene("res://Demo/DemoEndScreen.tscn")
 
 

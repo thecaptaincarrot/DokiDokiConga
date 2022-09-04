@@ -3,7 +3,7 @@
 [ext_resource path="res://BaseNodes/LevelEntry.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Tilesets/NewTilesets/Castle/Castle24.png" type="Texture" id=2]
 [ext_resource path="res://BaseNodes/LevelExit.tscn" type="PackedScene" id=3]
-[ext_resource path="res://Deprecated/Metronome.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Demo/OriginalDemo/Deprecated/Metronome.tscn" type="PackedScene" id=4]
 [ext_resource path="res://HUD/Word.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Fonts/BodoniFLF-Bold.ttf" type="DynamicFontData" id=6]
 [ext_resource path="res://Tilesets/ThinWalls24.png" type="Texture" id=7]
@@ -94,14 +94,14 @@ script = ExtResource( 8 )
 
 [node name="LevelEntry" parent="Entries" instance=ExtResource( 1 )]
 position = Vector2( 168, 288 )
-frame = 0
+frame = 6
 line_size = 1
 
 [node name="Exits" type="Node" parent="."]
 
 [node name="LevelExit" parent="Exits" instance=ExtResource( 3 )]
 position = Vector2( 552, 288 )
-frame = 5
+frame = 2
 
 [node name="People" type="Node" parent="."]
 
@@ -110,6 +110,8 @@ frame = 5
 [node name="Triggers" type="Node" parent="."]
 
 [node name="Scenery" type="Node" parent="."]
+
+[node name="Pads" type="Node" parent="."]
 
 [node name="Metronome" parent="." instance=ExtResource( 4 )]
 

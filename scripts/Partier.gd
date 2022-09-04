@@ -23,17 +23,23 @@ var frame = 0
 var parent_level = null
 
 var grid_position = Vector2()
-var movement_time = 0.1
+var movement_time = 0.075
 var is_leader = false
 var is_exit = false
 var can_move = true
 var exiting = false
+var teleporting = false
+var to_teleport = false
+var teleport_walk_to = Vector2(0,0)
 var dead = false
+
+var tweens = []
 
 var visible_check = false
 
 #Undo shit
 var move_undo = {}
+var teleport_undo = {}
 var became_leader = -1
 var entered_level = -1
 var last_front = null
@@ -49,12 +55,13 @@ var playable = true
 var mouse_in = false
 
 #Weird States
-var reverse = false
+var confused = false
 var force_move = false
 var force_move_vector = Vector2(0,0) #must be unit vector or 0
 
 signal MovementAttempted
 signal IMoved
+signal ITeleported
 signal PartierExitted
 signal PartierUnExitted
 signal PartierDied
@@ -68,9 +75,9 @@ func _ready():
 	grid_position = position
 	if front_person != null:
 		front_person.connect("IMoved",self,"move_to")
+		front_person.connect("ITeleported",self,"set_teleport")
 	
 	#Animations
-	print(Heads)
 	Heads.shuffle()
 	var head = SpriteFrames.new()
 	head = load(FILEPATH + Heads.front() + ".tres")
@@ -104,6 +111,11 @@ func _process(delta):
 #		hide()
 #	elif !dead and !exiting:
 #		show()
+	
+	if tweens != []:
+		if !tweens[0].is_active():
+			tweens[0].start()
+	
 	if visible_check and !visible:
 		show()
 	pass
@@ -113,25 +125,38 @@ func _unhandled_input(event):
 	if event.is_action_pressed("ui_click") and mouse_in and get_caboose_distance() >= 2 and get_leader_distance() >= 3:
 		if follower.follower != null and front_person.front_person.leader != true:
 			leader_click()
-	
-	elif event.is_action_pressed("ui_rclick") and mouse_in:
-		reverse = !reverse
 
 
 func move_to(destination):
 	if !playable: return
 #	#takes in a orthogonal unit vector, then moves to that location.
 #	#No checks are done here, this is a forced movemnet
-	
-	
 	var prev_position = grid_position
+
 	move_undo[parent_level.get_turn()] = prev_position
+	
 	grid_position = destination
 	emit_signal("IMoved",prev_position)
+	if teleporting:
+		teleporting = false
+		var new_tween = Tween.new()
+		new_tween.connect("tween_all_completed",self,"_on_MovementTween_tween_all_completed")
+		new_tween.interpolate_property(self,"position", prev_position, teleport_walk_to, movement_time)
+		tweens.append(new_tween)
+		$Tweens.add_child(new_tween)
+		prev_position = teleport_walk_to
+		emit_signal("ITeleported",teleport_walk_to)
+	
+	
 	if !is_leader:
 		check_follower_direction() #Change animation to face towards next in line
-	$MovementTween.interpolate_property(self,"position", position, destination, movement_time)
-	$MovementTween.start()
+	var new_tween = Tween.new()
+	new_tween.connect("tween_all_completed",self,"_on_MovementTween_tween_all_completed")
+	new_tween.interpolate_property(self,"position", prev_position, destination, movement_time)
+	tweens.append(new_tween)
+	$Tweens.add_child(new_tween)
+#	$MovementTween.interpolate_property(self,"position", position, destination, movement_time)
+#	$MovementTween.start()
 	
 	if parent_level.check_exit(destination): #????? This sucks I think
 		var exit_direction = (grid_position - prev_position).normalized()
@@ -146,21 +171,46 @@ func move_to(destination):
 func undo_move(turn):
 	if turn_died != -1:
 		print(turn_died)
-		print(turn)
-	
+		
 	if move_undo.has(turn):
 		if turn_died != -1:
 			print(turn_died)
-			print(turn)
+		
 		var prev_position = grid_position
+		
+		if teleport_undo.has(turn):
+			print("undid Tele")
+			var new_tween = Tween.new()
+			new_tween.connect("tween_all_completed",self,"_on_MovementTween_tween_all_completed")
+			new_tween.interpolate_property(self,"position", grid_position, teleport_undo[turn], movement_time)
+			tweens.append(new_tween)
+			$Tweens.add_child(new_tween) 
+			
+			prev_position = teleport_undo[turn]
+			
+			
+		
 		grid_position = move_undo[turn]
 		
 		var direction = (grid_position - prev_position).normalized()
 		
 		move_undo.erase(turn)
 		set_walker_animation_direction(-direction)
-		$MovementTween.interpolate_property(self,"position", position, grid_position, movement_time)
-		$MovementTween.start()
+		
+		if teleport_undo.keys().has(turn+1):
+#			#1. zip back to previous
+#			#2. set where I walked on to the teleporter from
+#			#3. walk backwards off first pad
+			if follower:
+				follower.teleporting = false
+			
+		var new_tween = Tween.new()
+		new_tween.connect("tween_all_completed",self,"_on_MovementTween_tween_all_completed")
+		new_tween.interpolate_property(self,"position", prev_position, grid_position, movement_time)
+		tweens.append(new_tween)
+		$Tweens.add_child(new_tween)
+#		$MovementTween.interpolate_property(self,"position", position, grid_position, movement_time)
+#		$MovementTween.start()
 	
 	if turn == turn_exited:
 		exiting = false
@@ -172,15 +222,11 @@ func undo_move(turn):
 		emit_signal("PartierUnExitted")
 
 	if turn == turn_died:
-		print("undead")
 		dead = false
 		turn_died = -1
 		visible = true
 		visible_check = true
 		show()
-		
-
-		
 		
 
 
@@ -189,14 +235,30 @@ func teleport_to(destination):
 	#No checks are done here, this is a forced movemnet
 	var prev_position = grid_position
 	grid_position = destination
-	position = destination
-	emit_signal("IMoved",prev_position)
+	
+	teleport_undo[parent_level.get_turn()] = prev_position #Position of pad
+	
+	emit_signal("ITeleported",prev_position)
 	if !is_leader:
 		check_follower_direction() #Change animation to face towards next in line
+	
+	
+	var new_tween = Tween.new()
+	new_tween.connect("tween_all_completed",self,"_on_MovementTween_tween_all_completed")
+	new_tween.interpolate_property(self,"position", prev_position, destination, movement_time)
+	tweens.append(new_tween)
+	$Tweens.add_child(new_tween)
+	print(tweens)
+
 	
 	if parent_level.check_exit(destination): #????? This sucks I think  You'll never exit on a teleport
 		var exit_direction = (grid_position - prev_position).normalized()
 		exit(exit_direction)
+
+
+func set_teleport(old_position):
+	teleporting = true
+	teleport_walk_to = old_position
 
 
 func check_follower_direction(): #Changes the animation based on where its leader is
@@ -263,12 +325,23 @@ func set_body_animation(animation):
 
 func bounce(direction):
 	pass
-	var destination = position + direction * 12.0
-	$MovementTween.interpolate_property(self,"position", position, destination, movement_time / 2.0)
-	$MovementTween.start()
-	yield($MovementTween,"tween_all_completed")
-	$MovementTween.interpolate_property(self,"position", position, grid_position, movement_time / 2.0)
-	$MovementTween.start()
+	var destination = grid_position + direction * 12.0
+	var new_tween = Tween.new()
+	new_tween.connect("tween_all_completed",self,"_on_MovementTween_tween_all_completed")
+	new_tween.interpolate_property(self,"position", grid_position, destination, movement_time)
+	tweens.append(new_tween)
+	$Tweens.add_child(new_tween)
+#	$MovementTween.interpolate_property(self,"position", position, destination, movement_time / 2.0)
+#	$MovementTween.start()
+#	$MovementTween.interpolate_property(self,"position", position, grid_position, movement_time / 2.0)
+#	$MovementTween.start()
+	var new_tween2 = Tween.new()
+	new_tween2.connect("tween_all_completed",self,"_on_MovementTween_tween_all_completed")
+	new_tween2.interpolate_property(self,"position", destination, grid_position, movement_time)
+	tweens.append(new_tween2)
+	$Tweens.add_child(new_tween2)
+	print(tweens)
+
 
 
 func leader_click():
@@ -279,6 +352,7 @@ func leader_click():
 func become_leader():
 	front_person.follower = null
 	front_person.disconnect("IMoved",self,"move_to")
+	front_person.disconnect("ITeleported",self,"set_teleport")
 	last_front = front_person
 	front_person = null
 	
@@ -309,6 +383,14 @@ func kill(): #rewrite because this isn't very cool
 	emit_signal("PartierDied")
 	visible_check = false
 	hide()
+
+
+func confuse():
+	confused = !confused
+	if confused:
+		$Confused.show()
+	else:
+		$Confused.hide()
 
 
 func get_conga_line():
@@ -440,8 +522,21 @@ func tick_tock(frame): #timer based animation to keep every sprite on beat
 
 
 func _on_MovementTween_tween_all_completed():
-	if exiting:
-		visible_check = false
-		hide()
-		playable = false
+	tweens.pop_front().queue_free()
+	if len(tweens) > 0:
+		
+		tweens[0].start()
+	if tweens == []:
+		if exiting:
+			visible_check = false
+			hide()
+			playable = false
+#	elif teleporting:
+#		teleport_to(teleport_pad)
+#		teleport_pad = null
+#		teleporting = false
+#	elif teleport_walk_off:
+#		teleport_walk_off = false
+#		$MovementTween.interpolate_property(self,"position", position, teleport_walk_to, movement_time)
+#		$MovementTween.start()
 #	z_index = grid_position.y/Global.grid_size - 1
