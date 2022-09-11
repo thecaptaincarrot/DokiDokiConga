@@ -1,6 +1,6 @@
 extends AnimatedSprite
 
-export var code = ["AAA"]
+export var code = "AAA"
 
 var paired_pad
 var paired = false

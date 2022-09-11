@@ -1,0 +1,184 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Levels/NewLevelBase.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Activatables/Other/TeleporterPad.tscn" type="PackedScene" id=2]
+
+[node name="Test16" instance=ExtResource( 1 )]
+
+[node name="LevelEntry" parent="Entries" index="0"]
+position = Vector2( 456, 120 )
+frame = 3
+line_size = 12
+
+[node name="LevelExit" parent="Exits" index="0"]
+position = Vector2( 456, 216 )
+frame = 7
+
+[node name="TeleporterPad" parent="Pads" index="0" instance=ExtResource( 2 )]
+position = Vector2( 192, 72 )
+code = "A"
+
+[node name="TeleporterPad2" parent="Pads" index="1" instance=ExtResource( 2 )]
+position = Vector2( 192, 168 )
+code = "D"
+
+[node name="TeleporterPad3" parent="Pads" index="2" instance=ExtResource( 2 )]
+position = Vector2( 384, 120 )
+code = "AA"
+
+[node name="TeleporterPad4" parent="Pads" index="3" instance=ExtResource( 2 )]
+position = Vector2( 312, 72 )
+code = "B"
+
+[node name="TeleporterPad5" parent="Pads" index="4" instance=ExtResource( 2 )]
+position = Vector2( 360, 72 )
+code = "I"
+
+[node name="TeleporterPad6" parent="Pads" index="5" instance=ExtResource( 2 )]
+position = Vector2( 384, 72 )
+code = "J"
+
+[node name="TeleporterPad7" parent="Pads" index="6" instance=ExtResource( 2 )]
+position = Vector2( 528, 96 )
+code = "J"
+
+[node name="TeleporterPad8" parent="Pads" index="7" instance=ExtResource( 2 )]
+position = Vector2( 576, 96 )
+code = "L"
+
+[node name="TeleporterPad9" parent="Pads" index="8" instance=ExtResource( 2 )]
+position = Vector2( 624, 72 )
+code = "I"
+
+[node name="TeleporterPad10" parent="Pads" index="9" instance=ExtResource( 2 )]
+position = Vector2( 648, 120 )
+
+[node name="TeleporterPad11" parent="Pads" index="10" instance=ExtResource( 2 )]
+position = Vector2( 648, 168 )
+code = "L"
+
+[node name="TeleporterPad12" parent="Pads" index="11" instance=ExtResource( 2 )]
+position = Vector2( 648, 216 )
+code = "K"
+
+[node name="TeleporterPad13" parent="Pads" index="12" instance=ExtResource( 2 )]
+position = Vector2( 528, 144 )
+code = "H"
+
+[node name="TeleporterPad14" parent="Pads" index="13" instance=ExtResource( 2 )]
+position = Vector2( 528, 192 )
+code = "O"
+
+[node name="TeleporterPad15" parent="Pads" index="14" instance=ExtResource( 2 )]
+position = Vector2( 576, 192 )
+code = "A"
+
+[node name="TeleporterPad16" parent="Pads" index="15" instance=ExtResource( 2 )]
+position = Vector2( 528, 240 )
+code = "P"
+
+[node name="TeleporterPad17" parent="Pads" index="16" instance=ExtResource( 2 )]
+position = Vector2( 600, 360 )
+code = "S"
+
+[node name="TeleporterPad18" parent="Pads" index="17" instance=ExtResource( 2 )]
+position = Vector2( 648, 360 )
+code = "H"
+
+[node name="TeleporterPad19" parent="Pads" index="18" instance=ExtResource( 2 )]
+position = Vector2( 648, 264 )
+code = "G"
+
+[node name="TeleporterPad20" parent="Pads" index="19" instance=ExtResource( 2 )]
+position = Vector2( 552, 360 )
+code = "Q"
+
+[node name="TeleporterPad21" parent="Pads" index="20" instance=ExtResource( 2 )]
+position = Vector2( 528, 288 )
+code = "S"
+
+[node name="TeleporterPad22" parent="Pads" index="21" instance=ExtResource( 2 )]
+position = Vector2( 504, 360 )
+code = "R"
+
+[node name="TeleporterPad23" parent="Pads" index="22" instance=ExtResource( 2 )]
+position = Vector2( 480, 288 )
+code = "R"
+
+[node name="TeleporterPad24" parent="Pads" index="23" instance=ExtResource( 2 )]
+position = Vector2( 432, 288 )
+code = "Q"
+
+[node name="TeleporterPad25" parent="Pads" index="24" instance=ExtResource( 2 )]
+position = Vector2( 336, 360 )
+code = "F"
+
+[node name="TeleporterPad26" parent="Pads" index="25" instance=ExtResource( 2 )]
+position = Vector2( 336, 312 )
+code = "M"
+
+[node name="TeleporterPad27" parent="Pads" index="26" instance=ExtResource( 2 )]
+position = Vector2( 336, 264 )
+code = "K"
+
+[node name="TeleporterPad28" parent="Pads" index="27" instance=ExtResource( 2 )]
+position = Vector2( 288, 264 )
+code = "E"
+
+[node name="TeleporterPad29" parent="Pads" index="28" instance=ExtResource( 2 )]
+position = Vector2( 240, 264 )
+code = "F"
+
+[node name="TeleporterPad30" parent="Pads" index="29" instance=ExtResource( 2 )]
+position = Vector2( 240, 312 )
+code = "C"
+
+[node name="TeleporterPad31" parent="Pads" index="30" instance=ExtResource( 2 )]
+position = Vector2( 288, 312 )
+code = "G"
+
+[node name="TeleporterPad32" parent="Pads" index="31" instance=ExtResource( 2 )]
+position = Vector2( 288, 360 )
+code = "B"
+
+[node name="TeleporterPad33" parent="Pads" index="32" instance=ExtResource( 2 )]
+position = Vector2( 192, 264 )
+code = "C"
+
+[node name="TeleporterPad34" parent="Pads" index="33" instance=ExtResource( 2 )]
+position = Vector2( 192, 216 )
+code = "E"
+
+[node name="TeleporterPad35" parent="Pads" index="34" instance=ExtResource( 2 )]
+position = Vector2( 240, 168 )
+code = "D"
+
+[node name="TeleporterPad36" parent="Pads" index="35" instance=ExtResource( 2 )]
+position = Vector2( 288, 168 )
+code = "AA"
+
+[node name="TeleporterPad37" parent="Pads" index="36" instance=ExtResource( 2 )]
+position = Vector2( 336, 216 )
+code = "M"
+
+[node name="TeleporterPad38" parent="Pads" index="37" instance=ExtResource( 2 )]
+position = Vector2( 336, 168 )
+
+[node name="TeleporterPad39" parent="Pads" index="38" instance=ExtResource( 2 )]
+position = Vector2( 384, 216 )
+code = "N"
+
+[node name="TeleporterPad40" parent="Pads" index="39" instance=ExtResource( 2 )]
+position = Vector2( 456, 192 )
+code = "N"
+
+[node name="TeleporterPad41" parent="Pads" index="40" instance=ExtResource( 2 )]
+position = Vector2( 456, 144 )
+code = "O"
+
+[node name="TeleporterPad42" parent="Pads" index="41" instance=ExtResource( 2 )]
+position = Vector2( 456, 96 )
+code = "P"
+
+[node name="Walls" parent="Tilemaps" index="0"]
+tile_data = PoolIntArray( 131079, 0, 1, 131080, 0, 196610, 131081, 0, 196610, 131082, 0, 196610, 131083, 0, 196610, 131084, 0, 2, 131085, 0, 196610, 131086, 0, 2, 131087, 0, 196610, 131088, 0, 196610, 131089, 0, 5, 131090, 0, 10, 131091, 0, 10, 131092, 0, 10, 131093, 0, 6, 131094, 0, 196610, 131095, 0, 196610, 131096, 0, 196610, 131097, 0, 196610, 131098, 0, 196610, 131099, 0, 5, 131100, 0, 11, 196615, 0, 65536, 196620, 0, 65536, 196622, 0, 65536, 196625, 0, 131076, 196626, 0, 196617, 196627, 0, 196617, 196628, 0, 196617, 196629, 0, 131079, 196635, 0, 65544, 196636, 0, 131083, 262151, 0, 65537, 262152, 0, 196610, 262153, 0, 196610, 262154, 0, 196611, 262156, 0, 131072, 262158, 0, 131073, 262159, 0, 196610, 262160, 0, 196610, 262161, 0, 65539, 262165, 0, 65536, 262167, 0, 0, 262169, 0, 1, 262170, 0, 196610, 262171, 0, 196613, 262172, 0, 131079, 327687, 0, 65536, 327697, 0, 65536, 327701, 0, 65537, 327702, 0, 196610, 327703, 0, 131074, 327704, 0, 196610, 327705, 0, 131075, 327708, 0, 65536, 393223, 0, 65536, 393225, 0, 1, 393226, 0, 196610, 393227, 0, 2, 393228, 0, 196610, 393229, 0, 2, 393230, 0, 196610, 393231, 0, 196610, 393232, 0, 196610, 393233, 0, 65539, 393237, 0, 65536, 393243, 0, 196609, 393244, 0, 65539, 458759, 0, 65536, 458761, 0, 65536, 458763, 0, 65536, 458765, 0, 65536, 458769, 0, 65537, 458770, 0, 196610, 458771, 0, 196610, 458772, 0, 196610, 458773, 0, 65538, 458774, 0, 196610, 458775, 0, 196610, 458776, 0, 196610, 458777, 0, 3, 458780, 0, 65536, 524295, 0, 65537, 524296, 0, 196610, 524297, 0, 131075, 524299, 0, 131072, 524301, 0, 131073, 524302, 0, 196610, 524303, 0, 3, 524305, 0, 65536, 524309, 0, 65536, 524313, 0, 65536, 524315, 0, 196609, 524316, 0, 65539, 589831, 0, 65536, 589839, 0, 65536, 589841, 0, 65536, 589845, 0, 65537, 589846, 0, 196610, 589847, 0, 196610, 589848, 0, 196610, 589849, 0, 65539, 589852, 0, 65536, 655367, 0, 65537, 655368, 0, 196610, 655369, 0, 2, 655370, 0, 196610, 655371, 0, 196610, 655372, 0, 196610, 655373, 0, 2, 655374, 0, 196610, 655375, 0, 131074, 655376, 0, 196610, 655377, 0, 65539, 655381, 0, 65536, 655385, 0, 131073, 655386, 0, 2, 655387, 0, 196610, 655388, 0, 65539, 720903, 0, 65536, 720905, 0, 65536, 720909, 0, 65536, 720913, 0, 65537, 720914, 0, 196610, 720915, 0, 2, 720916, 0, 196610, 720917, 0, 65538, 720918, 0, 196610, 720919, 0, 3, 720922, 0, 65536, 720924, 0, 65536, 786439, 0, 65536, 786441, 0, 65536, 786445, 0, 65537, 786446, 0, 196610, 786447, 0, 196611, 786449, 0, 65536, 786451, 0, 65536, 786453, 0, 65536, 786455, 0, 131073, 786456, 0, 3, 786458, 0, 131072, 786460, 0, 65536, 851975, 0, 65536, 851977, 0, 65536, 851981, 0, 65536, 851985, 0, 65536, 851987, 0, 65536, 851989, 0, 65536, 851992, 0, 65536, 851996, 0, 65536, 917511, 0, 65536, 917513, 0, 131073, 917514, 0, 196610, 917515, 0, 196610, 917516, 0, 196610, 917517, 0, 65538, 917518, 0, 196610, 917519, 0, 196611, 917521, 0, 65536, 917523, 0, 131072, 917525, 0, 131073, 917526, 0, 3, 917528, 0, 65536, 917530, 0, 0, 917532, 0, 65536, 983047, 0, 65536, 983053, 0, 65536, 983057, 0, 65536, 983062, 0, 65536, 983064, 0, 65536, 983066, 0, 65536, 983068, 0, 65536, 1048583, 0, 131073, 1048584, 0, 196610, 1048585, 0, 196610, 1048586, 0, 196610, 1048587, 0, 196610, 1048588, 0, 196610, 1048589, 0, 131074, 1048590, 0, 196610, 1048591, 0, 196610, 1048592, 0, 196610, 1048593, 0, 131074, 1048594, 0, 196610, 1048595, 0, 196610, 1048596, 0, 196610, 1048597, 0, 196610, 1048598, 0, 131074, 1048599, 0, 196610, 1048600, 0, 131074, 1048601, 0, 196610, 1048602, 0, 131074, 1048603, 0, 196610, 1048604, 0, 131075 )

@@ -1,0 +1,121 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://Activatables/DoorBase.tscn" type="PackedScene" id=1]
+[ext_resource path="res://BaseNodes/LevelEntry.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Levels/NewLevelBase.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Activatables/Trigger/PurplePressurePlate.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Activatables/PurpleCounter.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Tilesets/SpikeBase.tscn" type="PackedScene" id=6]
+
+[node name="Level" instance=ExtResource( 3 )]
+
+[node name="LevelEntry" parent="Entries" index="0"]
+position = Vector2( 312, 192 )
+frame = 3
+line_size = 6
+
+[node name="LevelEntry2" parent="Entries" index="1" instance=ExtResource( 2 )]
+position = Vector2( 600, 192 )
+frame = 1
+line_size = 6
+
+[node name="LevelExit" parent="Exits" index="0"]
+position = Vector2( 480, 72 )
+frame = 7
+
+[node name="PurpleCounter" parent="Activators" index="0" instance=ExtResource( 5 )]
+position = Vector2( 552, 216 )
+
+[node name="Door" parent="Activators" index="1" instance=ExtResource( 1 )]
+position = Vector2( 408, 264 )
+default_open = true
+
+[node name="Door2" parent="Activators" index="2" instance=ExtResource( 1 )]
+position = Vector2( 480, 144 )
+
+[node name="PurplePressurePlate" parent="Triggers" index="0" instance=ExtResource( 4 )]
+position = Vector2( 432, 168 )
+
+[node name="PurplePressurePlate2" parent="Triggers" index="1" instance=ExtResource( 4 )]
+position = Vector2( 432, 192 )
+
+[node name="PurplePressurePlate3" parent="Triggers" index="2" instance=ExtResource( 4 )]
+position = Vector2( 408, 192 )
+
+[node name="PurplePressurePlate4" parent="Triggers" index="3" instance=ExtResource( 4 )]
+position = Vector2( 408, 168 )
+
+[node name="PurplePressurePlate9" parent="Triggers" index="4" instance=ExtResource( 4 )]
+position = Vector2( 480, 168 )
+
+[node name="PurplePressurePlate10" parent="Triggers" index="5" instance=ExtResource( 4 )]
+position = Vector2( 480, 192 )
+
+[node name="PurplePressurePlate11" parent="Triggers" index="6" instance=ExtResource( 4 )]
+position = Vector2( 456, 192 )
+
+[node name="PurplePressurePlate12" parent="Triggers" index="7" instance=ExtResource( 4 )]
+position = Vector2( 456, 168 )
+
+[node name="PurplePressurePlate5" parent="Triggers" index="8" instance=ExtResource( 4 )]
+position = Vector2( 456, 216 )
+
+[node name="PurplePressurePlate6" parent="Triggers" index="9" instance=ExtResource( 4 )]
+position = Vector2( 408, 216 )
+
+[node name="PurplePressurePlate7" parent="Triggers" index="10" instance=ExtResource( 4 )]
+position = Vector2( 432, 216 )
+
+[node name="PurplePressurePlate8" parent="Triggers" index="11" instance=ExtResource( 4 )]
+position = Vector2( 480, 216 )
+
+[node name="Spike" parent="Scenery" index="0" instance=ExtResource( 6 )]
+position = Vector2( 408, 144 )
+
+[node name="Spike3" parent="Scenery" index="1" instance=ExtResource( 6 )]
+position = Vector2( 456, 240 )
+frame = 1
+
+[node name="Spike4" parent="Scenery" index="2" instance=ExtResource( 6 )]
+position = Vector2( 432, 144 )
+frame = 1
+
+[node name="Spike6" parent="Scenery" index="3" instance=ExtResource( 6 )]
+position = Vector2( 384, 216 )
+
+[node name="Spike7" parent="Scenery" index="4" instance=ExtResource( 6 )]
+position = Vector2( 384, 192 )
+
+[node name="Spike8" parent="Scenery" index="5" instance=ExtResource( 6 )]
+position = Vector2( 384, 168 )
+
+[node name="Spike10" parent="Scenery" index="6" instance=ExtResource( 6 )]
+position = Vector2( 384, 144 )
+frame = 1
+
+[node name="Spike12" parent="Scenery" index="7" instance=ExtResource( 6 )]
+position = Vector2( 504, 168 )
+
+[node name="Spike13" parent="Scenery" index="8" instance=ExtResource( 6 )]
+position = Vector2( 504, 192 )
+frame = 1
+
+[node name="Spike14" parent="Scenery" index="9" instance=ExtResource( 6 )]
+position = Vector2( 504, 216 )
+frame = 1
+
+[node name="Spike15" parent="Scenery" index="10" instance=ExtResource( 6 )]
+position = Vector2( 504, 240 )
+frame = 1
+
+[node name="Spike16" parent="Scenery" index="11" instance=ExtResource( 6 )]
+position = Vector2( 480, 240 )
+
+[node name="Walls" parent="Tilemaps" index="0"]
+tile_data = PoolIntArray( 131091, 0, 1, 131092, 0, 196610, 131093, 0, 3, 196627, 0, 65536, 196629, 0, 65536, 262163, 0, 65536, 262165, 0, 65536, 327695, 0, 1, 327696, 0, 196610, 327697, 0, 196610, 327698, 0, 196610, 327699, 0, 65539, 327701, 0, 65540, 327702, 0, 11, 393231, 0, 65536, 393235, 0, 131072, 393237, 0, 196616, 393238, 0, 131079, 458763, 0, 1, 458764, 0, 196610, 458765, 0, 196610, 458766, 0, 196610, 458767, 0, 65539, 458774, 0, 65537, 458775, 0, 196610, 458776, 0, 196610, 458777, 0, 196610, 458778, 0, 3, 524299, 0, 65536, 524303, 0, 65536, 524310, 0, 65536, 524314, 0, 65536, 589835, 0, 65536, 589839, 0, 65536, 589846, 0, 65536, 589850, 0, 65536, 655371, 0, 65536, 655375, 0, 65540, 655376, 0, 11, 655378, 0, 0, 655382, 0, 65536, 655386, 0, 65536, 720907, 0, 65536, 720911, 0, 196616, 720912, 0, 196619, 720914, 0, 131073, 720915, 0, 196610, 720916, 0, 196610, 720917, 0, 196610, 720918, 0, 131075, 720922, 0, 65536, 786443, 0, 65536, 786458, 0, 65536, 851979, 0, 131073, 851980, 0, 196610, 851981, 0, 196610, 851982, 0, 196610, 851983, 0, 196610, 851984, 0, 196610, 851985, 0, 196610, 851986, 0, 196610, 851987, 0, 196610, 851988, 0, 196610, 851989, 0, 196610, 851990, 0, 196610, 851991, 0, 196610, 851992, 0, 196610, 851993, 0, 196610, 851994, 0, 131075 )
+
+[node name="PlayArea" parent="." index="10"]
+margin_left = 264.0
+margin_top = 24.0
+margin_right = 648.0
+margin_bottom = 336.0

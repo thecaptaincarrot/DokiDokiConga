@@ -1,7 +1,12 @@
 extends Node
 const PARTIER = preload("res://Partier.tscn")
 
-const HELPER_COLORS = [Color.lightblue,Color.aquamarine,Color.red, Color.orange, Color.purple, Color.yellow, Color.green, Color.pink,Color.coral]
+#const HELPER_COLORS = [Color.lightblue,Color.aquamarine,Color.red, Color.orange, Color.purple, Color.yellow, Color.green, Color.pink,Color.coral]
+const HELPER_COLORS = [Color.red, Color.lime, Color.blue, Color.gold, Color.darkorange, Color.aqua, Color.fuchsia, Color.green, Color.sienna,\
+						Color.yellowgreen, Color.darkcyan, Color.deeppink, Color.darkgoldenrod, Color.dimgray, Color.tomato,\
+						Color.mediumslateblue, Color.moccasin, Color.lightsalmon, Color.lightgreen, Color.powderblue, Color.purple,\
+						Color.orchid, Color.navyblue, Color.darkolivegreen, Color.pink, Color.dodgerblue, Color.palevioletred,\
+						Color.steelblue, Color.blueviolet, Color.springgreen, Color.darkslateblue, Color.darkseagreen]
 
 export var time_sensitive = false
 
@@ -55,7 +60,7 @@ func _ready():
 		if pad.is_in_group("Teleport") and pad.paired == false:
 			for pad_pair in $Pads.get_children():
 				if pad_pair.is_in_group("Teleport"):
-					if pad.code[0] == pad_pair.code[0] and pad != pad_pair:
+					if pad.code == pad_pair.code and pad != pad_pair:
 						pad.paired_pad = pad_pair
 						pad.paired = true
 						pad.self_modulate = HELPER_COLORS[i]
@@ -64,6 +69,8 @@ func _ready():
 						pad_pair.paired = true
 						pad_pair.self_modulate = HELPER_COLORS[i]
 						i += 1
+						if i >= len(HELPER_COLORS):
+							i = 0
 	start()
 	$PlayArea.hide()
 

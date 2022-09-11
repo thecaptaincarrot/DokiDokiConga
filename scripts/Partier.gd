@@ -153,6 +153,7 @@ func move_to(destination):
 	
 	if !is_leader:
 		check_follower_direction() #Change animation to face towards next in line
+		
 	var new_tween = Tween.new()
 	new_tween.connect("tween_all_completed",self,"_on_MovementTween_tween_all_completed")
 	new_tween.interpolate_property(self,"position", prev_position, destination, movement_time)
@@ -272,20 +273,23 @@ func set_teleport(old_position):
 
 
 func check_follower_direction(): #Changes the animation based on where its leader is
+	var test_position = front_person.grid_position
+	if front_person.teleporting:
+		test_position = front_person.teleport_walk_to #This shouldn't work but it does
 	#animation
-	if front_person.grid_position.x - grid_position.x > 64: #This is a hack, if something breaks it's this line's fault
+	if test_position.x - grid_position.x > 64: #This is a hack, if something breaks it's this line's fault
 		return
 	
-	if front_person.grid_position.x - grid_position.x < 0:
+	if test_position.x - grid_position.x < 0:
 		set_body_animation("Left")
 		set_walker_animation("Left")
-	elif front_person.grid_position.x - grid_position.x > 0:
+	elif test_position.x - grid_position.x > 0:
 		set_body_animation("Right")
 		set_walker_animation("Right")
-	elif front_person.grid_position.y - grid_position.y < 0:
+	elif test_position.y - grid_position.y < 0:
 		set_body_animation("Up")
 		set_walker_animation("Up")
-	elif front_person.grid_position.y - grid_position.y > 0:
+	elif test_position.y - grid_position.y > 0:
 		set_body_animation("Down")
 		set_walker_animation("Down")
 
@@ -335,10 +339,12 @@ func set_body_animation(animation):
 
 func bounce(direction):
 	pass
+	if len(tweens) > 2:
+		return
 	var destination = grid_position + direction * 12.0
 	var new_tween = Tween.new()
 	new_tween.connect("tween_all_completed",self,"_on_MovementTween_tween_all_completed")
-	new_tween.interpolate_property(self,"position", grid_position, destination, movement_time)
+	new_tween.interpolate_property(self,"position", grid_position, destination, movement_time/2.0)
 	tweens.append(new_tween)
 	$Tweens.add_child(new_tween)
 #	$MovementTween.interpolate_property(self,"position", position, destination, movement_time / 2.0)
@@ -347,7 +353,7 @@ func bounce(direction):
 #	$MovementTween.start()
 	var new_tween2 = Tween.new()
 	new_tween2.connect("tween_all_completed",self,"_on_MovementTween_tween_all_completed")
-	new_tween2.interpolate_property(self,"position", destination, grid_position, movement_time)
+	new_tween2.interpolate_property(self,"position", destination, grid_position, movement_time/2.0)
 	tweens.append(new_tween2)
 	$Tweens.add_child(new_tween2)
 	print(tweens)
