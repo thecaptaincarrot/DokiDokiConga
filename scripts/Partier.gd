@@ -145,6 +145,9 @@ func move_to(destination):
 		tweens.append(new_tween)
 		$Tweens.add_child(new_tween)
 		prev_position = teleport_walk_to
+		
+		teleport_undo[parent_level.get_turn()] = prev_position
+		
 		emit_signal("ITeleported",teleport_walk_to)
 	
 	
@@ -188,8 +191,15 @@ func undo_move(turn):
 			
 			prev_position = teleport_undo[turn]
 			
+			if !is_leader:
+				teleporting = true
+				teleport_walk_to = prev_position
 			
-		
+			if follower:
+				follower.teleporting = false
+			
+			teleport_undo.erase(turn)
+			
 		grid_position = move_undo[turn]
 		
 		var direction = (grid_position - prev_position).normalized()

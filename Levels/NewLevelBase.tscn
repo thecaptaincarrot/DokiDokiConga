@@ -94,14 +94,14 @@ script = ExtResource( 8 )
 
 [node name="LevelEntry" parent="Entries" instance=ExtResource( 1 )]
 position = Vector2( 168, 288 )
-frame = 6
+frame = 5
 line_size = 1
 
 [node name="Exits" type="Node" parent="."]
 
 [node name="LevelExit" parent="Exits" instance=ExtResource( 3 )]
 position = Vector2( 552, 288 )
-frame = 2
+frame = 1
 
 [node name="People" type="Node" parent="."]
 

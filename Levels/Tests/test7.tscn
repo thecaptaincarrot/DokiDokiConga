@@ -8,13 +8,12 @@
 [node name="Level" instance=ExtResource( 1 )]
 
 [node name="LevelEntry" parent="Entries" index="0"]
-position = Vector2( 544, 192 )
-frame = 7
+position = Vector2( 408, 144 )
+frame = 5
 line_size = 12
 
 [node name="LevelExit" parent="Exits" index="0"]
 position = Vector2( 72, 144 )
-frame = 4
 
 [node name="SideDoor" parent="Activators" index="0" instance=ExtResource( 2 )]
 position = Vector2( 144, 144 )
@@ -36,3 +35,7 @@ tile_data = PoolIntArray( 65542, 0, 1, 65543, 0, 196610, 65544, 0, 196610, 65545
 
 [node name="ThinWalls" parent="Tilemaps" index="1"]
 tile_data = PoolIntArray( 131085, 0, 0, 196619, 1, 0, 524299, 1, 0, 524302, 0, 0 )
+
+[node name="PlayArea" parent="." index="10"]
+margin_right = 480.0
+margin_bottom = 312.0

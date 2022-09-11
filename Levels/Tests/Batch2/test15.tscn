@@ -13,12 +13,12 @@
 
 [node name="LevelEntry" parent="Entries" index="0"]
 position = Vector2( 192, 288 )
-frame = 3
+frame = 0
 line_size = 12
 
 [node name="LevelExit" parent="Exits" index="0"]
 position = Vector2( 528, 288 )
-frame = 0
+frame = 5
 
 [node name="Door" parent="Activators" index="0" instance=ExtResource( 2 )]
 position = Vector2( 360, 192 )
@@ -66,17 +66,17 @@ position = Vector2( 336, 312 )
 position = Vector2( 360, 264 )
 
 [node name="Spike" parent="Scenery" index="0" instance=ExtResource( 6 )]
-position = Vector2( 240, 240 )
+position = Vector2( 288, 144 )
 
 [node name="Spike2" parent="Scenery" index="1" instance=ExtResource( 6 )]
-position = Vector2( 336, 240 )
+position = Vector2( 240, 144 )
 
 [node name="ConfusionPadBase" parent="Pads" index="0" instance=ExtResource( 7 )]
-position = Vector2( 264, 288 )
+position = Vector2( 144, 216 )
 z_index = -1
 
 [node name="TeleporterPad" parent="Pads" index="1" instance=ExtResource( 8 )]
-position = Vector2( 264, 384 )
+position = Vector2( 240, 384 )
 
 [node name="TeleporterPad2" parent="Pads" index="2" instance=ExtResource( 8 )]
-position = Vector2( 552, 384 )
+position = Vector2( 504, 384 )
