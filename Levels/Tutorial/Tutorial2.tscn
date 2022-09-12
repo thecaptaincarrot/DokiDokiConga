@@ -13,17 +13,16 @@ script = ExtResource( 2 )
 
 [node name="LevelEntry" parent="Entries" index="0"]
 position = Vector2( 120, 240 )
-frame = 7
+frame = 2
 line_size = 8
 
 [node name="LevelEntry2" parent="Entries" index="1" instance=ExtResource( 6 )]
 position = Vector2( 120, 96 )
-frame = 4
 line_size = 8
 
 [node name="LevelExit" parent="Exits" index="0"]
 position = Vector2( 312, 96 )
-frame = 4
+frame = 7
 
 [node name="SideDoor" parent="Activators" index="0" instance=ExtResource( 3 )]
 position = Vector2( 240, 240 )
@@ -49,10 +48,6 @@ code = [ "AAA", "BBB" ]
 
 [node name="Walls" parent="Tilemaps" index="0"]
 tile_data = PoolIntArray( 131076, 0, 1, 131077, 0, 196610, 131078, 0, 196610, 131079, 0, 196610, 131080, 0, 196610, 131081, 0, 196610, 131082, 0, 2, 131083, 0, 196610, 131084, 0, 196610, 131085, 0, 196610, 131086, 0, 196610, 131087, 0, 196610, 131088, 0, 3, 196612, 0, 65536, 196618, 0, 131072, 196624, 0, 65536, 262148, 0, 65536, 262160, 0, 65536, 327684, 0, 65536, 327690, 0, 0, 327696, 0, 65536, 393220, 0, 131073, 393221, 0, 196610, 393222, 0, 196610, 393223, 0, 196610, 393224, 0, 196610, 393225, 0, 196610, 393226, 0, 65539, 393232, 0, 65536, 458762, 0, 65536, 458768, 0, 65536, 524292, 0, 1, 524293, 0, 196610, 524294, 0, 196610, 524295, 0, 196610, 524296, 0, 196610, 524297, 0, 196610, 524298, 0, 65539, 524304, 0, 65536, 589828, 0, 65536, 589834, 0, 131072, 589840, 0, 65536, 655364, 0, 65536, 655376, 0, 65536, 720900, 0, 65536, 720906, 0, 0, 720912, 0, 65536, 786436, 0, 131073, 786437, 0, 196610, 786438, 0, 196610, 786439, 0, 196610, 786440, 0, 196610, 786441, 0, 196610, 786442, 0, 131074, 786443, 0, 196610, 786444, 0, 196610, 786445, 0, 196610, 786446, 0, 196610, 786447, 0, 196610, 786448, 0, 131075 )
-
-[node name="PlayArea" parent="." index="8"]
-margin_right = 624.0
-margin_bottom = 384.0
 
 [node name="Label" type="Label" parent="." index="10"]
 margin_left = 96.0
@@ -86,3 +81,7 @@ deactivated"
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="PlayArea" parent="." index="13"]
+margin_right = 624.0
+margin_bottom = 384.0
