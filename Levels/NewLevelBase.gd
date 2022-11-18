@@ -28,6 +28,7 @@ signal PartierDied
 #Node declarations
 onready var Walls = $Tilemaps/Walls
 onready var ThinWalls = $Tilemaps/ThinWalls
+onready var Obstacles = $Tilemaps/Obstacles
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -233,7 +234,7 @@ func check_clear(direction, person_moving):
 	#Check tileset
 		#compare the destination (which is in 32x32 blocks) to the tilemap
 		#If filled with a tile, return false
-	if Walls.get_cellv(destination / Global.grid_size) != -1:
+	if Walls.get_cellv(destination / Global.grid_size) != -1 or Obstacles.get_cellv(destination / Global.grid_size) != -1:
 		return false
 	#Thin Walls
 		#Vertical thin walls can't be crossed from X -1 to 0 or 0 to -1
