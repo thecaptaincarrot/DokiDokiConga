@@ -4,8 +4,8 @@
 [ext_resource path="res://Demo/OriginalDemo/LevelBase.tscn" type="PackedScene" id=2]
 [ext_resource path="res://scripts/PressureSwitch.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Demo/OriginalDemo/FutureSideDoor.tscn" type="PackedScene" id=4]
-[ext_resource path="res://Tilesets/Future/FutureTilesetForeground.tres" type="TileSet" id=5]
-[ext_resource path="res://Tilesets/Future/FutureTileset.tres" type="TileSet" id=6]
+[ext_resource path="res://Tilesets/Deprecated/Future/FutureTilesetForeground.tres" type="TileSet" id=5]
+[ext_resource path="res://Tilesets/Deprecated/Future/FutureTileset.tres" type="TileSet" id=6]
 
 
 

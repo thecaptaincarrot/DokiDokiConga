@@ -1,6 +1,6 @@
 [gd_scene load_steps=10 format=2]
 
-[ext_resource path="res://Tilesets/Future/Objects & Extras/!$CP-Barrier.png" type="Texture" id=1]
+[ext_resource path="res://Tilesets/Deprecated/Future/Objects & Extras/!$CP-Barrier.png" type="Texture" id=1]
 [ext_resource path="res://WorldMap/Scripts/Gate.gd" type="Script" id=2]
 [ext_resource path="res://WorldMap/Scripts/GatePassNumber.gd" type="Script" id=3]
 

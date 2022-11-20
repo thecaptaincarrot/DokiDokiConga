@@ -291,6 +291,7 @@ level_num = 14
 [node name="World2Portal" type="AnimatedSprite" parent="Worlds/DemoWorld" groups=["Portal", "Tile"]]
 position = Vector2( 384, 160 )
 frames = SubResource( 14 )
+frame = 1
 playing = true
 offset = Vector2( 0, -8 )
 script = ExtResource( 8 )
@@ -320,7 +321,7 @@ __meta__ = {
 [node name="WorldPlayer" type="AnimatedSprite" parent="."]
 z_index = 1
 frames = SubResource( 5 )
-frame = 1
+frame = 3
 playing = true
 offset = Vector2( 0, -12 )
 script = ExtResource( 4 )

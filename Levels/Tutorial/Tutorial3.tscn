@@ -11,12 +11,11 @@ script = ExtResource( 2 )
 
 [node name="LevelEntry" parent="Entries" index="0"]
 position = Vector2( 224, 224 )
-frame = 6
 line_size = 8
 
 [node name="LevelExit" parent="Exits" index="0"]
 position = Vector2( 360, 216 )
-frame = 3
+frame = 7
 
 [node name="SideDoor" parent="Activators" index="0" instance=ExtResource( 3 )]
 position = Vector2( 336, 120 )

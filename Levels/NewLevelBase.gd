@@ -1,6 +1,8 @@
 extends Node
 const PARTIER = preload("res://Partier.tscn")
 
+export(String, "Party", "Medieval", "SciFi") var theme = "Party"
+
 #const HELPER_COLORS = [Color.lightblue,Color.aquamarine,Color.red, Color.orange, Color.purple, Color.yellow, Color.green, Color.pink,Color.coral]
 const HELPER_COLORS = [Color.red, Color.lime, Color.blue, Color.gold, Color.darkorange, Color.aqua, Color.fuchsia, Color.green, Color.sienna,\
 						Color.yellowgreen, Color.darkcyan, Color.deeppink, Color.darkgoldenrod, Color.dimgray, Color.tomato,\
@@ -49,6 +51,7 @@ func _ready():
 	#Triggers and Activators
 	for trigger in $Triggers.get_children():
 		trigger.parent_level = self
+		trigger.theme = theme
 		for code in trigger.code:
 			for activator in $Activators.get_children():
 				activator.parent_level = self

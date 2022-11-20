@@ -1,6 +1,7 @@
 [gd_scene load_steps=12 format=2]
 
-[ext_resource path="res://Tilesets/Party/Untitled.png" type="Texture" id=1]
+[ext_resource path="res://Tilesets/Deprecated/Party/Untitled.png" type="Texture" id=1]
+
 
 [sub_resource type="AtlasTexture" id=1]
 atlas = ExtResource( 1 )

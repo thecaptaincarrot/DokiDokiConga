@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=34 format=2]
 
 [ext_resource path="res://BaseNodes/LevelEntry.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Tilesets/NewTilesets/Castle/Castle24.png" type="Texture" id=2]
@@ -8,12 +8,23 @@
 [ext_resource path="res://Fonts/BodoniFLF-Bold.ttf" type="DynamicFontData" id=6]
 [ext_resource path="res://Tilesets/ThinWalls24.png" type="Texture" id=7]
 [ext_resource path="res://Levels/NewLevelBase.gd" type="Script" id=8]
-[ext_resource path="res://Tilesets/NewTilesets/Tileset/Castle_Wall.png" type="Texture" id=9]
-[ext_resource path="res://Tilesets/NewTilesets/Tileset/Spaceship_walll.png" type="Texture" id=10]
-[ext_resource path="res://Tilesets/NewTilesets/Tileset/Horror_Wall.png" type="Texture" id=11]
-[ext_resource path="res://Tilesets/NewTilesets/Tileset/Party_walll.png" type="Texture" id=12]
-[ext_resource path="res://Tilesets/NewTilesets/Tileset/Dungeon_Wall.png" type="Texture" id=13]
-[ext_resource path="res://Sprites/Party/PartyObstacles.png" type="Texture" id=14]
+[ext_resource path="res://Tilesets/Medieval/Castle_Wall.png" type="Texture" id=9]
+[ext_resource path="res://Tilesets/SciFi/Spaceship_walll.png" type="Texture" id=10]
+[ext_resource path="res://Tilesets/Horror/Horror_Wall.png" type="Texture" id=11]
+[ext_resource path="res://Tilesets/Party/Party_walll.png" type="Texture" id=12]
+[ext_resource path="res://Tilesets/Medieval/Dungeon_Wall.png" type="Texture" id=13]
+[ext_resource path="res://Tilesets/Party/PartyObstacles.png" type="Texture" id=14]
+[ext_resource path="res://Tilesets/Party/PartyWallScenery.png" type="Texture" id=15]
+[ext_resource path="res://Tilesets/Party/PartyFloors.png" type="Texture" id=16]
+[ext_resource path="res://Tilesets/Party/PartyFloorScenery.png" type="Texture" id=17]
+[ext_resource path="res://Tilesets/Medieval/MedievalObstacles.png" type="Texture" id=18]
+[ext_resource path="res://Tilesets/Medieval/MedievalWallDecor.png" type="Texture" id=19]
+[ext_resource path="res://Tilesets/SciFi/Spaceship_Decor.png" type="Texture" id=20]
+[ext_resource path="res://Tilesets/Medieval/MedievalFloorDecor.png" type="Texture" id=21]
+[ext_resource path="res://WorldMap/Sprites/Star3.png" type="Texture" id=22]
+[ext_resource path="res://WorldMap/Sprites/Star4.png" type="Texture" id=23]
+[ext_resource path="res://WorldMap/Sprites/Star2.png" type="Texture" id=24]
+[ext_resource path="res://WorldMap/Sprites/Star1.png" type="Texture" id=25]
 
 [sub_resource type="TileSet" id=7]
 0/name = "Castle24.png 0"
@@ -203,12 +214,12 @@
 3/shapes = [  ]
 3/z_index = 0
 
-[sub_resource type="TileSet" id=8]
-0/name = "PartyObstacles.png 0"
-0/texture = ExtResource( 14 )
+[sub_resource type="TileSet" id=9]
+0/name = "PartyWallScenery.png 0"
+0/texture = ExtResource( 15 )
 0/tex_offset = Vector2( 0, 0 )
 0/modulate = Color( 1, 1, 1, 1 )
-0/region = Rect2( 0, 0, 144, 120 )
+0/region = Rect2( 0, 0, 72, 48 )
 0/tile_mode = 2
 0/autotile/icon_coordinate = Vector2( 0, 0 )
 0/autotile/tile_size = Vector2( 24, 24 )
@@ -225,10 +236,328 @@
 0/shape_one_way_margin = 0.0
 0/shapes = [  ]
 0/z_index = 0
+1/name = "MedievalWallDecor.png 1"
+1/texture = ExtResource( 19 )
+1/tex_offset = Vector2( 0, 0 )
+1/modulate = Color( 1, 1, 1, 1 )
+1/region = Rect2( 0, 0, 48, 24 )
+1/tile_mode = 2
+1/autotile/icon_coordinate = Vector2( 0, 0 )
+1/autotile/tile_size = Vector2( 24, 24 )
+1/autotile/spacing = 0
+1/autotile/occluder_map = [  ]
+1/autotile/navpoly_map = [  ]
+1/autotile/priority_map = [  ]
+1/autotile/z_index_map = [  ]
+1/occluder_offset = Vector2( 0, 0 )
+1/navigation_offset = Vector2( 0, 0 )
+1/shape_offset = Vector2( 0, 0 )
+1/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+1/shape_one_way = false
+1/shape_one_way_margin = 0.0
+1/shapes = [  ]
+1/z_index = 0
+2/name = "Scifi Wall"
+2/texture = ExtResource( 20 )
+2/tex_offset = Vector2( 0, 0 )
+2/modulate = Color( 1, 1, 1, 1 )
+2/region = Rect2( 192, 0, 72, 48 )
+2/tile_mode = 2
+2/autotile/icon_coordinate = Vector2( 0, 0 )
+2/autotile/tile_size = Vector2( 24, 24 )
+2/autotile/spacing = 0
+2/autotile/occluder_map = [  ]
+2/autotile/navpoly_map = [  ]
+2/autotile/priority_map = [  ]
+2/autotile/z_index_map = [  ]
+2/occluder_offset = Vector2( 0, 0 )
+2/navigation_offset = Vector2( 0, 0 )
+2/shape_offset = Vector2( 0, 0 )
+2/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+2/shape_one_way = false
+2/shape_one_way_margin = 0.0
+2/shapes = [  ]
+2/z_index = 0
+
+[sub_resource type="TileSet" id=8]
+0/name = "PartyObstacles.png 0"
+0/texture = ExtResource( 14 )
+0/tex_offset = Vector2( 0, 0 )
+0/modulate = Color( 1, 1, 1, 1 )
+0/region = Rect2( 0, 0, 144, 72 )
+0/tile_mode = 2
+0/autotile/icon_coordinate = Vector2( 0, 0 )
+0/autotile/tile_size = Vector2( 24, 24 )
+0/autotile/spacing = 0
+0/autotile/occluder_map = [  ]
+0/autotile/navpoly_map = [  ]
+0/autotile/priority_map = [  ]
+0/autotile/z_index_map = [  ]
+0/occluder_offset = Vector2( 0, 0 )
+0/navigation_offset = Vector2( 0, 0 )
+0/shape_offset = Vector2( 0, 0 )
+0/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+0/shape_one_way = false
+0/shape_one_way_margin = 0.0
+0/shapes = [  ]
+0/z_index = 0
+1/name = "Table"
+1/texture = ExtResource( 18 )
+1/tex_offset = Vector2( 0, 0 )
+1/modulate = Color( 1, 1, 1, 1 )
+1/region = Rect2( 0, 0, 96, 96 )
+1/tile_mode = 1
+1/autotile/bitmask_mode = 1
+1/autotile/bitmask_flags = [ Vector2( 0, 0 ), 48, Vector2( 0, 1 ), 432, Vector2( 0, 2 ), 438, Vector2( 0, 3 ), 54, Vector2( 1, 0 ), 56, Vector2( 1, 1 ), 504, Vector2( 1, 2 ), 511, Vector2( 1, 3 ), 63, Vector2( 2, 0 ), 24, Vector2( 2, 1 ), 216, Vector2( 2, 2 ), 219, Vector2( 2, 3 ), 27, Vector2( 3, 0 ), 16, Vector2( 3, 1 ), 144, Vector2( 3, 2 ), 146, Vector2( 3, 3 ), 18 ]
+1/autotile/icon_coordinate = Vector2( 3, 0 )
+1/autotile/tile_size = Vector2( 24, 24 )
+1/autotile/spacing = 0
+1/autotile/occluder_map = [  ]
+1/autotile/navpoly_map = [  ]
+1/autotile/priority_map = [  ]
+1/autotile/z_index_map = [  ]
+1/occluder_offset = Vector2( 0, 0 )
+1/navigation_offset = Vector2( 0, 0 )
+1/shape_offset = Vector2( 0, 0 )
+1/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+1/shape_one_way = false
+1/shape_one_way_margin = 0.0
+1/shapes = [  ]
+1/z_index = 0
+2/name = "MedievalObstacles"
+2/texture = ExtResource( 18 )
+2/tex_offset = Vector2( 0, 0 )
+2/modulate = Color( 1, 1, 1, 1 )
+2/region = Rect2( 0, 120, 72, 48 )
+2/tile_mode = 2
+2/autotile/icon_coordinate = Vector2( 0, 0 )
+2/autotile/tile_size = Vector2( 24, 24 )
+2/autotile/spacing = 0
+2/autotile/occluder_map = [  ]
+2/autotile/navpoly_map = [  ]
+2/autotile/priority_map = [  ]
+2/autotile/z_index_map = [  ]
+2/occluder_offset = Vector2( 0, 0 )
+2/navigation_offset = Vector2( 0, 0 )
+2/shape_offset = Vector2( 0, 0 )
+2/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+2/shape_one_way = false
+2/shape_one_way_margin = 0.0
+2/shapes = [  ]
+2/z_index = 0
+3/name = "MedievalTall"
+3/texture = ExtResource( 18 )
+3/tex_offset = Vector2( 0, -24 )
+3/modulate = Color( 1, 1, 1, 1 )
+3/region = Rect2( 96, 0, 24, 144 )
+3/tile_mode = 2
+3/autotile/icon_coordinate = Vector2( 0, 0 )
+3/autotile/tile_size = Vector2( 24, 48 )
+3/autotile/spacing = 0
+3/autotile/occluder_map = [  ]
+3/autotile/navpoly_map = [  ]
+3/autotile/priority_map = [  ]
+3/autotile/z_index_map = [  ]
+3/occluder_offset = Vector2( 0, 0 )
+3/navigation_offset = Vector2( 0, 0 )
+3/shape_offset = Vector2( 0, 0 )
+3/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+3/shape_one_way = false
+3/shape_one_way_margin = 0.0
+3/shapes = [  ]
+3/z_index = 0
+4/name = "Scifi Obstacles"
+4/texture = ExtResource( 20 )
+4/tex_offset = Vector2( 0, 0 )
+4/modulate = Color( 1, 1, 1, 1 )
+4/region = Rect2( 96, 0, 72, 96 )
+4/tile_mode = 2
+4/autotile/icon_coordinate = Vector2( 0, 0 )
+4/autotile/tile_size = Vector2( 24, 24 )
+4/autotile/spacing = 0
+4/autotile/occluder_map = [  ]
+4/autotile/navpoly_map = [  ]
+4/autotile/priority_map = [  ]
+4/autotile/z_index_map = [  ]
+4/occluder_offset = Vector2( 0, 0 )
+4/navigation_offset = Vector2( 0, 0 )
+4/shape_offset = Vector2( 0, 0 )
+4/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+4/shape_one_way = false
+4/shape_one_way_margin = 0.0
+4/shapes = [  ]
+4/z_index = 0
+5/name = "Scifi Obstacles Tall"
+5/texture = ExtResource( 20 )
+5/tex_offset = Vector2( 0, -24 )
+5/modulate = Color( 1, 1, 1, 1 )
+5/region = Rect2( 192, 48, 72, 48 )
+5/tile_mode = 2
+5/autotile/icon_coordinate = Vector2( 0, 0 )
+5/autotile/tile_size = Vector2( 24, 48 )
+5/autotile/spacing = 0
+5/autotile/occluder_map = [  ]
+5/autotile/navpoly_map = [  ]
+5/autotile/priority_map = [  ]
+5/autotile/z_index_map = [  ]
+5/occluder_offset = Vector2( 0, 0 )
+5/navigation_offset = Vector2( 0, 0 )
+5/shape_offset = Vector2( 0, 0 )
+5/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+5/shape_one_way = false
+5/shape_one_way_margin = 0.0
+5/shapes = [  ]
+5/z_index = 0
+6/name = "Scifi Table"
+6/texture = ExtResource( 20 )
+6/tex_offset = Vector2( 0, 0 )
+6/modulate = Color( 1, 1, 1, 1 )
+6/region = Rect2( 0, 24, 96, 72 )
+6/tile_mode = 1
+6/autotile/bitmask_mode = 1
+6/autotile/bitmask_flags = [ Vector2( 0, 0 ), 144, Vector2( 0, 1 ), 146, Vector2( 0, 2 ), 18, Vector2( 1, 1 ), 16, Vector2( 1, 2 ), 48, Vector2( 2, 2 ), 56, Vector2( 3, 2 ), 24 ]
+6/autotile/icon_coordinate = Vector2( 1, 1 )
+6/autotile/tile_size = Vector2( 24, 24 )
+6/autotile/spacing = 0
+6/autotile/occluder_map = [  ]
+6/autotile/navpoly_map = [  ]
+6/autotile/priority_map = [  ]
+6/autotile/z_index_map = [  ]
+6/occluder_offset = Vector2( 0, 0 )
+6/navigation_offset = Vector2( 0, 0 )
+6/shape_offset = Vector2( 0, 0 )
+6/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+6/shape_one_way = false
+6/shape_one_way_margin = 0.0
+6/shapes = [  ]
+6/z_index = 0
+
+[sub_resource type="TileSet" id=10]
+0/name = "PartyFloorScenery.png 0"
+0/texture = ExtResource( 17 )
+0/tex_offset = Vector2( 0, 0 )
+0/modulate = Color( 1, 1, 1, 1 )
+0/region = Rect2( 0, 0, 48, 72 )
+0/tile_mode = 2
+0/autotile/icon_coordinate = Vector2( 0, 0 )
+0/autotile/tile_size = Vector2( 24, 24 )
+0/autotile/spacing = 0
+0/autotile/occluder_map = [  ]
+0/autotile/navpoly_map = [  ]
+0/autotile/priority_map = [  ]
+0/autotile/z_index_map = [  ]
+0/occluder_offset = Vector2( 0, 0 )
+0/navigation_offset = Vector2( 0, 0 )
+0/shape_offset = Vector2( 0, 0 )
+0/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+0/shape_one_way = false
+0/shape_one_way_margin = 0.0
+0/shapes = [  ]
+0/z_index = 0
+2/name = "MedivalRug"
+2/texture = ExtResource( 21 )
+2/tex_offset = Vector2( 0, 0 )
+2/modulate = Color( 1, 1, 1, 1 )
+2/region = Rect2( 0, 24, 72, 72 )
+2/tile_mode = 1
+2/autotile/bitmask_mode = 0
+2/autotile/bitmask_flags = [ Vector2( 0, 0 ), 256, Vector2( 0, 1 ), 260, Vector2( 0, 2 ), 4, Vector2( 1, 0 ), 320, Vector2( 1, 1 ), 325, Vector2( 1, 2 ), 5, Vector2( 2, 0 ), 64, Vector2( 2, 1 ), 65, Vector2( 2, 2 ), 1 ]
+2/autotile/icon_coordinate = Vector2( 1, 1 )
+2/autotile/tile_size = Vector2( 24, 24 )
+2/autotile/spacing = 0
+2/autotile/occluder_map = [  ]
+2/autotile/navpoly_map = [  ]
+2/autotile/priority_map = [  ]
+2/autotile/z_index_map = [  ]
+2/occluder_offset = Vector2( 0, 0 )
+2/navigation_offset = Vector2( 0, 0 )
+2/shape_offset = Vector2( 0, 0 )
+2/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+2/shape_one_way = false
+2/shape_one_way_margin = 0.0
+2/shapes = [  ]
+2/z_index = 0
+
+[sub_resource type="TileSet" id=11]
+0/name = "PartyFloors.png 0"
+0/texture = ExtResource( 16 )
+0/tex_offset = Vector2( 0, 0 )
+0/modulate = Color( 1, 1, 1, 1 )
+0/region = Rect2( 0, 0, 72, 48 )
+0/tile_mode = 2
+0/autotile/icon_coordinate = Vector2( 0, 0 )
+0/autotile/tile_size = Vector2( 24, 24 )
+0/autotile/spacing = 0
+0/autotile/occluder_map = [  ]
+0/autotile/navpoly_map = [  ]
+0/autotile/priority_map = [  ]
+0/autotile/z_index_map = [  ]
+0/occluder_offset = Vector2( 0, 0 )
+0/navigation_offset = Vector2( 0, 0 )
+0/shape_offset = Vector2( 0, 0 )
+0/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+0/shape_one_way = false
+0/shape_one_way_margin = 0.0
+0/shapes = [  ]
+0/z_index = 0
+1/name = "MedievalFloorDecor.png 1"
+1/texture = ExtResource( 21 )
+1/tex_offset = Vector2( 0, 0 )
+1/modulate = Color( 1, 1, 1, 1 )
+1/region = Rect2( 0, 0, 72, 24 )
+1/tile_mode = 1
+1/autotile/bitmask_mode = 0
+1/autotile/bitmask_flags = [ Vector2( 0, 0 ), 325, Vector2( 1, 0 ), 325, Vector2( 2, 0 ), 325 ]
+1/autotile/icon_coordinate = Vector2( 0, 0 )
+1/autotile/tile_size = Vector2( 24, 24 )
+1/autotile/spacing = 0
+1/autotile/occluder_map = [  ]
+1/autotile/navpoly_map = [  ]
+1/autotile/priority_map = [ Vector3( 0, 0, 8 ) ]
+1/autotile/z_index_map = [  ]
+1/occluder_offset = Vector2( 0, 0 )
+1/navigation_offset = Vector2( 0, 0 )
+1/shape_offset = Vector2( 0, 0 )
+1/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+1/shape_one_way = false
+1/shape_one_way_margin = 0.0
+1/shapes = [  ]
+1/z_index = 0
+2/name = "Spaceship_Decor.png 2"
+2/texture = ExtResource( 20 )
+2/tex_offset = Vector2( 0, 0 )
+2/modulate = Color( 1, 1, 1, 1 )
+2/region = Rect2( 264, 0, 24, 72 )
+2/tile_mode = 2
+2/autotile/icon_coordinate = Vector2( 0, 0 )
+2/autotile/tile_size = Vector2( 24, 24 )
+2/autotile/spacing = 0
+2/autotile/occluder_map = [  ]
+2/autotile/navpoly_map = [  ]
+2/autotile/priority_map = [  ]
+2/autotile/z_index_map = [  ]
+2/occluder_offset = Vector2( 0, 0 )
+2/navigation_offset = Vector2( 0, 0 )
+2/shape_offset = Vector2( 0, 0 )
+2/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+2/shape_one_way = false
+2/shape_one_way_margin = 0.0
+2/shapes = [  ]
+2/z_index = 0
 
 [sub_resource type="DynamicFont" id=2]
 size = 32
 font_data = ExtResource( 6 )
+
+[sub_resource type="AnimatedTexture" id=12]
+frames = 4
+frame_0/texture = ExtResource( 25 )
+frame_1/texture = ExtResource( 24 )
+frame_1/delay_sec = 0.0
+frame_2/texture = ExtResource( 22 )
+frame_2/delay_sec = 0.0
+frame_3/texture = ExtResource( 23 )
+frame_3/delay_sec = 0.0
 
 [node name="Level" type="Node"]
 pause_mode = 1
@@ -237,15 +566,14 @@ script = ExtResource( 8 )
 [node name="Entries" type="Node" parent="."]
 
 [node name="LevelEntry" parent="Entries" instance=ExtResource( 1 )]
-position = Vector2( 192, 312 )
-frame = 1
+position = Vector2( 192, 288 )
 line_size = 1
 
 [node name="Exits" type="Node" parent="."]
 
 [node name="LevelExit" parent="Exits" instance=ExtResource( 3 )]
 position = Vector2( 552, 288 )
-frame = 5
+frame = 3
 
 [node name="People" type="Node" parent="."]
 
@@ -281,19 +609,39 @@ __meta__ = {
 }
 
 [node name="WallScenery" type="TileMap" parent="Tilemaps"]
+z_index = 2
+tile_set = SubResource( 9 )
+cell_size = Vector2( 24, 24 )
 format = 1
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="Obstacles" type="TileMap" parent="Tilemaps"]
 tile_set = SubResource( 8 )
 cell_size = Vector2( 24, 24 )
 format = 1
-tile_data = PoolIntArray( 655372, 0, 0, 786444, 0, 0, 917516, 0, 0, 1048588, 0, 0, 1179660, 0, 0 )
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="FloorScenery" type="TileMap" parent="Tilemaps"]
+z_index = -1
+tile_set = SubResource( 10 )
+cell_size = Vector2( 24, 24 )
 format = 1
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="Floors" type="TileMap" parent="Tilemaps"]
+z_index = -2
+tile_set = SubResource( 11 )
+cell_size = Vector2( 24, 24 )
 format = 1
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="HUD" type="CanvasLayer" parent="."]
 
@@ -326,5 +674,29 @@ __meta__ = {
 visible = false
 offset = Vector2( 200, 300 )
 current = true
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="ParallaxBackground"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+color = Color( 0.0941176, 0.203922, 0.211765, 1 )
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect" type="TextureRect" parent="ParallaxBackground"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+texture = SubResource( 12 )
+expand = true
+stretch_mode = 2
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
 
 [connection signal="timeout" from="Metronome" to="Metronome" method="_on_Metronome_timeout"]

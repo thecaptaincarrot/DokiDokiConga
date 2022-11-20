@@ -1,6 +1,6 @@
 [gd_scene load_steps=13 format=2]
 
-[ext_resource path="res://Tilesets/Hospital/Hospital Tiles/!$Elevator Doors-Alt.png" type="Texture" id=1]
+[ext_resource path="res://Tilesets/Deprecated/Hospital/Hospital Tiles/!$Elevator Doors-Alt.png" type="Texture" id=1]
 [ext_resource path="res://Activatables/DoorHelperLabel.gd" type="Script" id=2]
 [ext_resource path="res://Demo/OriginalDemo/Deprecated/HospitalDoor.gd" type="Script" id=3]
 
