@@ -10,10 +10,12 @@
 
 [node name="LevelEntry" parent="Entries" index="0"]
 position = Vector2( 216, 288 )
+frame = 3
 line_size = 10
 
 [node name="LevelExit" parent="Exits" index="0"]
 position = Vector2( 576, 264 )
+frame = 6
 
 [node name="Door" parent="Activators" index="0" instance=ExtResource( 2 )]
 position = Vector2( 480, 264 )
@@ -56,9 +58,3 @@ margin_left = 64.0
 margin_top = 32.0
 margin_right = 768.0
 margin_bottom = 416.0
-
-[node name="ColorRect" parent="ParallaxBackground" index="0"]
-mouse_filter = 2
-
-[node name="TextureRect" parent="ParallaxBackground" index="1"]
-mouse_filter = 2

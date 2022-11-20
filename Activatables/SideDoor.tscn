@@ -49,7 +49,7 @@ animations = [ {
 } ]
 
 [node name="SideDoor" instance=ExtResource( 2 )]
-z_index = 1
+z_index = 3
 
 [node name="DoorSprite" parent="." index="0"]
 position = Vector2( 8, 0 )
