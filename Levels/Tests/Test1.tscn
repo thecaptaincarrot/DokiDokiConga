@@ -11,21 +11,20 @@ theme = "Medieval"
 
 [node name="LevelEntry" parent="Entries" index="0"]
 position = Vector2( 600, 312 )
-frame = 2
+frame = 1
 line_size = 8
 
 [node name="LevelEntry2" parent="Entries" index="1" instance=ExtResource( 2 )]
 position = Vector2( 120, 120 )
-frame = 1
 line_size = 8
 
 [node name="LevelExit" parent="Exits" index="0"]
 position = Vector2( 624, 120 )
-frame = 4
+frame = 3
 
 [node name="LevelExit2" parent="Exits" index="1" instance=ExtResource( 4 )]
 position = Vector2( 144, 312 )
-frame = 4
+frame = 3
 
 [node name="Door" parent="Activators" index="0" instance=ExtResource( 3 )]
 position = Vector2( 192, 120 )
@@ -91,3 +90,6 @@ margin_left = 32.0
 margin_top = 32.0
 margin_right = 736.0
 margin_bottom = 448.0
+
+[node name="ColorRect" parent="ParallaxBackground" index="0"]
+color = Color( 0, 0, 0, 1 )
