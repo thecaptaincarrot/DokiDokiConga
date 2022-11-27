@@ -17,5 +17,5 @@ func _ready():
 func _process(delta):
 	if Engine.editor_hint:
 		text = ""
-		for code in get_parent().code:
+		for code in get_parent().get_parent().code:
 			text += code + ","
