@@ -121,10 +121,20 @@ animations = [ {
 scale = Vector2( 1.5, 0.75 )
 frames = SubResource( 25 )
 animation = "Loop"
-frame = 4
+frame = 5
 playing = true
 centered = false
 offset = Vector2( -24, -24 )
 script = ExtResource( 2 )
+
+[node name="Label" type="Label" parent="."]
+margin_left = -12.6667
+margin_top = -25.3333
+margin_right = 27.3333
+margin_bottom = -11.3333
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [connection signal="animation_finished" from="." to="." method="_on_LevelExit_animation_finished"]

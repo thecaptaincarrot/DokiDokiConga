@@ -434,6 +434,13 @@ func get_exit_positions():
 	return exit_array
 
 
+func get_exit(location):
+	for exit in $Exits.get_children():
+		if exit.position == location: return exit
+	print('ERROR! Could not find exit at ',str(location))
+	return false
+
+
 func get_leaders():
 	var leaders = []
 	for partier in $People.get_children():
