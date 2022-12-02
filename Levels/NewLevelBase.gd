@@ -47,7 +47,11 @@ func _ready():
 			#When a partier leaves the portal, decrement the portal number
 		
 		entry.parent_level = self
+	
+	for exit in $Exits.get_children():
+		exit.parent_level = self
 		
+	
 	#Triggers and Activators
 	for trigger in $Triggers.get_children():
 		trigger.parent_level = self
@@ -299,6 +303,9 @@ func undo():
 		if partier.became_leader == turn:
 			partier.undo_leader()
 	
+	for exit in $Exits.get_children():
+		exit.undo() #???
+	
 	for trigger in $Triggers.get_children():
 		trigger.undo(turn)
 	
@@ -382,6 +389,13 @@ func check_dead(): #Checks if a door closed on a person.
 
 func check_exit(destination):
 	if get_exit_positions().has(destination):
+		#so... This is called when a partier wants to know where the exit is
+		#i.e. when it is trying to move onto an exit
+		#So. Logically. It follows that at this point I can also decrement\
+		#the exit portal's number
+		
+		#It's so hacky and I hate it.
+		get_exit(destination).decrement()
 		return true
 	else:
 		return false
