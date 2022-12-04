@@ -5,6 +5,8 @@ export var code = ["AAA"]
 var active = false
 var blocking = false
 
+var helper_offset = Vector2(12,12)
+
 var active_turns = [] #When it goes from inactive to active
 var inactive_turns = [] #When it goes from active to inactive
 

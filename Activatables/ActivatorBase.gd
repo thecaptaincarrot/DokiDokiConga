@@ -7,6 +7,8 @@ var parent_level
 var active = false
 var blocking = false
 
+var helper_offset = Vector2(12,12)
+
 #arrays that will keep hold all the triggers that are coded to this activator
 var switches = []
 #Pressure Plates

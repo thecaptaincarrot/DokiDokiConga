@@ -10,9 +10,12 @@ const HELPER_COLORS = [Color.red, Color.lime, Color.blue, Color.gold, Color.dark
 						Color.orchid, Color.navyblue, Color.darkolivegreen, Color.pink, Color.dodgerblue, Color.palevioletred,\
 						Color.steelblue, Color.blueviolet, Color.springgreen, Color.darkslateblue, Color.darkseagreen]
 
+#Game State
 export var time_sensitive = false
 
 var need_exit = 0
+
+var helpers = false
 
 var partiers_left
 
@@ -53,14 +56,37 @@ func _ready():
 		
 	
 	#Triggers and Activators
+	var code_colors = {}
+	var color_index = 0
 	for trigger in $Triggers.get_children():
+		for code in trigger.code:
+			if !code_colors.keys().has(code): #Code colors for helper lines
+				code_colors[code] = HELPER_COLORS[color_index]
+				color_index += 1
+		
 		trigger.parent_level = self
 		trigger.theme = theme
+		#This matches a trigger with its activators
+		#Also use to draw helper lines
 		for code in trigger.code:
 			for activator in $Activators.get_children():
 				activator.parent_level = self
 				if activator.code == code:
 					activator.pair_trigger(trigger)
+					#New helper line
+					var new_line = Line2D.new()
+					new_line.default_color = code_colors[code]
+					new_line.add_point(trigger.position + trigger.helper_offset)
+					new_line.add_point(activator.position + activator.helper_offset)
+					
+					new_line.width = 2
+					new_line.begin_cap_mode = Line2D.LINE_CAP_ROUND
+					new_line.end_cap_mode = Line2D.LINE_CAP_ROUND
+					new_line.joint_mode = Line2D.LINE_JOINT_BEVEL
+					new_line.z_index = 99
+					new_line.hide()
+					
+					$Lines.add_child(new_line)
 	
 	#Teleporter Pads
 	var i = 0
@@ -117,6 +143,9 @@ func _unhandled_input(event):
 			move(Vector2(0,-1))
 		elif event.is_action_pressed("ui_down"):
 			move(Vector2(0,1))
+	
+	if event.is_action_pressed("ui_click") and helpers:
+		_on_Helper_pressed()
 	
 	if event.is_action_pressed("undo"):
 		undo()
@@ -483,3 +512,35 @@ func set_camera():
 	
 	$MainCamera.zoom = Vector2(max_zoom_factor,max_zoom_factor)
 	$MainCamera.offset = center_point
+
+
+func show_helpers():
+	$HUD/ColorBlocker.show()
+	for line in $Lines.get_children():
+		line.show()
+
+
+func hide_helpers():
+	$HUD/ColorBlocker.hide()
+	for line in $Lines.get_children():
+		line.hide()
+
+
+func _on_Helper_mouse_entered():
+	show_helpers()
+
+
+func _on_Helper_mouse_exited():
+	if !helpers:
+		hide_helpers()
+
+
+func _on_Helper_pressed():
+	if helpers:
+		hide_helpers()
+	else:
+		show_helpers()
+	
+	play_active = !play_active
+
+	helpers = !helpers
