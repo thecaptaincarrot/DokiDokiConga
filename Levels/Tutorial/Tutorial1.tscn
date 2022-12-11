@@ -9,7 +9,7 @@ theme = "Medieval"
 
 [node name="LevelEntry" parent="Entries" index="0"]
 position = Vector2( 120, 192 )
-frame = 6
+frame = 4
 line_size = 10
 
 [node name="LevelExit" parent="Exits" index="0"]
@@ -48,7 +48,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="PlayArea" parent="." index="12"]
+[node name="PlayArea" parent="." index="13"]
 margin_right = 600.0
 margin_bottom = 408.0
 

@@ -9,13 +9,14 @@
 
 [node name="LevelEntry" parent="Entries" index="0"]
 position = Vector2( 288, 240 )
-frame = 6
+frame = 1
 line_size = 10
 
 [node name="LevelExit" parent="Exits" index="0"]
 position = Vector2( 288, 72 )
 z_index = 3
-frame = 0
+animation = "Open"
+frame = 3
 
 [node name="Door" parent="Activators" index="0" instance=ExtResource( 2 )]
 position = Vector2( 288, 120 )

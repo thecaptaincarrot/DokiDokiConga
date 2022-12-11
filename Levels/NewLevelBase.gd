@@ -105,6 +105,9 @@ func _ready():
 						i += 1
 						if i >= len(HELPER_COLORS):
 							i = 0
+	
+	
+	
 	start()
 	$PlayArea.hide()
 

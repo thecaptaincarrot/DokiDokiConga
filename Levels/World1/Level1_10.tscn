@@ -14,7 +14,7 @@ line_size = 10
 
 [node name="LevelExit" parent="Exits" index="0"]
 position = Vector2( 144, 168 )
-frame = 6
+frame = 5
 
 [node name="SideDoor" parent="Activators" index="0" instance=ExtResource( 1 )]
 position = Vector2( 312, 168 )
